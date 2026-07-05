@@ -77,7 +77,7 @@ gh repo create investment-agent-team --public --source=. --push
    git add -A
    git commit -m "feat: AI 투자팀 초기 구축"
    git branch -M main
-   git remote add origin https://github.com/305rhfueo/investment-agent-team.git
+   git remote add origin https://github.com/305rhfueo-ui/investment-agent-team.git
    git push -u origin main
    ```
 
@@ -86,7 +86,7 @@ gh repo create investment-agent-team --public --source=. --push
 2. Source: `Deploy from a branch` → Branch: `main` / `/ (root)` → Save
 3. 몇 분 뒤 미니룸 주소:
    ```
-   https://305rhfueo.github.io/investment-agent-team/dashboard/minimi-room.html
+   https://305rhfueo-ui.github.io/investment-agent-team/dashboard/minimi-room.html
    ```
 
 이후 `npm run start-investment`를 돌리면 자동으로 커밋·푸시되어 위 주소에서 최신 상태를 볼 수 있습니다. (git 원격이 연결돼 있을 때)
