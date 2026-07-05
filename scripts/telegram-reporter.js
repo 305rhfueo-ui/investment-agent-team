@@ -37,12 +37,11 @@ function buildMessage(ctx) {
   }
 
   if (ctx.buzz && ctx.buzz.ok) {
-    L.push('🛰️ 커뮤니티 버즈 (Nova)');
-    if (ctx.buzz.strong.length) {
-      for (const s of ctx.buzz.strong.slice(0, 3)) L.push(`• 🔥 ${s.symbol} — 버즈+RS강세 (RS상위 ${(100 - s.rsRank).toFixed(1)}%)`);
-    } else {
-      L.push('• 버즈+RS강세 교집합 없음 (관망)');
+    L.push('🛰️ 커뮤니티 참고 (Nova · 판단 관여 안 함)');
+    if ((ctx.buzz.reactions || []).length) {
+      for (const r of ctx.buzz.reactions.slice(0, 4)) L.push(`• ${r.symbol}: ${r.mood} (${r.activity})`);
     }
+    if ((ctx.buzz.trending || []).length) L.push(`• 많이 거론: ${ctx.buzz.trending.slice(0, 6).map((t) => t.symbol).join(', ')}`);
     L.push('');
   }
 

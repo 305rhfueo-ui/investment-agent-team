@@ -38,7 +38,6 @@ async function main() {
   say('SYSTEM', '⚠️ 데모 시뮬레이션 시작 (가상 시세). 실제 매매 아님.');
 
   const { rows } = await fetchRsData();
-  const buzz = await scanBuzz(rows);
   const p = P.initPortfolio(100000);
   p.meta.start_date = startDate;
 
@@ -48,6 +47,7 @@ async function main() {
   const entryPrices = {};
   opened.forEach((h) => { entryPrices[h.symbol] = h.entry_price; });
   const symbols = opened.map((h) => h.symbol);
+  const buzz = await scanBuzz(rows, symbols); // 우리 종목 반응 + 일반 버즈 (참고용)
   let stats = P.computeStats(p, startDate);
   p.meta.run_count = 1;
   recordRun(p, { dateStr: startDate, marketLight, strategyVersion: strategy.version, stats, opened, updateEvents: [], candidates, portfolio: p });

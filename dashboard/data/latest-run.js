@@ -26,40 +26,100 @@ window.RUN_DATA = {
   ],
   "recommendations": [],
   "buzz": {
-    "strong": [
+    "trending": [
       {
-        "symbol": "ARWR",
-        "title": "Arrowhead Pharmaceuticals Inc.",
-        "rsRank": 87.75,
-        "sector": "Healthcare",
-        "brk60": false
+        "symbol": "TER",
+        "title": "Teradyne, Inc."
+      },
+      {
+        "symbol": "TDOC",
+        "title": "Teladoc Health Inc"
+      },
+      {
+        "symbol": "CRVS",
+        "title": "Corvus Pharmaceuticals Inc"
+      },
+      {
+        "symbol": "STX",
+        "title": "Seagate Technology Holdings Plc"
+      },
+      {
+        "symbol": "GENI",
+        "title": "Genius Sports Limited"
+      },
+      {
+        "symbol": "AMRN",
+        "title": "Amarin Corp - ADR"
+      },
+      {
+        "symbol": "ETH",
+        "title": "Grayscale Ethereum Mini Trust"
+      },
+      {
+        "symbol": "VERA",
+        "title": "Vera Therapeutics Inc - Ordinary Shares - Class A"
+      },
+      {
+        "symbol": "XLF",
+        "title": "Financial Select Sector SPDR Fund"
+      },
+      {
+        "symbol": "ZIM",
+        "title": "Zim Integrated Shipping Services Ltd"
+      },
+      {
+        "symbol": "TSM",
+        "title": "Taiwan Semiconductor Manufacturing - ADR"
+      },
+      {
+        "symbol": "EMAT",
+        "title": "Evolution Metals & Technologies Corp. Common Stock"
       }
     ],
-    "other": [
-      "MXL",
-      "TSM",
-      "TER",
-      "STX"
-    ],
-    "outside": [
-      "ETH",
-      "AMRN",
-      "GENI",
-      "VERA",
-      "TDOC",
-      "CCXI",
-      "SCHD",
-      "ABSI",
-      "FOUR",
-      "QUANT"
-    ],
     "crypto": [
-      "SUI",
       "NEAR",
+      "SUI",
       "PEPE",
-      "HBAR",
-      "DOT",
-      "XCN"
+      "ETH",
+      "ADA",
+      "DOGE"
+    ],
+    "reactions": [
+      {
+        "symbol": "URBN",
+        "bullPct": 100,
+        "mood": "표본 적음(참고주의)",
+        "activity": "보통",
+        "watchers": 4250
+      },
+      {
+        "symbol": "ETSY",
+        "bullPct": 75,
+        "mood": "강세 우위 75%",
+        "activity": "활발",
+        "watchers": 34941
+      },
+      {
+        "symbol": "ECO",
+        "bullPct": 87,
+        "mood": "강세 우위 87%",
+        "activity": "관심 적음",
+        "watchers": 235
+      },
+      {
+        "symbol": "INSW",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
+        "activity": "관심 적음",
+        "watchers": 925
+      },
+      {
+        "symbol": "VIRT",
+        "bullPct": 89,
+        "mood": "강세 우위 89%",
+        "activity": "보통",
+        "watchers": 2269
+      }
     ]
   },
   "timeline": [
@@ -94,86 +154,93 @@ window.RUN_DATA = {
     {
       "agent": "Nova",
       "action": "walk",
-      "msg": "커뮤니티 스카우트 Nova예요! 미국 투자판 분위기 스캔했어요 🛰️",
+      "msg": "커뮤니티 스카우트 Nova예요! 미국 투자판 스캔했어요 🛰️",
       "phase": "분석",
       "t": 4
     },
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "버즈 + RS강세 교집합: ARWR — 커뮤니티도 주목, 우리 필터도 통과! 관심 리스트 올려요",
+      "msg": "요즘 커뮤니티에서 TER, TDOC, CRVS, STX 이런 종목이 많이 거론돼요",
       "phase": "분석",
       "t": 5
     },
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "단, 버즈는 인기 신호일 뿐! 펌핑·고점 위험도 있으니 참고만 합니다 ⚠️",
+      "msg": "우리 종목 반응도 봤어요 — ETSY은 커뮤니티에서 강세 우위 75% (활발)",
       "phase": "분석",
       "t": 6
+    },
+    {
+      "agent": "Nova",
+      "action": "talk",
+      "msg": "저는 참고 정보만 드려요! 판단은 팀 전략이랑 사장님 몫이에요 😊",
+      "phase": "분석",
+      "t": 7
     },
     {
       "agent": "Sara",
       "action": "walk",
       "msg": "제가 포지션 사이징 들어갈게요. 거래당 리스크 2% 원칙!",
       "phase": "리스크",
-      "t": 7
+      "t": 8
     },
     {
       "agent": "Sara",
       "action": "talk",
       "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
       "phase": "리스크",
-      "t": 8
+      "t": 9
     },
     {
       "agent": "Jordan",
       "action": "walk",
       "msg": "기록 담당 조던입니다. 매매일지에 남길게요 ✍️",
       "phase": "거래",
-      "t": 9
+      "t": 10
     },
     {
       "agent": "Jordan",
       "action": "talk",
       "msg": "현재 보유 1종목, 현금 $95,614.82.",
       "phase": "거래",
-      "t": 10
+      "t": 11
     },
     {
       "agent": "Morgan",
       "action": "walk",
       "msg": "전략가 모건이에요. 매매일지 돌아볼게요 📖",
       "phase": "검토",
-      "t": 11
+      "t": 12
     },
     {
       "agent": "Morgan",
       "action": "talk",
       "msg": "누적 수익률 +1.97% · 승 4 / 패 2. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
       "phase": "검토",
-      "t": 12
+      "t": 13
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 13
+      "t": 14
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "오늘 추천 0종목, 누적 수익률 +1.97%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 14
+      "t": 15
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 15
+      "t": 16
     }
   ]
 };

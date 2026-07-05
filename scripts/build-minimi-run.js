@@ -30,14 +30,14 @@ function buildTimeline(ctx) {
 
   // ── Phase 1.5: 커뮤니티 버즈 (Nova) ──────────────
   if (ctx.buzz && ctx.buzz.ok) {
-    push('Nova', 'walk', `커뮤니티 스카우트 Nova예요! 미국 투자판 분위기 스캔했어요 🛰️`, '분석');
-    if (ctx.buzz.strong.length) {
-      const names = ctx.buzz.strong.slice(0, 3).map((s) => s.symbol).join(', ');
-      push('Nova', 'talk', `버즈 + RS강세 교집합: ${names} — 커뮤니티도 주목, 우리 필터도 통과! 관심 리스트 올려요`, '분석');
-    } else {
-      push('Nova', 'talk', `오늘 버즈 종목 중 RS강세 교집합은 없네요. 인기만 높고 실속은 약해요`, '분석');
+    push('Nova', 'walk', `커뮤니티 스카우트 Nova예요! 미국 투자판 스캔했어요 🛰️`, '분석');
+    const trend = (ctx.buzz.trending || []).slice(0, 4).map((t) => t.symbol).join(', ');
+    if (trend) push('Nova', 'talk', `요즘 커뮤니티에서 ${trend} 이런 종목이 많이 거론돼요`, '분석');
+    if ((ctx.buzz.reactions || []).length) {
+      const r = ctx.buzz.reactions.find((x) => /강세|약세/.test(x.mood)) || ctx.buzz.reactions[0];
+      push('Nova', 'talk', `우리 종목 반응도 봤어요 — ${r.symbol}은 커뮤니티에서 ${r.mood} (${r.activity})`, '분석');
     }
-    push('Nova', 'talk', `단, 버즈는 인기 신호일 뿐! 펌핑·고점 위험도 있으니 참고만 합니다 ⚠️`, '분석');
+    push('Nova', 'talk', `저는 참고 정보만 드려요! 판단은 팀 전략이랑 사장님 몫이에요 😊`, '분석');
   }
 
   // ── Phase 2: 리스크 (Sara) ───────────────────────
@@ -103,10 +103,9 @@ function buildTimeline(ctx) {
       stop: h.stop_loss, strategy: h.strategy, reasons: h.reasons,
     })),
     buzz: (ctx.buzz && ctx.buzz.ok) ? {
-      strong: ctx.buzz.strong.map((s) => ({ symbol: s.symbol, title: s.title, rsRank: s.rsRank, sector: s.sector, brk60: s.brk60 })),
-      other: ctx.buzz.hot.filter((h) => h.inUniverse && (!h.rsRank || h.rsRank < 70)).map((h) => h.symbol),
-      outside: ctx.buzz.hot.filter((h) => !h.inUniverse).map((h) => h.symbol),
-      crypto: ctx.buzz.crypto,
+      trending: (ctx.buzz.trending || []).map((t) => ({ symbol: t.symbol, title: t.title })),
+      crypto: ctx.buzz.crypto || [],
+      reactions: (ctx.buzz.reactions || []).map((r) => ({ symbol: r.symbol, bullPct: r.bullPct, mood: r.mood, activity: r.activity, watchers: r.watchers })),
     } : null,
     timeline: line,
   };

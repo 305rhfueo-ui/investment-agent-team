@@ -330,16 +330,15 @@
     } else {
       rc.innerHTML="<div style='font-size:12px;color:var(--sub)'>보유/추천 종목이 여기에 표시됩니다.</div>";
     }
-    // 🛰️ 커뮤니티 버즈 (Nova)
+    // 🛰️ 커뮤니티 참고 (Nova) — 판단엔 관여하지 않는 참고 정보
     if(DATA.buzz){
-      let b="<div style='font-size:11px;color:var(--sub);font-weight:800;margin:10px 0 6px'>🛰️ 커뮤니티 버즈 (Nova)</div>";
-      if((DATA.buzz.strong||[]).length){
-        b+=DATA.buzz.strong.map(s=>`<div class="r">🔥 <b>${s.symbol}</b>${s.title?" · "+s.title:""}<br><span style="color:var(--sub);font-size:11px">RS상위 ${(100-s.rsRank).toFixed(1)}% · ${s.sector}${s.brk60?" · 돌파✓":""}</span></div>`).join("");
-      } else {
-        b+="<div style='font-size:11px;color:var(--sub)'>버즈+RS강세 교집합 없음 (관망)</div>";
+      let b="<div style='font-size:11px;color:var(--sub);font-weight:800;margin:10px 0 6px'>🛰️ 커뮤니티 참고 (Nova)</div>";
+      if((DATA.buzz.reactions||[]).length){
+        b+="<div style='font-size:11px;color:var(--sub);margin-bottom:3px'>우리 종목에 대한 반응</div>";
+        b+=DATA.buzz.reactions.map(r=>`<div class="r"><b>${r.symbol}</b> · ${r.mood}<br><span style="color:var(--sub);font-size:11px">${r.activity} · 관심 ${r.watchers??'?'}명</span></div>`).join("");
       }
-      if((DATA.buzz.other||[]).length) b+=`<div style='font-size:11px;color:var(--sub);margin-top:4px'>기타 버즈: ${DATA.buzz.other.join(", ")}</div>`;
-      b+="<div style='font-size:10.5px;color:var(--sub);margin-top:4px'>⚠️ 버즈는 인기 신호일 뿐 매수 근거 아님</div>";
+      if((DATA.buzz.trending||[]).length) b+=`<div style='font-size:11px;color:var(--sub);margin-top:6px'>📣 많이 거론: ${DATA.buzz.trending.map(t=>t.symbol).join(", ")}</div>`;
+      b+="<div style='font-size:10.5px;color:var(--sub);margin-top:4px'>⚠️ 참고용 — 커뮤니티 분위기일 뿐, 매수 근거·추천 아님</div>";
       rc.innerHTML += b;
     }
   }

@@ -66,16 +66,15 @@ function writeJournal(dateStr, ctx) {
     L.push('');
   }
   if (ctx.buzz && ctx.buzz.ok) {
-    L.push('## 🛰️ 커뮤니티 버즈 (Nova · StockTwits)');
-    if (ctx.buzz.strong.length) {
-      L.push('**버즈 + RS강세 교집합 (관심 우선):**');
-      for (const s of ctx.buzz.strong) L.push(`- 🔥 ${s.symbol} (${s.title}) · RS상위 ${topPct(s.rsRank)}% · ${s.sector}${s.brk60 ? ' · 60일돌파✓' : ''}`);
-    } else {
-      L.push('- 버즈 종목 중 RS강세 교집합 없음 (관망)');
+    L.push('## 🛰️ 커뮤니티 참고 (Nova · 판단엔 관여 안 함)');
+    if (ctx.buzz.reactions && ctx.buzz.reactions.length) {
+      L.push('**우리 추천/보유 종목에 대한 커뮤니티 반응:**');
+      for (const r of ctx.buzz.reactions) L.push(`- ${r.symbol}: ${r.mood} · ${r.activity} · 관심 ${r.watchers ?? '?'}명`);
     }
-    const other = ctx.buzz.hot.filter((h) => h.inUniverse && (!h.rsRank || h.rsRank < 70)).map((h) => h.symbol);
-    if (other.length) L.push(`- 유니버스 내 기타 버즈: ${other.join(', ')}`);
-    L.push(`- ⚠️ 버즈는 인기 신호일 뿐 매수 근거 아님`);
+    if (ctx.buzz.trending && ctx.buzz.trending.length) {
+      L.push(`- 요즘 커뮤니티에서 많이 거론: ${ctx.buzz.trending.map((t) => t.symbol).join(', ')}`);
+    }
+    L.push('- ⚠️ 참고용 — 커뮤니티 분위기일 뿐 매수 근거 아님');
     L.push('');
   }
   if (ctx.review) {
@@ -144,9 +143,10 @@ async function main() {
   // 4) 스크리닝 (Alex)
   const { candidates, marketLight } = screenStocks(rows, strategy);
 
-  // 4-1) 커뮤니티 버즈 스캔 (Nova)
-  say('Nova', '미국 투자 커뮤니티 버즈 스캔 중… 🛰️');
-  const buzz = await scanBuzz(rows);
+  // 4-1) 커뮤니티 스캔 (Nova) — 일반 버즈 + 우리 추천/보유 종목 반응 (참고용)
+  say('Nova', '미국 투자 커뮤니티 스캔 중… 🛰️');
+  const pickTickers = [...candidates.map((c) => c.ticker), ...p.holdings.map((h) => h.symbol)];
+  const buzz = await scanBuzz(rows, pickTickers);
 
   // 5) 신규 진입 (Sara 사이징 → Jordan 기록). 빨강불이면 진입 안 함.
   let opened = [];

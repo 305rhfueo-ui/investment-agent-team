@@ -1,103 +1,122 @@
 'use strict';
-// Nova(커뮤니티 스카우트): 미국 투자 커뮤니티에서 회자되는 종목 스캔
-// - StockTwits 트렌딩 API(실데이터) + 우리 RS 유니버스 교차검증
-// - Reddit/X(FinTwit)는 봇 차단이라 AI 웹검색으로 보완(별도 에이전트)
-// ⚠️ 버즈 = 인기 신호일 뿐, 매수 근거 아님. 펌핑/고점 경고로도 쓰인다.
+// Nova(커뮤니티 스카우트) — 순수 정보 제공. 판단/추천/검증에 관여하지 않는다.
+//  ① 일반 버즈: 미국 커뮤니티(StockTwits 트렌딩)에서 많이 거론되는 종목
+//  ② 반응 조회: 우리 팀이 추천/보유한 종목에 대한 커뮤니티 강세·약세 분위기
+// ⚠️ 전부 참고용. 커뮤니티 분위기일 뿐 매수 근거가 아니며, 펌핑·고점 신호일 수도 있다.
 
 const { say } = require('./lib/util');
 
-const STOCKTWITS_URL = 'https://api.stocktwits.com/api/2/trending/symbols.json';
+const TRENDING_URL = 'https://api.stocktwits.com/api/2/trending/symbols.json';
+const SYMBOL_URL = (s) => `https://api.stocktwits.com/api/2/streams/symbol/${encodeURIComponent(s)}.json`;
+const UA = { 'User-Agent': 'Mozilla/5.0 research' };
 
 function isEquityTicker(sym) {
-  if (!sym) return false;
-  if (sym.includes('.X')) return false;      // 크립토 (BTC, SUI.X 등)
-  if (!/^[A-Z]{1,5}$/.test(sym)) return false; // 정상 티커 형태만
-  return true;
+  return sym && !sym.includes('.X') && /^[A-Z]{1,5}$/.test(sym);
 }
 
-async function fetchStockTwitsTrending() {
+async function getJson(url) {
+  const c = new AbortController();
+  const t = setTimeout(() => c.abort(), 12000);
   try {
-    const c = new AbortController();
-    const t = setTimeout(() => c.abort(), 12000);
-    const r = await fetch(STOCKTWITS_URL, { signal: c.signal, headers: { 'User-Agent': 'Mozilla/5.0 research' } });
+    const r = await fetch(url, { signal: c.signal, headers: UA });
     clearTimeout(t);
     if (!r.ok) throw new Error('HTTP ' + r.status);
-    const j = await r.json();
-    const list = (j.symbols || []).map((s) => ({ symbol: s.symbol, title: s.title || '', watchers: s.watchlist_count || null }));
-    return list;
+    return await r.json();
+  } finally { clearTimeout(t); }
+}
+
+// ① 트렌딩(일반 버즈)
+async function fetchTrending() {
+  try {
+    const j = await getJson(TRENDING_URL);
+    return (j.symbols || []).map((s) => ({ symbol: s.symbol, title: s.title || '' }));
   } catch (e) {
     say('SYSTEM', `StockTwits 트렌딩 수신 실패: ${e.message}`);
     return [];
   }
 }
 
-// RS 유니버스와 교차검증
-function crossReference(trending, rsRows) {
-  const byTicker = {};
-  for (const row of rsRows || []) {
-    const tk = row.Ticker || row.ticker;
-    if (tk) byTicker[tk] = row;
-  }
-  const num = (v) => { const n = parseFloat(v); return Number.isFinite(n) ? n : null; };
-
-  const equities = trending.filter((t) => isEquityTicker(t.symbol));
-  const crypto = trending.filter((t) => t.symbol.includes('.X')).map((t) => t.symbol.replace('.X', ''));
-
-  const enriched = equities.map((t) => {
-    const row = byTicker[t.symbol];
-    if (!row) return { symbol: t.symbol, title: t.title, inUniverse: false };
+// ② 종목별 커뮤니티 반응(강세/약세)
+async function fetchSentiment(sym) {
+  try {
+    const j = await getJson(SYMBOL_URL(sym));
+    const msgs = j.messages || [];
+    let bull = 0, bear = 0;
+    for (const m of msgs) {
+      const s = m.entities && m.entities.sentiment && m.entities.sentiment.basic;
+      if (s === 'Bullish') bull++; else if (s === 'Bearish') bear++;
+    }
+    const tagged = bull + bear;
     return {
-      symbol: t.symbol, title: t.title, inUniverse: true,
-      rsRank: num(row.RS_Rank_Pct),
-      price: num(row.Price),
-      sector: row.Sector || '',
-      div50: num(row['50DIV']),
-      jeongbaeyeol: String(row['Jungjanggi Jeongbaeyeol']).toUpperCase() === 'YES',
-      high52: num(row.High_52W_Pct),
-      brk60: String(row.BRK_60D).toUpperCase() === 'YES',
+      symbol: sym, messages: msgs.length, bull, bear, tagged,
+      bullPct: tagged ? Math.round((bull / tagged) * 100) : null,
+      watchers: (j.symbol && j.symbol.watchlist_count) || null,
     };
-  });
-
-  // RS 순위 높은 순 (유니버스 내), 유니버스 밖은 뒤로
-  enriched.sort((a, b) => {
-    if (a.inUniverse !== b.inUniverse) return a.inUniverse ? -1 : 1;
-    return (b.rsRank || 0) - (a.rsRank || 0);
-  });
-  return { enriched, crypto };
+  } catch (e) {
+    return { symbol: sym, error: e.message };
+  }
 }
 
-// 메인: 커뮤니티 버즈 스캔
-async function scanBuzz(rsRows) {
-  const trending = await fetchStockTwitsTrending();
-  if (trending.length === 0) {
-    return { source: 'stocktwits', ok: false, hot: [], strong: [], crypto: [], note: 'StockTwits 수신 실패' };
+function activityLabel(watchers) {
+  if (watchers == null) return '';
+  if (watchers >= 100000) return '매우 활발';
+  if (watchers >= 10000) return '활발';
+  if (watchers >= 1000) return '보통';
+  return '관심 적음';
+}
+
+function moodLabel(r) {
+  if (r.tagged < 3) return '표본 적음(참고주의)';
+  if (r.bullPct >= 70) return `강세 우위 ${r.bullPct}%`;
+  if (r.bullPct <= 40) return `약세 우위 ${100 - r.bullPct}%`;
+  return `혼조 (강세 ${r.bullPct}%)`;
+}
+
+function classifyTrending(trending) {
+  const equities = trending.filter((t) => isEquityTicker(t.symbol));
+  const crypto = trending.filter((t) => t.symbol.includes('.X')).map((t) => t.symbol.replace('.X', ''));
+  return { equities, crypto };
+}
+
+// 메인: 일반 버즈 + (있으면) 우리 종목 반응
+async function scanBuzz(rsRows, pickTickers = []) {
+  const trending = await fetchTrending();
+  const { equities, crypto } = classifyTrending(trending);
+
+  // 우리 추천/보유 종목에 대한 반응 (중복 제거, 최대 8개)
+  const uniq = [...new Set(pickTickers.filter(Boolean))].slice(0, 8);
+  const reactions = [];
+  for (const tk of uniq) {
+    const r = await fetchSentiment(tk);
+    if (!r.error) reactions.push({ ...r, mood: moodLabel(r), activity: activityLabel(r.watchers) });
   }
-  const { enriched, crypto } = crossReference(trending, rsRows);
-  // "버즈 + RS 강세" 교집합 = 관심 우선순위
-  const strong = enriched.filter((e) => e.inUniverse && e.rsRank !== null && e.rsRank >= 70);
-  say('Nova', `StockTwits 트렌딩 ${trending.length}개 스캔 → 우리 유니버스 ${enriched.filter((e) => e.inUniverse).length}개, RS강세 교집합 ${strong.length}개`);
+
+  const ok = trending.length > 0 || reactions.length > 0;
+  if (ok) {
+    say('Nova', `커뮤니티 스캔 — 일반 버즈 ${equities.length}개, 우리 종목 반응 ${reactions.length}개 (참고용)`);
+  } else {
+    say('Nova', 'StockTwits 수신 실패 — 이번엔 버즈 정보 없음');
+  }
   return {
-    source: 'stocktwits', ok: true,
-    hot: enriched.slice(0, 15),
-    strong,
+    ok,
+    trending: equities.slice(0, 12),   // [{symbol,title}]
     crypto: crypto.slice(0, 6),
-    note: '버즈는 인기 신호일 뿐 매수 근거 아님. RS강세 교집합만 관심 리스트로.',
+    reactions,                         // [{symbol,bullPct,mood,activity,watchers,messages,tagged}]
+    note: '참고용 — 커뮤니티 분위기일 뿐 매수 근거 아님. 추천/검증 아님.',
   };
 }
 
-module.exports = { scanBuzz, fetchStockTwitsTrending, crossReference, isEquityTicker };
+module.exports = { scanBuzz, fetchTrending, fetchSentiment, isEquityTicker };
 
 if (require.main === module) {
   require('./lib/util').loadEnv();
   const { fetchRsData } = require('./fetch-rs-data');
   fetchRsData().then(async ({ rows }) => {
-    const buzz = await scanBuzz(rows);
-    console.log('\n=== 🛰️ 커뮤니티 버즈 (StockTwits) ===');
-    console.log('\n[버즈 + RS강세 교집합 = 관심 우선]');
-    for (const s of buzz.strong) console.log(`  🔥 ${s.symbol} (${s.title}) RS상위 ${(100 - s.rsRank).toFixed(1)}% · ${s.sector} · ${s.brk60 ? '60일돌파✓' : ''}`);
-    console.log('\n[유니버스 내 기타 버즈]');
-    for (const s of buzz.hot.filter((h) => h.inUniverse && (!h.rsRank || h.rsRank < 70))) console.log(`  · ${s.symbol} RS상위 ${s.rsRank ? (100 - s.rsRank).toFixed(1) + '%' : '—'}`);
-    console.log('\n[유니버스 밖(ETF/기타)]:', buzz.hot.filter((h) => !h.inUniverse).map((h) => h.symbol).join(', '));
-    console.log('[크립토]:', buzz.crypto.join(', '));
+    const buzz = await scanBuzz(rows, ['URBN', 'ETSY', 'ECO', 'INSW', 'VIRT']);
+    console.log('\n=== 🛰️ 일반 버즈 (커뮤니티에서 많이 거론) ===');
+    console.log(buzz.trending.map((t) => t.symbol).join(', '));
+    console.log('크립토:', buzz.crypto.join(', '));
+    console.log('\n=== 🛰️ 우리 추천 종목에 대한 커뮤니티 반응 ===');
+    for (const r of buzz.reactions) console.log(`  ${r.symbol}: ${r.mood} · ${r.activity} · 관심 ${r.watchers ?? '?'}명 · 최근 메시지 ${r.messages}개`);
   });
 }
