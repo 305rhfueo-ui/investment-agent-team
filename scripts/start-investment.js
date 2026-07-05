@@ -8,6 +8,7 @@ const path = require('path');
 const { paths, loadEnv, readJson, writeText, today, money, pct, topPct, say } = require('./lib/util');
 const { fetchRsData } = require('./fetch-rs-data');
 const { screenStocks, loadStrategy } = require('./screen-stocks');
+const { scanBuzz } = require('./community-buzz');
 const portfolioLib = require('./calculate-portfolio');
 const { companyAnalysis } = require('./analyze-company');
 const { maybeReview } = require('./strategy-review');
@@ -62,6 +63,19 @@ function writeJournal(dateStr, ctx) {
     for (const h of ctx.portfolio.holdings) {
       L.push(`| ${h.symbol} | ${h.quantity} | ${money(h.entry_price)} | ${money(h.current_price)} | ${pct(h.unrealized_pnl_pct)} | ${money(h.stop_loss)} |`);
     }
+    L.push('');
+  }
+  if (ctx.buzz && ctx.buzz.ok) {
+    L.push('## 🛰️ 커뮤니티 버즈 (Nova · StockTwits)');
+    if (ctx.buzz.strong.length) {
+      L.push('**버즈 + RS강세 교집합 (관심 우선):**');
+      for (const s of ctx.buzz.strong) L.push(`- 🔥 ${s.symbol} (${s.title}) · RS상위 ${topPct(s.rsRank)}% · ${s.sector}${s.brk60 ? ' · 60일돌파✓' : ''}`);
+    } else {
+      L.push('- 버즈 종목 중 RS강세 교집합 없음 (관망)');
+    }
+    const other = ctx.buzz.hot.filter((h) => h.inUniverse && (!h.rsRank || h.rsRank < 70)).map((h) => h.symbol);
+    if (other.length) L.push(`- 유니버스 내 기타 버즈: ${other.join(', ')}`);
+    L.push(`- ⚠️ 버즈는 인기 신호일 뿐 매수 근거 아님`);
     L.push('');
   }
   if (ctx.review) {
@@ -130,6 +144,10 @@ async function main() {
   // 4) 스크리닝 (Alex)
   const { candidates, marketLight } = screenStocks(rows, strategy);
 
+  // 4-1) 커뮤니티 버즈 스캔 (Nova)
+  say('Nova', '미국 투자 커뮤니티 버즈 스캔 중… 🛰️');
+  const buzz = await scanBuzz(rows);
+
   // 5) 신규 진입 (Sara 사이징 → Jordan 기록). 빨강불이면 진입 안 함.
   let opened = [];
   if (marketLight !== 'red') {
@@ -149,7 +167,7 @@ async function main() {
   const ctx = {
     dateStr, source, marketLight, strategyVersion,
     rowCount: rows.length, candidates, opened, updateEvents,
-    stats, portfolio: p, review,
+    stats, portfolio: p, review, buzz,
     dashboardUrl: process.env.DASHBOARD_URL || '',
   };
 

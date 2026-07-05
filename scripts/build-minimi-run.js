@@ -28,6 +28,18 @@ function buildTimeline(ctx) {
     }
   }
 
+  // ── Phase 1.5: 커뮤니티 버즈 (Nova) ──────────────
+  if (ctx.buzz && ctx.buzz.ok) {
+    push('Nova', 'walk', `커뮤니티 스카우트 Nova예요! 미국 투자판 분위기 스캔했어요 🛰️`, '분석');
+    if (ctx.buzz.strong.length) {
+      const names = ctx.buzz.strong.slice(0, 3).map((s) => s.symbol).join(', ');
+      push('Nova', 'talk', `버즈 + RS강세 교집합: ${names} — 커뮤니티도 주목, 우리 필터도 통과! 관심 리스트 올려요`, '분석');
+    } else {
+      push('Nova', 'talk', `오늘 버즈 종목 중 RS강세 교집합은 없네요. 인기만 높고 실속은 약해요`, '분석');
+    }
+    push('Nova', 'talk', `단, 버즈는 인기 신호일 뿐! 펌핑·고점 위험도 있으니 참고만 합니다 ⚠️`, '분석');
+  }
+
   // ── Phase 2: 리스크 (Sara) ───────────────────────
   push('Sara', 'walk', `제가 포지션 사이징 들어갈게요. 거래당 리스크 2% 원칙!`, '리스크');
   if (ctx.opened.length === 0) {
@@ -90,6 +102,12 @@ function buildTimeline(ctx) {
       symbol: h.symbol, entry: h.entry_price, qty: h.quantity,
       stop: h.stop_loss, strategy: h.strategy, reasons: h.reasons,
     })),
+    buzz: (ctx.buzz && ctx.buzz.ok) ? {
+      strong: ctx.buzz.strong.map((s) => ({ symbol: s.symbol, title: s.title, rsRank: s.rsRank, sector: s.sector, brk60: s.brk60 })),
+      other: ctx.buzz.hot.filter((h) => h.inUniverse && (!h.rsRank || h.rsRank < 70)).map((h) => h.symbol),
+      outside: ctx.buzz.hot.filter((h) => !h.inUniverse).map((h) => h.symbol),
+      crypto: ctx.buzz.crypto,
+    } : null,
     timeline: line,
   };
 }

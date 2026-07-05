@@ -36,6 +36,16 @@ function buildMessage(ctx) {
     L.push('');
   }
 
+  if (ctx.buzz && ctx.buzz.ok) {
+    L.push('🛰️ 커뮤니티 버즈 (Nova)');
+    if (ctx.buzz.strong.length) {
+      for (const s of ctx.buzz.strong.slice(0, 3)) L.push(`• 🔥 ${s.symbol} — 버즈+RS강세 (RS상위 ${(100 - s.rsRank).toFixed(1)}%)`);
+    } else {
+      L.push('• 버즈+RS강세 교집합 없음 (관망)');
+    }
+    L.push('');
+  }
+
   L.push('💰 포트폴리오');
   L.push(`• 총자산: ${money(ctx.stats.equity)} (초기 ${money(ctx.portfolio.meta.initial_capital)})`);
   L.push(`• 누적 수익률: ${pct(ctx.stats.total_return_pct)}`);

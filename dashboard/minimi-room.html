@@ -197,12 +197,13 @@
   // ── 캐릭터 정의 ──
   const CHARS = {
     Alex:  {role:"분석가", emoji:"🔍", color:"#2bb3c9", skin:"#ffe0bd", hair:"#44445f", jacket:"#3BC9DB", pants:"#2f6f7a", acc:"glasses"},
+    Nova:  {role:"커뮤니티", emoji:"🛰️", color:"#12b3a6", skin:"#ffe0bd", hair:"#2a4a55", jacket:"#22D3C5", pants:"#17756c", acc:"antenna"},
     Sara:  {role:"리스크관리", emoji:"🛡️", color:"#8f6ff0", skin:"#ffe0bd", hair:"#6a3f63", jacket:"#B197FC", pants:"#6a4a8a", acc:"shield"},
     Jordan:{role:"트레이더", emoji:"🎧", color:"#e0a520", skin:"#f8d0a8", hair:"#7a4a22", jacket:"#FFD43B", pants:"#b08020", acc:"headset"},
     Morgan:{role:"전략가", emoji:"📖", color:"#38b85a", skin:"#ffe0bd", hair:"#33502f", jacket:"#69DB7C", pants:"#3a7a4a", acc:"book"},
     RICH:  {role:"CEO", emoji:"👑", color:"#ff5b6b", skin:"#f8d0a8", hair:"#5A3A2A", jacket:"#FF6B6B", pants:"#a03030", acc:"crown"},
   };
-  const ORDER = ["Alex","Sara","Jordan","Morgan","RICH"];
+  const ORDER = ["Alex","Nova","Sara","Jordan","Morgan","RICH"];
   const PHASES = ["분석","리스크","거래","검토","보고"];
 
   function accessory(type){
@@ -212,6 +213,7 @@
       case "crown": return '<path d="M40 24 L48 34 L60 22 L72 34 L80 24 L77 38 L43 38 Z" fill="#ffd43b" stroke="#e6a817" stroke-width="1.6"/><circle cx="60" cy="20" r="3.4" fill="#ff6b6b"/><circle cx="43" cy="26" r="2.4" fill="#4dabf7"/><circle cx="77" cy="26" r="2.4" fill="#4dabf7"/>';
       case "book": return '<g transform="rotate(-12 88 120)"><rect x="78" y="112" width="22" height="17" rx="2" fill="#fff" stroke="#333" stroke-width="1.5"/><rect x="78" y="112" width="22" height="17" rx="2" fill="#69db7c" opacity=".35"/><line x1="89" y1="112" x2="89" y2="129" stroke="#333" stroke-width="1.2"/></g>';
       case "shield": return '<g><path d="M82 106 L100 110 L98 126 Q90 135 82 126 Q80 116 82 106Z" fill="#fff" stroke="#8f6ff0" stroke-width="2.2"/><path d="M90 112 L90 128 M84 119 L96 119" stroke="#8f6ff0" stroke-width="2"/></g>';
+      case "antenna": return '<g><line x1="60" y1="17" x2="60" y2="3" stroke="#2b6b66" stroke-width="2.4"/><circle cx="60" cy="2.5" r="3.6" fill="#ff5b6b"><animate attributeName="opacity" values="1;0.3;1" dur="1.2s" repeatCount="indefinite"/></circle><path d="M50 8 Q60 -1 70 8" stroke="#12b3a6" stroke-width="2" fill="none" opacity=".55"/><path d="M45 12 Q60 -4 75 12" stroke="#12b3a6" stroke-width="1.6" fill="none" opacity=".35"/></g>';
       default: return "";
     }
   }
@@ -291,8 +293,9 @@
     hud:{initial_capital:100000,equity:100000,cash:100000,total_return_pct:0,holdings_count:0,wins:0,losses:0,max_drawdown:0},
     holdings:[], recommendations:[],
     timeline: ORDER.flatMap((n,i)=>[
-      {agent:n,action:"talk",phase:PHASES[i],msg:{
+      {agent:n,action:"talk",phase:PHASES[Math.min(i,PHASES.length-1)],msg:{
         Alex:"안녕하세요! 아직 실행 데이터가 없어요. 터미널에서 npm run start-investment 를 돌려보세요 🔍",
+        Nova:"커뮤니티 스카우트 Nova! 미국 투자판 버즈를 스캔해서 뜨는 종목을 알려줘요 🛰️",
         Sara:"저는 포지션 사이징 담당 Sara예요. 리스크는 늘 2%로 관리합니다 🛡️",
         Jordan:"트레이더 Jordan! 매매일지에 다 기록해요 🎧",
         Morgan:"전략가 Morgan이에요. 매매일지 보고 전략을 계속 발전시켜요 📖",
@@ -326,6 +329,18 @@
         DATA.holdings.map(h=>`<div class="r"><b>${h.symbol}</b> ${h.qty}주 · 진입 ${money(h.entry)} · 현재 ${money(h.current)} · <span class="${h.pnl_pct>=0?'pos':'neg'}">${pctf(h.pnl_pct)}</span></div>`).join("");
     } else {
       rc.innerHTML="<div style='font-size:12px;color:var(--sub)'>보유/추천 종목이 여기에 표시됩니다.</div>";
+    }
+    // 🛰️ 커뮤니티 버즈 (Nova)
+    if(DATA.buzz){
+      let b="<div style='font-size:11px;color:var(--sub);font-weight:800;margin:10px 0 6px'>🛰️ 커뮤니티 버즈 (Nova)</div>";
+      if((DATA.buzz.strong||[]).length){
+        b+=DATA.buzz.strong.map(s=>`<div class="r">🔥 <b>${s.symbol}</b>${s.title?" · "+s.title:""}<br><span style="color:var(--sub);font-size:11px">RS상위 ${(100-s.rsRank).toFixed(1)}% · ${s.sector}${s.brk60?" · 돌파✓":""}</span></div>`).join("");
+      } else {
+        b+="<div style='font-size:11px;color:var(--sub)'>버즈+RS강세 교집합 없음 (관망)</div>";
+      }
+      if((DATA.buzz.other||[]).length) b+=`<div style='font-size:11px;color:var(--sub);margin-top:4px'>기타 버즈: ${DATA.buzz.other.join(", ")}</div>`;
+      b+="<div style='font-size:10.5px;color:var(--sub);margin-top:4px'>⚠️ 버즈는 인기 신호일 뿐 매수 근거 아님</div>";
+      rc.innerHTML += b;
     }
   }
 

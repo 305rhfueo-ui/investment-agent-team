@@ -6,6 +6,7 @@
 const { loadEnv, say, pct } = require('./lib/util');
 const { fetchRsData } = require('./fetch-rs-data');
 const { screenStocks, loadStrategy } = require('./screen-stocks');
+const { scanBuzz } = require('./community-buzz');
 const P = require('./calculate-portfolio');
 const { recordRun, writeHistory } = require('./build-history');
 const { writeTimeline } = require('./build-minimi-run');
@@ -37,6 +38,7 @@ async function main() {
   say('SYSTEM', '⚠️ 데모 시뮬레이션 시작 (가상 시세). 실제 매매 아님.');
 
   const { rows } = await fetchRsData();
+  const buzz = await scanBuzz(rows);
   const p = P.initPortfolio(100000);
   p.meta.start_date = startDate;
 
@@ -73,7 +75,7 @@ async function main() {
   writeTimeline({
     dateStr: lastDate + ' (데모)', source: 'simulation', marketLight: 'green',
     strategyVersion: strategy.version, rowCount: rows.length,
-    candidates: [], opened: [], updateEvents: [],
+    candidates: [], opened: [], updateEvents: [], buzz,
     stats, portfolio: p, review: null,
   });
   writeHistory(p);
