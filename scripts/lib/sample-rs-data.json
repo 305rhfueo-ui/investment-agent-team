@@ -1,0 +1,105 @@
+{
+  "meta": { "note": "라이브 수신 실패 시 폴백용 샘플. 실제 사이트 필드명과 동일.", "as_of": "2026-07-05" },
+  "data": [
+    {
+      "Ticker": "NVDA", "Price": 135.50, "Market Cap": "3320.00B",
+      "RS_6mo": 1.82, "RS_3mo": 1.95, "RS_1mo": 1.40, "RS_Rank_Pct": 96,
+      "Sector": "Technology", "Industry": "Semiconductors",
+      "50DIV": 18.5, "200DIV": 41.0, "10DIV": 6.2,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.92,
+      "High_52W_Pct": 97, "ADR_20D": 4.6, "Max_Rise_3M_Pct": 38,
+      "BRK_60D": "YES", "VOL_X": 2.8, "CLS_POS": 78,
+      "CY_Trend": 8.5, "NY_Trend": 6.2, "BBWTHD": 0.22, "Target_Status": "YES"
+    },
+    {
+      "Ticker": "AMD", "Price": 185.20, "Market Cap": "300.10B",
+      "RS_6mo": 1.55, "RS_3mo": 1.70, "RS_1mo": 1.33, "RS_Rank_Pct": 89,
+      "Sector": "Technology", "Industry": "Semiconductors",
+      "50DIV": 24.0, "200DIV": 33.5, "10DIV": 2.1,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.86,
+      "High_52W_Pct": 91, "ADR_20D": 3.9, "Max_Rise_3M_Pct": 31,
+      "BRK_60D": "YES", "VOL_X": 2.2, "CLS_POS": 64,
+      "CY_Trend": 6.0, "NY_Trend": 7.1, "BBWTHD": 0.28, "Target_Status": "YES"
+    },
+    {
+      "Ticker": "AVGO", "Price": 172.40, "Market Cap": "800.50B",
+      "RS_6mo": 1.48, "RS_3mo": 1.35, "RS_1mo": 1.05, "RS_Rank_Pct": 84,
+      "Sector": "Technology", "Industry": "Semiconductors",
+      "50DIV": 14.2, "200DIV": 28.0, "10DIV": 0.8,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.83,
+      "High_52W_Pct": 88, "ADR_20D": 3.6, "Max_Rise_3M_Pct": 22,
+      "BRK_60D": "NO", "VOL_X": 1.3, "CLS_POS": 55,
+      "CY_Trend": 5.5, "NY_Trend": 5.9, "BBWTHD": 0.14, "Target_Status": "YES"
+    },
+    {
+      "Ticker": "PLTR", "Price": 42.80, "Market Cap": "95.20B",
+      "RS_6mo": 2.10, "RS_3mo": 2.30, "RS_1mo": 1.60, "RS_Rank_Pct": 98,
+      "Sector": "Technology", "Industry": "Software - Infrastructure",
+      "50DIV": 27.5, "200DIV": 62.0, "10DIV": 4.5,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.81,
+      "High_52W_Pct": 95, "ADR_20D": 5.2, "Max_Rise_3M_Pct": 45,
+      "BRK_60D": "YES", "VOL_X": 3.1, "CLS_POS": 82,
+      "CY_Trend": 9.2, "NY_Trend": 8.0, "BBWTHD": 0.31, "Target_Status": "YES"
+    },
+    {
+      "Ticker": "SMCI", "Price": 58.30, "Market Cap": "34.10B",
+      "RS_6mo": 1.62, "RS_3mo": 1.90, "RS_1mo": 1.75, "RS_Rank_Pct": 91,
+      "Sector": "Technology", "Industry": "Computer Hardware",
+      "50DIV": 22.0, "200DIV": 30.0, "10DIV": 8.0,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.79,
+      "High_52W_Pct": 82, "ADR_20D": 6.8, "Max_Rise_3M_Pct": 52,
+      "BRK_60D": "YES", "VOL_X": 2.5, "CLS_POS": 71,
+      "CY_Trend": 4.0, "NY_Trend": 5.0, "BBWTHD": 0.40, "Target_Status": "NO"
+    },
+    {
+      "Ticker": "MSFT", "Price": 448.90, "Market Cap": "3340.00B",
+      "RS_6mo": 1.12, "RS_3mo": 1.08, "RS_1mo": 0.98, "RS_Rank_Pct": 72,
+      "Sector": "Technology", "Industry": "Software - Infrastructure",
+      "50DIV": 8.0, "200DIV": 16.0, "10DIV": -1.5,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.88,
+      "High_52W_Pct": 90, "ADR_20D": 3.7, "Max_Rise_3M_Pct": 12,
+      "BRK_60D": "NO", "VOL_X": 1.1, "CLS_POS": 58,
+      "CY_Trend": 4.5, "NY_Trend": 5.2, "BBWTHD": 0.12, "Target_Status": "YES"
+    },
+    {
+      "Ticker": "MU", "Price": 132.10, "Market Cap": "146.00B",
+      "RS_6mo": 1.35, "RS_3mo": 1.10, "RS_1mo": 0.85, "RS_Rank_Pct": 76,
+      "Sector": "Technology", "Industry": "Semiconductors",
+      "50DIV": 44.0, "200DIV": 55.0, "10DIV": 12.0,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.75,
+      "High_52W_Pct": 85, "ADR_20D": 4.2, "Max_Rise_3M_Pct": 40,
+      "BRK_60D": "YES", "VOL_X": 2.0, "CLS_POS": 45,
+      "CY_Trend": 3.0, "NY_Trend": 6.5, "BBWTHD": 0.35, "Target_Status": "NO"
+    },
+    {
+      "Ticker": "TSLA", "Price": 242.80, "Market Cap": "775.00B",
+      "RS_6mo": 0.88, "RS_3mo": 1.15, "RS_1mo": 1.25, "RS_Rank_Pct": 68,
+      "Sector": "Consumer Cyclical", "Industry": "Auto Manufacturers",
+      "50DIV": 20.0, "200DIV": 10.0, "10DIV": 3.5,
+      "Jungjanggi Jeongbaeyeol": "NO", "Up_Down_Ratio": 0.55,
+      "High_52W_Pct": 72, "ADR_20D": 5.5, "Max_Rise_3M_Pct": 28,
+      "BRK_60D": "NO", "VOL_X": 1.6, "CLS_POS": 60,
+      "CY_Trend": -2.0, "NY_Trend": 4.0, "BBWTHD": 0.33, "Target_Status": "NO"
+    },
+    {
+      "Ticker": "AAPL", "Price": 214.30, "Market Cap": "3280.00B",
+      "RS_6mo": 0.95, "RS_3mo": 0.92, "RS_1mo": 0.90, "RS_Rank_Pct": 58,
+      "Sector": "Technology", "Industry": "Consumer Electronics",
+      "50DIV": 6.0, "200DIV": 12.0, "10DIV": 1.0,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.70,
+      "High_52W_Pct": 89, "ADR_20D": 2.4, "Max_Rise_3M_Pct": 9,
+      "BRK_60D": "NO", "VOL_X": 0.9, "CLS_POS": 52,
+      "CY_Trend": 2.0, "NY_Trend": 3.0, "BBWTHD": 0.11, "Target_Status": "NO"
+    },
+    {
+      "Ticker": "ANET", "Price": 108.60, "Market Cap": "136.00B",
+      "RS_6mo": 1.40, "RS_3mo": 1.52, "RS_1mo": 1.20, "RS_Rank_Pct": 86,
+      "Sector": "Technology", "Industry": "Computer Hardware",
+      "50DIV": 16.0, "200DIV": 26.0, "10DIV": -2.0,
+      "Jungjanggi Jeongbaeyeol": "YES", "Up_Down_Ratio": 0.84,
+      "High_52W_Pct": 87, "ADR_20D": 3.8, "Max_Rise_3M_Pct": 24,
+      "BRK_60D": "NO", "VOL_X": 1.4, "CLS_POS": 63,
+      "CY_Trend": 5.8, "NY_Trend": 6.0, "BBWTHD": 0.13, "Target_Status": "YES"
+    }
+  ]
+}

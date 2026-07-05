@@ -1,0 +1,23 @@
+{
+  "name": "investment-agent-team",
+  "version": "1.0.0",
+  "description": "RS Investment 데이터 기반 AI 투자 팀 - 모의투자, 미니룸 비주얼, 텔레그램 보고",
+  "type": "commonjs",
+  "scripts": {
+    "start-investment": "node scripts/start-investment.js",
+    "demo": "node scripts/simulate-demo.js",
+    "open-room": "node scripts/open-room.js",
+    "test-telegram": "node scripts/telegram-reporter.js --test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "investment",
+    "relative-strength",
+    "mock-trading",
+    "ai-agents"
+  ],
+  "author": "305rhfueo",
+  "license": "MIT"
+}

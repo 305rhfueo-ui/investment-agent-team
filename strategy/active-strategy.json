@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "updated": "2026-07-05",
+  "updated_by": "system (baseline v1 - 사이트 원문 기반)",
+  "notes": "Alex가 매 실행마다 이 파일을 로드해 스크리닝합니다. 팀 회의(Morgan)로 개선되면 version이 올라가고 history/에 스냅샷이 저장됩니다.",
+
+  "market_filter": {
+    "require_qqq_above_50ma": true,
+    "comment": "Perfect Storm 신호등: QQQ 종가 > 50일선일 때만 신규 진입"
+  },
+
+  "screening": {
+    "rs_rank_pct_min": 70,
+    "div50_max": 30,
+    "div50_max_extreme_bull": 40,
+    "require_jungjanggi_jeongbaeyeol": true,
+    "up_down_ratio_min": 80,
+    "high_52w_pct_min": 80,
+    "adr_min": 3.5,
+    "comment": "rs_rank_pct_min=70 은 RS 상위 30% 의미. 정배열 20>60>120 필수."
+  },
+
+  "perfect_storm_entry": {
+    "require_brk_60d": true,
+    "vol_x_min": 2.0,
+    "cls_pos_min": 50,
+    "comment": "3개 동시 충족 시 Perfect Storm 진입 신호"
+  },
+
+  "eungbong_pullback": {
+    "div10_low": -3,
+    "div10_high": 3,
+    "comment": "10DIV 가 -3~+3% 범위면 이상적 눌림목 진입"
+  },
+
+  "earnings": {
+    "prefer_accelerating": true,
+    "analyst_revision_min_pct": 5,
+    "comment": "최근 분기 실적 > 향후 분기, 전월 대비 +5% 상향 선호"
+  },
+
+  "risk": {
+    "risk_per_trade_pct": 2,
+    "stop_loss_pct": 7,
+    "max_positions": 8,
+    "max_deploy_pct": 60,
+    "comment": "거래당 2% 위험, -7% 손절, 최대 8종목, 총 투입 60% 이하"
+  },
+
+  "exit": {
+    "tier1_gain_pct": 20,
+    "tier1_sell_fraction": 0.3333,
+    "move_stop_to_breakeven_after_tier1": true,
+    "trail_ma": "20D",
+    "hard_stop_60d_break_days": 2,
+    "distribution_div50": 70,
+    "comment": "1차 익절 후 손절선 본전, 나머지는 20일선 이탈까지 트레일링"
+  },
+
+  "candidate_count": 5
+}
