@@ -93,6 +93,22 @@ gh repo create investment-agent-team --public --source=. --push
 
 ---
 
+## 2-2. 🤖 매일 자동 실행 켜기 (노트북 없이, 무료)
+
+`.github/workflows/daily-investment.yml` 이 이미 들어있습니다. 아래만 하면 매일 자동으로 돌아갑니다.
+
+1. 저장소 → **Settings** → **Secrets and variables** → **Actions** → **New repository secret**
+   - `TELEGRAM_BOT_TOKEN` = 봇 토큰
+   - `TELEGRAM_CHAT_ID` = 내 Chat ID
+2. 저장소 → **Actions** 탭 → 워크플로우 활성화(최초 1회 승인)
+3. 끝! 평일 한국시간 08:00(UTC 23:00)에 자동 실행 → 매매기록·미니룸 갱신 → 텔레그램 보고 → 자동 커밋
+   - 시간 조정: `daily-investment.yml` 의 `cron` 수정
+   - 지금 당장 테스트: **Actions** 탭 → **Daily Investment Run** → **Run workflow** 버튼
+
+> 자동(스케줄) + 수동(`npm run start-investment`)을 **둘 다** 쓸 수 있습니다.
+
+---
+
 ## 3. 🚀 매일 사용법
 
 ```bash
