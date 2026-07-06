@@ -142,6 +142,7 @@
   .rptbar{display:flex;gap:6px;padding:8px 10px;overflow-x:auto;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:1}
   .rptchip{flex:0 0 auto;border:none;background:var(--card);color:var(--ink);font-weight:800;font-size:11.5px;padding:6px 10px;border-radius:20px;cursor:pointer;box-shadow:var(--shadow)}
   .rptchip.on{background:var(--accent);color:#fff}
+  .rptchip.dlbtn{background:var(--good);color:#fff;margin-left:auto;position:sticky;right:0}
   .rptbody{padding:12px 14px;font-size:12.5px;line-height:1.6}
   .rptbody h2{font-size:15px;margin:2px 0 8px}
   .rptbody h3{font-size:13.5px;margin:14px 0 6px;color:var(--accent)}
@@ -504,15 +505,35 @@
     }
     return h;
   }
+  function downloadWord(r){
+    if(!r) return;
+    const html=mdToHtml(r.md);
+    const doc="﻿<html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>"+
+      "<head><meta http-equiv='Content-Type' content='text/html; charset=utf-8'><title>투자 브리핑 "+r.date+"</title>"+
+      "<style>body{font-family:'Malgun Gothic','맑은 고딕',sans-serif;font-size:11pt;line-height:1.6;color:#222}"+
+      "h2{font-size:16pt}h3{font-size:13pt;color:#c0398b}h4{font-size:11pt}p{margin:6pt 0}"+
+      "table{border-collapse:collapse;width:100%}th,td{border:1px solid #999;padding:5px 8px;font-size:10pt}th{background:#f0e6f5}"+
+      "blockquote{border-left:3px solid #c0398b;padding:6px 10px;color:#666;background:#faf5fb}"+
+      "hr{border:none;border-top:1px solid #ccc}ul{margin:6pt 0}</style></head><body>"+html+"</body></html>";
+    const blob=new Blob([doc],{type:'application/msword'});
+    const url=URL.createObjectURL(blob);
+    const a=document.createElement('a');
+    a.href=url; a.download='투자브리핑_'+r.date+'.doc';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+  }
   function renderReports(){
     const el=$("tab-report");
     const R=(window.__NO_REPORTS||!window.REPORTS_DATA)?[]:window.REPORTS_DATA;
     if(!R.length){ el.innerHTML='<div class="empty">아직 리포트가 없습니다.<br>start-investment 실행 시 일자별 브리핑이 여기 쌓입니다.</div>'; return; }
     el.innerHTML='<div class="rptbar" id="rptbar"></div><div class="rptbody" id="rptbody"></div>';
     const bar=$("rptbar"), body=$("rptbody");
-    bar.innerHTML=R.map((r,idx)=>`<button class="rptchip${idx===0?" on":""}" data-idx="${idx}">📅 ${r.date}</button>`).join("");
-    const show=(idx)=>{ body.innerHTML=mdToHtml(R[idx].md); [...bar.children].forEach((c,j)=>c.classList.toggle("on",j===idx)); body.scrollTop=0; };
-    bar.querySelectorAll(".rptchip").forEach(b=>b.onclick=()=>show(+b.dataset.idx));
+    bar.innerHTML=R.map((r,idx)=>`<button class="rptchip${idx===0?" on":""}" data-idx="${idx}">📅 ${r.date}</button>`).join("")
+      +'<button class="rptchip dlbtn" id="dlWord">📥 Word 저장</button>';
+    let cur=0;
+    const show=(idx)=>{ cur=idx; body.innerHTML=mdToHtml(R[idx].md); bar.querySelectorAll("[data-idx]").forEach(c=>c.classList.toggle("on",+c.dataset.idx===idx)); body.scrollTop=0; };
+    bar.querySelectorAll(".rptchip[data-idx]").forEach(b=>b.onclick=()=>show(+b.dataset.idx));
+    $("dlWord").onclick=()=>downloadWord(R[cur]);
     show(0);
   }
 
