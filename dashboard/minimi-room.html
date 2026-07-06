@@ -7,6 +7,7 @@
 <!-- 실행 데이터: start-investment 가 생성. 없으면 데모 아이들 상태로 표시 -->
 <script src="data/latest-run.js" onerror="window.__NO_DATA=true"></script>
 <script src="data/history.js" onerror="window.__NO_HISTORY=true"></script>
+<script src="data/reports.js" onerror="window.__NO_REPORTS=true"></script>
 <style>
   :root{
     --bg1:#ffe8f0; --bg2:#e7f0ff; --floor:#f6d9b8; --floor2:#eac59a;
@@ -112,8 +113,8 @@
   .banner{background:var(--card);color:var(--sub);font-size:12px;padding:6px 14px;text-align:center;border-top:1px solid var(--line)}
 
   /* 탭 */
-  .tabs{display:flex;gap:2px;padding:8px 6px 0;border-bottom:1px solid var(--line)}
-  .tab{border:none;background:transparent;color:var(--sub);font-weight:800;font-size:11.5px;padding:7px 7px;border-radius:10px 10px 0 0;cursor:pointer;white-space:nowrap}
+  .tabs{display:flex;gap:2px;padding:8px 6px 0;border-bottom:1px solid var(--line);overflow-x:auto}
+  .tab{border:none;background:transparent;color:var(--sub);font-weight:800;font-size:11.5px;padding:7px 7px;border-radius:10px 10px 0 0;cursor:pointer;white-space:nowrap;flex:0 0 auto}
   .tab.on{background:var(--card);color:var(--ink);box-shadow:0 -2px 8px rgba(0,0,0,.06)}
   .tabview{flex:1;overflow:auto;min-height:0}
   .tabview[hidden]{display:none}
@@ -137,6 +138,23 @@
     background:var(--card);border-radius:10px;padding:10px;margin-top:8px;box-shadow:var(--shadow);
     font-family:inherit;color:var(--ink)}
   .daydivider{position:sticky;top:0;background:var(--panel);backdrop-filter:blur(6px);padding:6px 12px;font-size:12px;font-weight:800;color:var(--sub);border-bottom:1px solid var(--line)}
+  /* 리포트 탭 */
+  .rptbar{display:flex;gap:6px;padding:8px 10px;overflow-x:auto;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:1}
+  .rptchip{flex:0 0 auto;border:none;background:var(--card);color:var(--ink);font-weight:800;font-size:11.5px;padding:6px 10px;border-radius:20px;cursor:pointer;box-shadow:var(--shadow)}
+  .rptchip.on{background:var(--accent);color:#fff}
+  .rptbody{padding:12px 14px;font-size:12.5px;line-height:1.6}
+  .rptbody h2{font-size:15px;margin:2px 0 8px}
+  .rptbody h3{font-size:13.5px;margin:14px 0 6px;color:var(--accent)}
+  .rptbody h4{font-size:12.5px;margin:10px 0 4px}
+  .rptbody p{margin:6px 0}
+  .rptbody ul{margin:6px 0;padding-left:18px}
+  .rptbody li{margin:3px 0}
+  .rptbody blockquote{margin:6px 0;padding:6px 10px;background:var(--card);border-left:3px solid var(--accent);border-radius:6px;color:var(--sub);font-size:11.5px}
+  .rptbody hr{border:none;border-top:1px solid var(--line);margin:10px 0}
+  .rptbody table{width:100%;border-collapse:collapse;margin:8px 0;font-size:11.5px}
+  .rptbody th,.rptbody td{border:1px solid var(--line);padding:5px 7px;text-align:left}
+  .rptbody th{background:var(--card);font-weight:800}
+  .rptbody b{font-weight:800}
 </style>
 </head>
 <body>
@@ -171,6 +189,7 @@
         <button class="tab" data-tab="daily">📅 일자별</button>
         <button class="tab" data-tab="curve">📈 추이</button>
         <button class="tab" data-tab="reco">📊 추천</button>
+        <button class="tab" data-tab="report">📋 리포트</button>
       </div>
       <div class="tabview" id="tab-log" style="display:flex;flex-direction:column">
         <h3><span>💬 팀 대화 로그</span><span id="dateLbl" style="color:var(--sub);font-weight:600"></span></h3>
@@ -180,6 +199,7 @@
       <div class="tabview" id="tab-daily" hidden></div>
       <div class="tabview" id="tab-curve" hidden></div>
       <div class="tabview" id="tab-reco" hidden></div>
+      <div class="tabview" id="tab-report" hidden></div>
     </div>
   </div>
 
@@ -461,14 +481,49 @@
     }).join("") || '<div class="empty">추천 종목이 없습니다.</div>';
   }
 
+  // 경량 마크다운 → HTML (리포트 렌더용)
+  function mdToHtml(md){
+    const inl=(s)=>esc(s).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
+    const lines=String(md||"").split("\n"); let h="",i=0;
+    while(i<lines.length){
+      const ln=lines[i];
+      if(/^### /.test(ln)){ h+="<h4>"+inl(ln.slice(4))+"</h4>"; i++; continue; }
+      if(/^## /.test(ln)){ h+="<h3>"+inl(ln.slice(3))+"</h3>"; i++; continue; }
+      if(/^# /.test(ln)){ h+="<h2>"+inl(ln.slice(2))+"</h2>"; i++; continue; }
+      if(/^> /.test(ln)){ h+="<blockquote>"+inl(ln.slice(2))+"</blockquote>"; i++; continue; }
+      if(/^---\s*$/.test(ln)){ h+="<hr>"; i++; continue; }
+      if(/^\|/.test(ln) && i+1<lines.length && /^\|[\s:|-]+\|$/.test(lines[i+1].trim())){
+        const hd=ln.split("|").slice(1,-1).map(c=>c.trim()); i+=2; const rows=[];
+        while(i<lines.length && /^\|/.test(lines[i])){ rows.push(lines[i].split("|").slice(1,-1).map(c=>c.trim())); i++; }
+        h+="<table><thead><tr>"+hd.map(c=>"<th>"+inl(c)+"</th>").join("")+"</tr></thead><tbody>"+
+           rows.map(r=>"<tr>"+r.map(c=>"<td>"+inl(c)+"</td>").join("")+"</tr>").join("")+"</tbody></table>"; continue;
+      }
+      if(/^- /.test(ln)){ const it=[]; while(i<lines.length && /^- /.test(lines[i])){ it.push("<li>"+inl(lines[i].slice(2))+"</li>"); i++; } h+="<ul>"+it.join("")+"</ul>"; continue; }
+      if(ln.trim()===""){ i++; continue; }
+      h+="<p>"+inl(ln)+"</p>"; i++;
+    }
+    return h;
+  }
+  function renderReports(){
+    const el=$("tab-report");
+    const R=(window.__NO_REPORTS||!window.REPORTS_DATA)?[]:window.REPORTS_DATA;
+    if(!R.length){ el.innerHTML='<div class="empty">아직 리포트가 없습니다.<br>start-investment 실행 시 일자별 브리핑이 여기 쌓입니다.</div>'; return; }
+    el.innerHTML='<div class="rptbar" id="rptbar"></div><div class="rptbody" id="rptbody"></div>';
+    const bar=$("rptbar"), body=$("rptbody");
+    bar.innerHTML=R.map((r,idx)=>`<button class="rptchip${idx===0?" on":""}" data-idx="${idx}">📅 ${r.date}</button>`).join("");
+    const show=(idx)=>{ body.innerHTML=mdToHtml(R[idx].md); [...bar.children].forEach((c,j)=>c.classList.toggle("on",j===idx)); body.scrollTop=0; };
+    bar.querySelectorAll(".rptchip").forEach(b=>b.onclick=()=>show(+b.dataset.idx));
+    show(0);
+  }
+
   // 탭 전환
   const rendered={};
   document.querySelectorAll(".tab").forEach(btn=>{
     btn.onclick=()=>{
       const t=btn.dataset.tab;
       document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b===btn));
-      ["log","daily","curve","reco"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
-      if(!rendered[t]){ if(t==="daily")renderDaily(); if(t==="curve")renderCurve(); if(t==="reco")renderReco(); rendered[t]=true; }
+      ["log","daily","curve","reco","report"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
+      if(!rendered[t]){ if(t==="daily")renderDaily(); if(t==="curve")renderCurve(); if(t==="reco")renderReco(); if(t==="report")renderReports(); rendered[t]=true; }
     };
   });
 

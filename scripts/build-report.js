@@ -3,8 +3,23 @@
 // - 매 실행마다 결정론적(Node) 기본 리포트를 analysis/reports/ 에 저장
 // - ctx.ai 가 주입되면(= 클로드와 함께 실행 시) 시황·유동성 심층/버즈 "왜"/추천 근거 심화까지 채움
 
+const fs = require('fs');
 const path = require('path');
 const { paths, writeText, money, pct, topPct } = require('./lib/util');
+
+// 모든 브리핑 리포트를 대시보드용 data/reports.js 로 인덱싱 (일자별, 최근 60개)
+function writeReportsIndex() {
+  const dir = path.join(paths.root, 'analysis', 'reports');
+  let files = [];
+  try { files = fs.readdirSync(dir).filter((f) => /-briefing\.md$/.test(f)); } catch (e) { files = []; }
+  const reports = files
+    .map((f) => ({ date: f.replace('-briefing.md', ''), md: fs.readFileSync(path.join(dir, f), 'utf8') }))
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .slice(0, 60);
+  const out = path.join(paths.root, 'dashboard', 'data', 'reports.js');
+  writeText(out, 'window.REPORTS_DATA = ' + JSON.stringify(reports, null, 2) + ';\n');
+  return reports.length;
+}
 
 function lightKo(l) { return l === 'green' ? '🟢 초록불(진입 가능)' : l === 'yellow' ? '🟡 노랑불(주의)' : '🔴 빨강불(진입 중단)'; }
 
@@ -96,7 +111,8 @@ function writeReport(ctx) {
   const md = buildReport(ctx);
   const file = path.join(paths.root, 'analysis', 'reports', `${ctx.dateStr}-briefing.md`);
   writeText(file, md);
+  writeReportsIndex(); // 대시보드 리포트 탭용 인덱스 갱신
   return { md, file };
 }
 
-module.exports = { buildReport, writeReport };
+module.exports = { buildReport, writeReport, writeReportsIndex };
