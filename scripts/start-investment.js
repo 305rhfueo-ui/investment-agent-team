@@ -14,6 +14,7 @@ const { companyAnalysis } = require('./analyze-company');
 const { maybeReview } = require('./strategy-review');
 const { writeTimeline } = require('./build-minimi-run');
 const { recordRun, writeHistory } = require('./build-history');
+const { writeReport } = require('./build-report');
 const { sendReport } = require('./telegram-reporter');
 const { openRoom } = require('./open-room');
 const { commitAndPush } = require('./update-github');
@@ -171,9 +172,11 @@ async function main() {
     dashboardUrl: process.env.DASHBOARD_URL || '',
   };
 
-  // 8) 문서 작성
+  // 8) 문서 작성 (매매일지 + 추천 + 1~2장 투자 브리핑 리포트)
   writeJournal(dateStr, ctx);
   writeRecommendation(dateStr, ctx);
+  const rep = writeReport(ctx);
+  say('SYSTEM', `투자 브리핑 리포트 생성: ${rep.file.split(/[\\/]/).slice(-3).join('/')}`);
 
   // 9) 미니룸 대화 스크립트 + 일자별 히스토리 생성
   writeTimeline(ctx);
