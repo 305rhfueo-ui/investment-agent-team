@@ -126,7 +126,7 @@ function buildReport(ctx) {
   L.push('## 📖 용어 풀이 (어려운 말 쉽게)');
   for (const [t, d] of GLOSSARY) L.push(`- **${t}**: ${d}`);
   L.push('');
-  L.push(`— 작성: AI 투자팀 (Alex·Nova·Sara·Jordan·Morgan·RICH) · 검증: Opus·Sonnet·Haiku·Fable 다중모델`);
+  L.push(`— 작성: AI 투자팀 (Alex·Nova·Sara·Jordan·Morgan·RICH) · 검증: Opus·Sonnet·Haiku 다중모델`);
 
   return L.join('\n');
 }
