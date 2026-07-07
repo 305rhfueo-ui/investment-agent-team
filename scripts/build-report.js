@@ -105,6 +105,23 @@ function buildReport(ctx) {
   }
   L.push('');
 
+  // ②-b AI 검증단 심의 (heavy 모드)
+  const v = ctx.verification;
+  if (v) {
+    L.push('## ⚖️ AI 검증단 심의 (heavy · Opus·Sonnet·Haiku)');
+    L.push(`- **시장 판정**: ${v.market_ok ? '선별 진입 허용(neutral·invest_ok)' : '신규진입 부적합'} ${v.market_note ? '— ' + v.market_note : ''}`);
+    L.push('');
+    L.push('| 종목 | 폭발력(3모델) | 매수추천 | 팩트체크 | 악마의변호인 |');
+    L.push('|------|------|------|------|------|');
+    for (const s of v.scores) {
+      L.push(`| ${s.ticker} | ${s.avg} | ${s.recommend} | ${s.fact || '—'} | ${s.veto ? '❌ 거부' : '관망'} |`);
+    }
+    L.push('');
+    L.push(`- **최종 판정**: ${v.invest ? '진입' : '신규 0종목'} — ${v.note}`);
+    if (v.top_watch) L.push(`- **👀 최우선 감시**: ${v.top_watch}`);
+    L.push('');
+  }
+
   // ③ Nova 커뮤니티
   L.push('## ③ 🛰️ 커뮤니티 (Nova · 참고용, 판단 관여 안 함)');
   const buzz = ctx.buzz;
