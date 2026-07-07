@@ -35,6 +35,23 @@ const GLOSSARY = [
   ['VIX', '시장 공포지수. 낮으면 안심 분위기, 높으면 불안.'],
 ];
 
+// 코다리 부장(Antigravity)에게 붙여넣을 프롬프트 자동 생성
+function handoffPrompt(c, ctx) {
+  const ai = ctx.ai || {};
+  const d = ai.picksDetail && ai.picksDetail[c.ticker];
+  const v = ctx.verification && (ctx.verification.scores || []).find((x) => x.ticker === c.ticker);
+  const react = ctx.buzz && (ctx.buzz.reactions || []).find((r) => r.symbol === c.ticker);
+  const L = [];
+  L.push(`${c.ticker} 분석해줘.`);
+  L.push(`[우리 AI 투자팀 데이터] ${c.sector} · ${c.strategy === 'perfect_storm' ? '⚡Perfect Storm 돌파' : '👨‍🏫눌림목'} · RS 상위 ${topPct(c.rsRank)}% · 현재가 ${money(c.price)}`);
+  L.push(`· 근거: ${(c.reasons || []).slice(0, 3).join(' · ')}`);
+  if (d && d.oneLine) L.push(`· 회사: ${d.oneLine}`);
+  if (react) L.push(`· 커뮤니티 반응: ${react.mood}`);
+  if (v) L.push(`· 우리 검증단: 폭발력 ${v.avg}점 · ${v.veto ? '악마의 변호인 보류(주의)' : '통과'}`);
+  L.push(`너(코다리 부장) 관점에서 심층 분석해줘 — 펀더멘털 · 기술적 셋업 · 리스크 · 매수 타이밍.`);
+  return L.join('\n');
+}
+
 function buildReport(ctx) {
   const ai = ctx.ai || {};
   const s = ctx.stats;
@@ -120,6 +137,19 @@ function buildReport(ctx) {
     L.push(`- **최종 판정**: ${v.invest ? '진입' : '신규 0종목'} — ${v.note}`);
     if (v.top_watch) L.push(`- **👀 최우선 감시**: ${v.top_watch}`);
     L.push('');
+  }
+
+  // 🤝 코다리 부장 넘길 프롬프트 (자동 생성)
+  if (picks.length) {
+    L.push('## 🤝 코다리 부장에게 넘길 프롬프트');
+    L.push('> 아래를 복사해 Antigravity의 코다리 부장에게 붙여넣으면 심층 분석을 받을 수 있어요.');
+    L.push('');
+    for (const c of picks.slice(0, 5)) {
+      L.push('```');
+      L.push(handoffPrompt(c, ctx));
+      L.push('```');
+      L.push('');
+    }
   }
 
   // ③ Nova 커뮤니티

@@ -188,6 +188,7 @@
   .rptbody th,.rptbody td{border:1px solid var(--line);padding:5px 7px;text-align:left}
   .rptbody th{background:var(--card);font-weight:800}
   .rptbody b{font-weight:800}
+  .rptbody pre.codeblk{background:#1e1b2e;color:#e8e3ff;border-radius:10px;padding:10px 12px;font-size:11px;line-height:1.5;white-space:pre-wrap;word-break:break-word;font-family:'Consolas','Malgun Gothic',monospace;margin:6px 0;cursor:pointer;border:1px solid rgba(180,150,220,.25)}
 </style>
 </head>
 <body>
@@ -587,6 +588,7 @@
     const lines=String(md||"").split("\n"); let h="",i=0;
     while(i<lines.length){
       const ln=lines[i];
+      if(/^```/.test(ln)){ i++; const code=[]; while(i<lines.length && !/^```/.test(lines[i])){ code.push(lines[i]); i++; } i++; h+='<pre class="codeblk" title="클릭하면 전체 선택">'+esc(code.join("\n"))+'</pre>'; continue; }
       if(/^### /.test(ln)){ h+="<h4>"+inl(ln.slice(4))+"</h4>"; i++; continue; }
       if(/^## /.test(ln)){ h+="<h3>"+inl(ln.slice(3))+"</h3>"; i++; continue; }
       if(/^# /.test(ln)){ h+="<h2>"+inl(ln.slice(2))+"</h2>"; i++; continue; }
@@ -630,7 +632,8 @@
     bar.innerHTML=R.map((r,idx)=>`<button class="rptchip${idx===0?" on":""}" data-idx="${idx}">📅 ${r.date}</button>`).join("")
       +'<button class="rptchip dlbtn" id="dlWord">📥 Word 저장</button>';
     let cur=0;
-    const show=(idx)=>{ cur=idx; body.innerHTML=mdToHtml(R[idx].md); bar.querySelectorAll("[data-idx]").forEach(c=>c.classList.toggle("on",+c.dataset.idx===idx)); body.scrollTop=0; };
+    const show=(idx)=>{ cur=idx; body.innerHTML=mdToHtml(R[idx].md); bar.querySelectorAll("[data-idx]").forEach(c=>c.classList.toggle("on",+c.dataset.idx===idx)); body.scrollTop=0;
+      body.querySelectorAll(".codeblk").forEach(pre=>pre.onclick=()=>{const rg=document.createRange();rg.selectNodeContents(pre);const sel=getSelection();sel.removeAllRanges();sel.addRange(rg);}); };
     bar.querySelectorAll(".rptchip[data-idx]").forEach(b=>b.onclick=()=>show(+b.dataset.idx));
     $("dlWord").onclick=()=>downloadWord(R[cur]);
     show(0);
