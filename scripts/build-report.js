@@ -71,23 +71,36 @@ function buildReport(ctx) {
   if (ai.keyRisks && ai.keyRisks.length) { L.push(''); L.push('**주요 리스크:**'); for (const r of ai.keyRisks) L.push(`- ${r}`); }
   L.push('');
 
-  // ② 추천 종목 & 이유
-  L.push('## ② 추천 종목 & 이유');
+  // ② 추천 종목 & 이유 (상세)
+  L.push('## ② 추천 종목 & 이유 (자세히)');
   const picks = ctx.candidates || [];
   if (picks.length === 0) {
     L.push('- 오늘은 추천 종목이 없습니다 (조건 미충족 또는 시장 부적합).');
   } else {
-    L.push('| 종목 | 전략 | RS | 진입가 | 핵심 이유 |');
-    L.push('|------|------|-----|--------|-----------|');
-    for (const c of picks.slice(0, 3)) {
-      L.push(`| ${c.ticker} | ${c.strategy === 'perfect_storm' ? '⚡돌파' : '👨‍🏫눌림목'} | 상위 ${topPct(c.rsRank)}% | ${money(c.price)} | ${(c.reasons || [])[0] || ''} |`);
+    L.push('| 종목 | 전략 | RS | 진입가 | 한 줄 |');
+    L.push('|------|------|-----|--------|-------|');
+    for (const c of picks.slice(0, 5)) {
+      const d = ai.picksDetail && ai.picksDetail[c.ticker];
+      const oneLine = (d && d.oneLine) || (c.reasons || [])[0] || '';
+      L.push(`| ${c.ticker} | ${c.strategy === 'perfect_storm' ? '⚡돌파' : '👨‍🏫눌림목'} | 상위 ${topPct(c.rsRank)}% | ${money(c.price)} | ${oneLine} |`);
     }
     L.push('');
-    for (const c of picks.slice(0, 3)) {
-      const why = ai.picksRationale && ai.picksRationale[c.ticker];
-      L.push(`**${c.ticker}** (${c.sector})`);
-      L.push(`- 근거: ${(c.reasons || []).slice(0, 4).join(' · ')}`);
-      if (why) L.push(`- 심화: ${why}`);
+    for (const c of picks.slice(0, 5)) {
+      const d = ai.picksDetail && ai.picksDetail[c.ticker];
+      const react = ctx.buzz && (ctx.buzz.reactions || []).find((r) => r.symbol === c.ticker);
+      L.push(`### ${c.ticker} — ${c.sector} ${c.strategy === 'perfect_storm' ? '· ⚡돌파' : '· 👨‍🏫눌림목'}`);
+      if (d && d.company) L.push(`> 🏢 ${d.company}`);
+      L.push(`- **우리 시스템이 고른 이유**: ${(c.reasons || []).slice(0, 4).join(' · ')}`);
+      if (d) {
+        if (d.whyWatch) L.push(`- **📈 왜 주목하나 (쉽게)**: ${d.whyWatch}`);
+        if (d.setup) L.push(`- **🎯 지금 차트·셋업**: ${d.setup}`);
+        if (d.risks) L.push(`- **⚠️ 리스크·주의점**: ${d.risks}`);
+        if (d.watchFor) L.push(`- **👀 지켜볼 것**: ${d.watchFor}`);
+      } else if (ai.picksRationale && ai.picksRationale[c.ticker]) {
+        L.push(`- **심화**: ${ai.picksRationale[c.ticker]}`);
+      }
+      if (react) L.push(`- **🛰️ 커뮤니티 반응(Nova)**: ${react.mood} · ${react.activity}`);
+      L.push('');
     }
   }
   L.push('');
