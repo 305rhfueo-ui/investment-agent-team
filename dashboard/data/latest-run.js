@@ -1,5 +1,5 @@
 window.RUN_DATA = {
-  "run_date": "2026-07-07",
+  "run_date": "2026-07-08",
   "generated_note": "이 파일은 start-investment 실행 시 자동 생성됩니다.",
   "market_light": "green",
   "source": "live",
@@ -56,173 +56,89 @@ window.RUN_DATA = {
       "strategy": "eungbong"
     }
   ],
-  "recommendations": [
-    {
-      "symbol": "ECO",
-      "entry": 53.349998474121094,
-      "qty": 141,
-      "stop": 49.62,
-      "strategy": "eungbong",
-      "reasons": [
-        "RS 상위 5.4%",
-        "50이격 3.2% (≤30)",
-        "정배열 20>60>120",
-        "52주고 94.14%",
-        "ADR 4.32%",
-        "애널 up/down 100%",
-        "10이격 1.82% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 119.08)"
-      ]
-    },
-    {
-      "symbol": "VIRT",
-      "entry": 62.970001220703125,
-      "qty": 119,
-      "stop": 58.56,
-      "strategy": "eungbong",
-      "reasons": [
-        "RS 상위 5.9%",
-        "50이격 16% (≤30)",
-        "정배열 20>60>120",
-        "52주고 97.06%",
-        "ADR 4.12%",
-        "애널 up/down 92%",
-        "10이격 2.59% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 0.98)"
-      ]
-    },
-    {
-      "symbol": "IMOS",
-      "entry": 72.52999877929688,
-      "qty": 104,
-      "stop": 67.45,
-      "strategy": "perfect_storm",
-      "reasons": [
-        "RS 상위 15.7%",
-        "50이격 28.48% (≤30)",
-        "정배열 20>60>120",
-        "52주고 98.05%",
-        "ADR 5.63%",
-        "60일 신고가 돌파(BRK_60D)",
-        "거래량 2.09배 폭발(VOL_X≥2)",
-        "종가강도 79.56(CLS_POS≥50)"
-      ]
-    },
-    {
-      "symbol": "PENG",
-      "entry": 67.70999908447266,
-      "qty": 111,
-      "stop": 62.97,
-      "strategy": "eungbong",
-      "reasons": [
-        "RS 상위 15.7%",
-        "50이격 27.39% (≤30)",
-        "정배열 20>60>120",
-        "52주고 87.48%",
-        "ADR 12.43%",
-        "애널 up/down 100%",
-        "10이격 0.97% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 4.12)"
-      ]
-    },
-    {
-      "symbol": "FLXS",
-      "entry": 72.58999633789062,
-      "qty": 104,
-      "stop": 67.51,
-      "strategy": "eungbong",
-      "reasons": [
-        "RS 상위 18.2%",
-        "50이격 21.95% (≤30)",
-        "정배열 20>60>120",
-        "52주고 94.04%",
-        "ADR 5.17%",
-        "애널 up/down 100%",
-        "10이격 2.34% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 2.8)"
-      ]
-    }
-  ],
+  "recommendations": [],
   "buzz": {
     "trending": [
-      {
-        "symbol": "MU",
-        "title": "Micron Technology Inc"
-      },
       {
         "symbol": "RIVN",
         "title": "Rivian Automotive Inc"
       },
       {
-        "symbol": "SNDK",
-        "title": "Sandisk Corp"
+        "symbol": "INTC",
+        "title": "Intel Corp"
       },
       {
-        "symbol": "DRAM",
-        "title": "Roundhill ETF Trust - Roundhill Memory ETF"
+        "symbol": "ABTC",
+        "title": "American Bitcoin Corp."
       },
       {
-        "symbol": "OPEN",
-        "title": "Opendoor Technologies Inc"
+        "symbol": "USO",
+        "title": "United States Oil Fund"
       },
       {
-        "symbol": "SOXL",
-        "title": "Direxion Daily Semiconductor Bull 3X Shares"
+        "symbol": "SOUN",
+        "title": "SoundHound AI Inc"
       },
       {
-        "symbol": "KORU",
-        "title": "Direxion Daily South Korea Bull 3X Shares"
+        "symbol": "CMPS",
+        "title": "COMPASS Pathways"
       },
       {
-        "symbol": "FISV",
-        "title": "Fiserv, Inc."
+        "symbol": "JOBY",
+        "title": "Joby Aviation Inc"
       },
       {
-        "symbol": "WULF",
-        "title": "TeraWulf Inc"
+        "symbol": "VERA",
+        "title": "Vera Therapeutics Inc - Ordinary Shares - Class A"
+      },
+      {
+        "symbol": "PENG",
+        "title": "Penguin Solutions Inc."
+      },
+      {
+        "symbol": "ENVX",
+        "title": "Enovix Corp"
       },
       {
         "symbol": "CRNX",
         "title": "Crinetics Pharmaceuticals Inc"
       },
       {
-        "symbol": "ZETA",
-        "title": "Zeta Global Holdings Corp"
-      },
-      {
-        "symbol": "REPL",
-        "title": "Replimune Group Inc"
+        "symbol": "NET",
+        "title": "Cloudflare Inc"
       }
     ],
-    "crypto": [],
+    "crypto": [
+      "ZEC"
+    ],
     "reactions": [
       {
         "symbol": "ECO",
         "bullPct": 87,
         "mood": "강세 우위 87%",
         "activity": "관심 적음",
-        "watchers": 233
+        "watchers": 235
       },
       {
         "symbol": "VIRT",
         "bullPct": 89,
         "mood": "강세 우위 89%",
         "activity": "보통",
-        "watchers": 2269
+        "watchers": 2268
       },
       {
         "symbol": "IMOS",
         "bullPct": 100,
         "mood": "강세 우위 100%",
         "activity": "관심 적음",
-        "watchers": 550
+        "watchers": 552
       },
       {
         "symbol": "PENG",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
+        "bullPct": 32,
+        "mood": "약세 우위 68%",
         "activity": "보통",
-        "watchers": 3065
+        "watchers": 3144
       },
       {
         "symbol": "FLXS",
@@ -300,7 +216,7 @@ window.RUN_DATA = {
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "요즘 커뮤니티에서 MU, RIVN, SNDK, DRAM 이런 종목이 많이 거론돼요",
+      "msg": "요즘 커뮤니티에서 RIVN, INTC, ABTC, USO 이런 종목이 많이 거론돼요",
       "phase": "분석",
       "t": 9
     },
@@ -328,128 +244,65 @@ window.RUN_DATA = {
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "ECO: 141주, 손절 $49.62 (-7%). 최대 손실 딱 2%로 제한했어요.",
+      "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
       "phase": "리스크",
       "t": 13
-    },
-    {
-      "agent": "Sara",
-      "action": "talk",
-      "msg": "VIRT: 119주, 손절 $58.56 (-7%). 최대 손실 딱 2%로 제한했어요.",
-      "phase": "리스크",
-      "t": 14
-    },
-    {
-      "agent": "Sara",
-      "action": "talk",
-      "msg": "IMOS: 104주, 손절 $67.45 (-7%). 최대 손실 딱 2%로 제한했어요.",
-      "phase": "리스크",
-      "t": 15
-    },
-    {
-      "agent": "Sara",
-      "action": "talk",
-      "msg": "PENG: 111주, 손절 $62.97 (-7%). 최대 손실 딱 2%로 제한했어요.",
-      "phase": "리스크",
-      "t": 16
-    },
-    {
-      "agent": "Sara",
-      "action": "talk",
-      "msg": "FLXS: 104주, 손절 $67.51 (-7%). 최대 손실 딱 2%로 제한했어요.",
-      "phase": "리스크",
-      "t": 17
     },
     {
       "agent": "Jordan",
       "action": "walk",
       "msg": "기록 담당 조던입니다. 매매일지에 남길게요 ✍️",
       "phase": "거래",
-      "t": 18
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "VIRT 청산 (trail_peak_-12pct). 실현 $97.2.",
-      "phase": "거래",
-      "t": 19
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "ECO 141주 @ $53.35 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 20
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "VIRT 119주 @ $62.97 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 21
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "IMOS 104주 @ $72.53 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 22
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "PENG 111주 @ $67.71 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 23
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "FLXS 104주 @ $72.59 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 24
+      "t": 14
     },
     {
       "agent": "Jordan",
       "action": "talk",
       "msg": "현재 보유 5종목, 현금 $63,091.32.",
       "phase": "거래",
-      "t": 25
+      "t": 15
     },
     {
       "agent": "Morgan",
       "action": "walk",
       "msg": "전략가 모건이에요. 매매일지 돌아볼게요 📖",
       "phase": "검토",
-      "t": 26
+      "t": 16
     },
     {
       "agent": "Morgan",
       "action": "talk",
-      "msg": "누적 수익률 +0.72% · 승 5 / 패 2. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
+      "msg": "[주간 라이트 리뷰] 누적 +0.72% · 승률 71% · 거래 7건",
       "phase": "검토",
-      "t": 27
+      "t": 17
+    },
+    {
+      "agent": "Morgan",
+      "action": "talk",
+      "msg": "이번 주 승률 71%, 돌파전략 승률 —%. 파라미터 미세조정 없이 관찰 지속.",
+      "phase": "검토",
+      "t": 18
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 28
+      "t": 19
     },
     {
       "agent": "RICH",
       "action": "talk",
-      "msg": "오늘 추천 5종목, 누적 수익률 +0.72%. 텔레그램 발사! 🚀",
+      "msg": "오늘 추천 0종목, 누적 수익률 +0.72%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 29
+      "t": 20
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 30
+      "t": 21
     }
   ]
 };
