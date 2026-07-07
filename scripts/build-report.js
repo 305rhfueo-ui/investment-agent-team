@@ -23,6 +23,18 @@ function writeReportsIndex() {
 
 function lightKo(l) { return l === 'green' ? '🟢 초록불(진입 가능)' : l === 'yellow' ? '🟡 노랑불(주의)' : '🔴 빨강불(진입 중단)'; }
 
+// 쉬운 용어 풀이 (리포트 하단에 항상 첨부)
+const GLOSSARY = [
+  ['RS (상대강도)', '시장 전체보다 이 종목이 얼마나 더 잘 나가는지. 높을수록 주도주예요.'],
+  ['정배열', '단기·중기·장기 평균선이 위에서 아래로 예쁘게 놓인 상승 추세 모양.'],
+  ['50이격도', '주가가 50일 평균선에서 얼마나 떨어졌나. 너무 높으면 단기 과열(급등).'],
+  ['눌림목', '오르던 주식이 잠깐 숨 고르며 살짝 빠진 자리. 다시 오르기 전 매수 타이밍으로 봄.'],
+  ['60일 돌파', '최근 60일 최고가를 뚫고 신고가를 낸 것 = 강한 상승 신호.'],
+  ['시장폭(브레드스)', '오르는 종목이 많은지 적은지. 소수만 오르면 겉만 좋고 속은 약한 위험한 장.'],
+  ['트레일링 스탑', '수익이 나면 손절선을 따라 올려서, 번 돈을 지키며 더 먹는 방법.'],
+  ['VIX', '시장 공포지수. 낮으면 안심 분위기, 높으면 불안.'],
+];
+
 function buildReport(ctx) {
   const ai = ctx.ai || {};
   const s = ctx.stats;
@@ -32,6 +44,13 @@ function buildReport(ctx) {
   L.push('');
   L.push(`> 시장 ${lightKo(ctx.marketLight)} · 활성전략 v${ctx.strategyVersion} · 데이터 ${ctx.source} · ⚠️ 교육용 모의투자, 투자조언 아님`);
   L.push('');
+
+  // 🧾 3줄 요약 (쉽게)
+  if (ai.easySummary && ai.easySummary.length) {
+    L.push('## 🧾 3줄 요약 (쉽게)');
+    for (const s of ai.easySummary) L.push(`- ${s}`);
+    L.push('');
+  }
 
   // 🎯 결론
   L.push('## 🎯 오늘의 결론');
@@ -102,7 +121,12 @@ function buildReport(ctx) {
   L.push('- 규칙: 거래당 2% 리스크 · -7% 손절 · 단계적 익절(1/3)+20일선 트레일링');
   if (ctx.review) { L.push(''); L.push(`**전략 리뷰(Morgan):** ${ctx.review.headline}`); }
   L.push('');
-  L.push(`— 작성: AI 투자팀 (Alex·Nova·Sara·Jordan·Morgan·RICH)`);
+
+  // 📖 용어 풀이
+  L.push('## 📖 용어 풀이 (어려운 말 쉽게)');
+  for (const [t, d] of GLOSSARY) L.push(`- **${t}**: ${d}`);
+  L.push('');
+  L.push(`— 작성: AI 투자팀 (Alex·Nova·Sara·Jordan·Morgan·RICH) · 검증: Opus·Sonnet·Haiku·Fable 다중모델`);
 
   return L.join('\n');
 }
