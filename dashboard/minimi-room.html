@@ -9,6 +9,7 @@
 <script src="data/history.js" onerror="window.__NO_HISTORY=true"></script>
 <script src="data/reports.js" onerror="window.__NO_REPORTS=true"></script>
 <script src="data/verification.js" onerror="window.__NO_VERIFY=true"></script>
+<script src="data/qna.js" onerror="window.__NO_QNA=true"></script>
 <style>
   :root{
     --bg1:#ffe8f0; --bg2:#e7f0ff; --floor:#f6d9b8; --floor2:#eac59a;
@@ -170,6 +171,30 @@
     background:var(--card);border-radius:10px;padding:10px;margin-top:8px;box-shadow:var(--shadow);
     font-family:inherit;color:var(--ink)}
   .daydivider{position:sticky;top:0;background:var(--panel);backdrop-filter:blur(6px);padding:6px 12px;font-size:12px;font-weight:800;color:var(--sub);border-bottom:1px solid var(--line)}
+  .tab.expandtab{margin-left:auto;background:var(--good);color:#fff}
+  /* 질문종목 Q&A */
+  .qna{border-bottom:1px solid var(--line);padding:10px 12px}
+  .qna .q{font-weight:800;font-size:12.5px;margin-bottom:4px}
+  .qna .q .tk{display:inline-block;background:var(--accent);color:#fff;border-radius:8px;padding:1px 7px;margin-right:4px;font-size:11px}
+  .qna .meta{font-size:11px;color:var(--sub);margin-bottom:6px}
+  .qna .verdict{display:inline-block;font-weight:800;font-size:11.5px;padding:2px 8px;border-radius:10px;background:var(--card);box-shadow:var(--shadow);margin-bottom:6px}
+  /* 팝업(모달) */
+  .modal{position:fixed;inset:0;z-index:50;background:rgba(20,15,35,.55);backdrop-filter:blur(3px);display:flex;align-items:center;justify-content:center;padding:2vh 2vw}
+  .modal[hidden]{display:none}
+  .modal-panel{background:var(--bg1);width:min(1000px,96vw);height:min(92vh,900px);border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.4);display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line)}
+  .modal-head{display:flex;align-items:center;gap:10px;padding:12px 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+  .modal-head>span:first-child{font-weight:800;font-size:15px}
+  .modal-tabs{display:flex;gap:4px;flex:1;overflow-x:auto}
+  .modal-tabs .mtab{border:none;background:var(--card);color:var(--sub);font-weight:800;font-size:12px;padding:6px 12px;border-radius:10px;cursor:pointer;white-space:nowrap}
+  .modal-tabs .mtab.on{background:var(--accent);color:#fff}
+  .modal-close{border:none;background:var(--card);color:var(--ink);border-radius:10px;width:34px;height:34px;font-size:16px;cursor:pointer;box-shadow:var(--shadow)}
+  .modal-body{flex:1;overflow:auto;padding:0}
+  .modal-body .tabview,.modal-body>div{display:block!important}
+  .modal-body .rptbody{font-size:14px;line-height:1.7;padding:20px 26px}
+  .modal-body .rptbody h2{font-size:20px} .modal-body .rptbody h3{font-size:16px} .modal-body .rptbody h4{font-size:14px}
+  .modal-body .rptbody table,.modal-body .vverdict table,.modal-body .rptbody pre.codeblk{font-size:13px}
+  .modal-body .day,.modal-body .qna,.modal-body details,.modal-body .daydivider{font-size:13.5px}
+  .modal-body .rptbar,.modal-body .qbar{position:sticky;top:0}
   /* 리포트 탭 */
   .rptbar{display:flex;gap:6px;padding:8px 10px;overflow-x:auto;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--panel);z-index:1}
   .rptchip{flex:0 0 auto;border:none;background:var(--card);color:var(--ink);font-weight:800;font-size:11.5px;padding:6px 10px;border-radius:20px;cursor:pointer;box-shadow:var(--shadow)}
@@ -244,6 +269,8 @@
         <button class="tab" data-tab="curve">📈 추이</button>
         <button class="tab" data-tab="reco">📊 추천</button>
         <button class="tab" data-tab="report">📋 리포트</button>
+        <button class="tab" data-tab="qna">💬 질문종목</button>
+        <button class="tab expandtab" id="expandBtn" title="크게 보기(팝업)">⛶ 크게</button>
       </div>
       <div class="tabview" id="tab-log" style="display:flex;flex-direction:column">
         <h3><span>💬 팀 대화 로그</span><span id="dateLbl" style="color:var(--sub);font-weight:600"></span></h3>
@@ -254,6 +281,7 @@
       <div class="tabview" id="tab-curve" hidden></div>
       <div class="tabview" id="tab-reco" hidden></div>
       <div class="tabview" id="tab-report" hidden></div>
+      <div class="tabview" id="tab-qna" hidden></div>
     </div>
   </div>
 
@@ -264,6 +292,18 @@
     <button class="btn" id="replayBtn">⟳ 다시 재생</button>
   </div>
   <div class="banner" id="banner">⚠️ 교육용 모의투자입니다. 투자조언이 아닙니다.</div>
+
+  <!-- 팝업(모달) — 탭 내용을 크게 보기 -->
+  <div class="modal" id="modal" hidden>
+    <div class="modal-panel">
+      <div class="modal-head">
+        <span id="modalTitle">📋</span>
+        <div class="modal-tabs" id="modalTabs"></div>
+        <button class="modal-close" id="modalClose" title="닫기 (Esc)">✕</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
 
 <script>
 (function(){
@@ -519,8 +559,8 @@
   const esc=(s)=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
   const cls=(n)=> Number(n)>=0?"pos":"neg";
 
-  function renderDaily(){
-    const el=$("tab-daily");
+  function renderDaily(el){
+    el = el || $("tab-daily");
     if(!HIST || !HIST.runs || !HIST.runs.length){ el.innerHTML='<div class="empty">아직 일자별 기록이 없습니다.<br>start-investment 를 실행하면 매일 여기 쌓입니다.</div>'; return; }
     const runs=[...HIST.runs].reverse();
     el.innerHTML = runs.map(r=>{
@@ -539,8 +579,8 @@
     }).join("");
   }
 
-  function renderCurve(){
-    const el=$("tab-curve");
+  function renderCurve(el){
+    el = el || $("tab-curve");
     const eh = HIST && HIST.equity_history ? HIST.equity_history : [];
     if(!eh.length){ el.innerHTML='<div class="empty">수익률 추이 데이터가 아직 없습니다.</div>'; return; }
     const cap = (HIST&&HIST.initial_capital)||100000;
@@ -568,8 +608,8 @@
       </div>`;
   }
 
-  function renderReco(){
-    const el=$("tab-reco");
+  function renderReco(el){
+    el = el || $("tab-reco");
     if(!HIST || !HIST.runs || !HIST.runs.length){ el.innerHTML='<div class="empty">추천·기업분석 기록이 아직 없습니다.</div>'; return; }
     const runs=[...HIST.runs].reverse();
     el.innerHTML = runs.map(r=>{
@@ -623,8 +663,8 @@
     document.body.appendChild(a); a.click(); document.body.removeChild(a);
     setTimeout(()=>URL.revokeObjectURL(url),1500);
   }
-  function renderReports(){
-    const el=$("tab-report");
+  function renderReports(el){
+    el = el || $("tab-report");
     const R=(window.__NO_REPORTS||!window.REPORTS_DATA)?[]:window.REPORTS_DATA;
     if(!R.length){ el.innerHTML='<div class="empty">아직 리포트가 없습니다.<br>start-investment 실행 시 일자별 브리핑이 여기 쌓입니다.</div>'; return; }
     el.innerHTML='<div class="rptbar" id="rptbar"></div><div class="rptbody" id="rptbody"></div>';
@@ -639,16 +679,54 @@
     show(0);
   }
 
+  // 💬 질문종목 (사장님이 물어본 종목 + 답변·판정)
+  function renderQna(el){
+    el = el || $("tab-qna");
+    const Q=(window.__NO_QNA||!window.QNA_DATA)?[]:window.QNA_DATA;
+    if(!Q.length){ el.innerHTML='<div class="empty">아직 질문한 종목 기록이 없어요.<br>특정 종목을 물어보면 여기에 답변·판정이 일자별로 쌓입니다.</div>'; return; }
+    const items=[...Q].reverse();
+    el.innerHTML=items.map(q=>`<div class="qna">
+      <div class="q">${(q.tickers||[]).map(t=>`<span class="tk">${esc(t)}</span>`).join("")} ${esc(q.question)}</div>
+      <div class="meta">📅 ${esc(q.date)} · <span class="verdict">${esc(q.verdict||"")}</span></div>
+      <div class="rptbody">${mdToHtml(q.answer)}</div>
+    </div>`).join("");
+    el.querySelectorAll(".codeblk").forEach(pre=>pre.onclick=()=>{const rg=document.createRange();rg.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(rg);});
+  }
+
   // 탭 전환
   const rendered={};
-  document.querySelectorAll(".tab").forEach(btn=>{
+  const RENDERERS={daily:renderDaily,curve:renderCurve,reco:renderReco,report:renderReports,qna:renderQna};
+  document.querySelectorAll(".tab[data-tab]").forEach(btn=>{
     btn.onclick=()=>{
       const t=btn.dataset.tab;
       document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b===btn));
-      ["log","daily","curve","reco","report"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
-      if(!rendered[t]){ if(t==="daily")renderDaily(); if(t==="curve")renderCurve(); if(t==="reco")renderReco(); if(t==="report")renderReports(); rendered[t]=true; }
+      ["log","daily","curve","reco","report","qna"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
+      if(!rendered[t] && RENDERERS[t]){ RENDERERS[t](); rendered[t]=true; }
     };
   });
+
+  // ── 팝업(모달) — 탭 내용 크게 보기 ──
+  const MODAL_TABS=[{k:"report",label:"📋 리포트"},{k:"daily",label:"📅 일자별"},{k:"curve",label:"📈 추이"},{k:"reco",label:"📊 추천"},{k:"qna",label:"💬 질문종목"}];
+  function openModal(startTab){
+    const tabsEl=$("modalTabs"), body=$("modalBody");
+    tabsEl.innerHTML=MODAL_TABS.map(t=>`<button class="mtab" data-k="${t.k}">${t.label}</button>`).join("");
+    const showTab=(k)=>{
+      const t=MODAL_TABS.find(x=>x.k===k)||MODAL_TABS[0];
+      tabsEl.querySelectorAll(".mtab").forEach(b=>b.classList.toggle("on",b.dataset.k===t.k));
+      body.innerHTML="";
+      const wrap=document.createElement("div"); wrap.className="tabview"; body.appendChild(wrap);
+      RENDERERS[t.k](wrap);
+      body.scrollTop=0;
+    };
+    tabsEl.querySelectorAll(".mtab").forEach(b=>b.onclick=()=>showTab(b.dataset.k));
+    showTab(MODAL_TABS.some(x=>x.k===startTab)?startTab:"report");
+    $("modal").hidden=false;
+  }
+  function closeModal(){ $("modal").hidden=true; }
+  $("expandBtn").onclick=()=>{ const on=document.querySelector(".tab[data-tab].on"); openModal(on?on.dataset.tab:"report"); };
+  $("modalClose").onclick=closeModal;
+  $("modal").onclick=(e)=>{ if(e.target===$("modal")) closeModal(); };
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape" && !$("modal").hidden) closeModal(); });
 
   // ── 시작 ──
   renderHUD();
