@@ -5,7 +5,107 @@
 
 const fs = require('fs');
 const path = require('path');
-const { paths, writeText, money, pct, topPct } = require('./lib/util');
+const { paths, writeText, readJson, money, pct, topPct } = require('./lib/util');
+
+// 청산 사유를 쉬운 한글로
+function exitReasonKo(reason, stopPct, trailMa) {
+  if (!reason) return '';
+  if (reason === 'stop_-7pct') return `종가가 진입가 대비 -${stopPct}% 손절선을 건드려서, 규칙대로 손실을 짧게 끊고 청산했어요.`;
+  if (reason === 'breakeven_stop') return '본전(진입가) 손절선을 건드려 청산 — 1차 익절을 이미 했기 때문에 전체로는 손실이 없어요.';
+  if (/^trail_peak/.test(reason)) return '고점 대비 하락폭이 커져서 트레일링 손절이 발동됐어요(벌어둔 이익을 지키며 나옴).';
+  if (reason === 'below_50ma') return `${trailMa === '20D' ? '20일' : '50일'} 이동평균선을 이탈해 상승 추세가 꺾인 것으로 보고 청산했어요.`;
+  return `청산 사유: ${reason}`;
+}
+
+// 🚦 보유 종목 손절/익절 점검
+function holdingReview(ctx, s) {
+  const hs = ctx.portfolio.holdings || [];
+  const events = (ctx.updateEvents || []).filter((e) => e.type === 'close' || e.type === 'tier1');
+  const stopPct = s.risk.stop_loss_pct, tier1 = s.exit.tier1_gain_pct, trailMa = s.exit.trail_ma;
+  const L = [];
+  L.push('## 🚦 보유 종목 점검 — 지금 팔아야 할까?');
+  if (!hs.length && !events.length) { L.push('- 현재 보유 종목이 없습니다.'); L.push(''); return L; }
+
+  if (events.length) {
+    L.push('### 이번 실행에서 매도·청산된 종목');
+    for (const e of events) {
+      if (e.type === 'tier1') {
+        L.push(`- 💰 **${e.symbol} 1차 익절 완료** — 진입 후 강하게 급등해서 보유량의 1/3을 팔아 이익(${money(e.realized)})을 확보했어요. 그리고 나머지 2/3의 손절선을 **본전으로 올려서**, 이제 이 종목에서 최악의 경우에도 손해 볼 일은 없습니다. 남은 물량은 추세가 살아있는 한 계속 들고 갑니다.`);
+      } else {
+        const loss = e.realized < 0;
+        L.push(`- ${loss ? '🔴' : '🟢'} **${e.symbol} ${loss ? '손절' : '청산'}** — ${exitReasonKo(e.reason, stopPct, trailMa)} 실현 손익 ${money(e.realized)} (${pct(e.rpct)}).${e.lesson ? ' 🔎 원인: ' + e.lesson : ''}${e.note ? ' ✅ ' + e.note : ''}`);
+      }
+    }
+    L.push('');
+  }
+
+  if (hs.length) {
+    L.push('### 현재 보유 종목 상태');
+    for (const h of hs) {
+      const toStop = ((h.current_price - h.stop_loss) / h.current_price * 100);
+      const pnl = h.unrealized_pnl_pct;
+      let verdict, why;
+      if (pnl <= -(stopPct - 2)) {
+        verdict = '⚠️ 손절 임박';
+        why = `현재 손익 ${pct(pnl)}로 -${stopPct}% 손절선(${money(h.stop_loss)})에 바짝 다가섰어요. 만약 종가가 손절가 아래로 마감하면, 다음 실행 때 규칙대로 자동 청산돼요. "손실은 짧게" 원칙이라 여기서 더 버티지 않습니다.`;
+      } else if (!h.tier1_taken && pnl >= tier1 - 3) {
+        verdict = '💰 1차 익절 임박';
+        why = `현재 손익 ${pct(pnl)}로 +${tier1}% 익절 목표에 근접했어요. 도달하면 1/3을 팔아 이익을 확보하고, 나머지 손절선을 본전으로 올려 리스크를 0으로 만듭니다.`;
+      } else if (h.tier1_taken) {
+        verdict = '🟢 트레일링 중 (이익 확보 상태)';
+        why = `이미 1차 익절을 마쳐서 손절선이 본전이에요(= 더 이상 손해 안 봄). 남은 물량은 ${trailMa} 이동평균선을 깨기 전까지 수익을 키우며 계속 들고 갑니다. 현재 ${pct(pnl)}.`;
+      } else {
+        verdict = '✅ 보유 유지';
+        why = `현재 손익 ${pct(pnl)}. 손절가 ${money(h.stop_loss)}까지 약 ${toStop.toFixed(1)}% 여유가 있고, 익절 목표(+${tier1}%)까지도 아직 남았어요. 손절선도 안 건드렸고 추세도 살아있어서, 지금은 팔 이유가 없습니다 — 그대로 들고 갑니다.`;
+      }
+      L.push(`- **${h.symbol}** (${h.quantity}주 · 진입 ${money(h.entry_price)} → 현재 ${money(h.current_price)}) → ${verdict}`);
+      L.push(`  - ${why}`);
+    }
+    L.push('');
+  }
+  return L;
+}
+
+// 🧬 현재 전략 + 변경 이력 (쉽게·자세히)
+function strategySection(s, changelog) {
+  const topRs = 100 - s.screening.rs_rank_pct_min;
+  const L = [];
+  L.push('## 🧬 지금 우리가 쓰는 투자 전략 (쉽게 풀어서)');
+  L.push(`> **현재 버전: v${s.version}** · 최종 수정 ${s.updated}`);
+  L.push('');
+  L.push('우리 팀은 **"시장에서 제일 잘 나가는 주도주를 골라, 작게 잃고 크게 먹는"** 모멘텀 전략을 씁니다. 단계별로 풀면 이래요:');
+  L.push('');
+  L.push(`**1️⃣ 어떤 종목을 보나 — "강한 놈만"**`);
+  L.push(`- 시장 전체보다 훨씬 잘 나가는 종목, 즉 **상대강도(RS) 상위 ${topRs}%** 안에 드는 종목만 봅니다. (반에서 1~${topRs}등 하는 애들만 보는 셈)`);
+  L.push(`- 그중에서도 이동평균선이 **정배열**(단기>중기>장기로 예쁘게 상승 정렬)이고, **52주 최고가의 ${s.screening.high_52w_pct_min}% 이상** 근처에 있는 진짜 강자만 남겨요. 바닥에서 헤매는 종목은 거들떠보지 않습니다.`);
+  L.push('');
+  L.push(`**2️⃣ 언제 사나 — 두 가지 진입 방법**`);
+  L.push(`- ⚡ **돌파 (Perfect Storm)**: 최근 60일 최고가를 **거래량 ${s.perfect_storm_entry.vol_x_min}배** 터뜨리며 뚫을 때. 기관들이 강하게 사들이며 치고 나가는 순간에 같이 올라타는 방식이에요.`);
+  L.push(`- 👨‍🏫 **눌림목 (응봉아재)**: 잘 오르던 주식이 잠깐 숨 고르며 10일선 근처(${s.eungbong_pullback.div10_low}~${s.eungbong_pullback.div10_high}%)로 살짝 눌릴 때. 강한 종목을 조금 더 싸게 줍는 방식이에요.`);
+  L.push('');
+  L.push(`**3️⃣ 손실 관리 — 제일 중요! "손실은 짧게"**`);
+  L.push(`- 산 가격에서 **-${s.risk.stop_loss_pct}% 떨어지면 무조건 팝니다.** 미련 없이요. 작은 손실로 끊어야 다음 기회를 노릴 수 있거든요. 큰 손실 한 방이 계좌를 망가뜨리는 걸 막는 안전벨트예요.`);
+  L.push(`- 한 번에 거는 돈도 전체의 **${s.risk.risk_per_trade_pct}%만 위험**에 노출되게 크기를 조절하고, 최대 **${s.risk.max_positions}종목**까지만 담아요.`);
+  L.push('');
+  L.push(`**4️⃣ 수익 관리 — "수익은 길게"**`);
+  L.push(`- **+${s.exit.tier1_gain_pct}% 정도 급등**하면 1/3만 먼저 팔아 이익을 챙기고, 남은 것의 **손절선을 본전으로 올려요.** 이 순간부터는 이 종목에서 절대 손해를 안 봐요(최악이 본전).`);
+  L.push(`- 나머지 2/3는 **${s.exit.trail_ma === '20D' ? '20일' : s.exit.trail_ma} 이동평균선을 깨기 전까지** 계속 들고 갑니다. 진짜 대박주(2~3배 가는 종목)를 조기에 팔아 놓치지 않으려는 거예요.`);
+  L.push('');
+  L.push(`**🎯 한 문장 요약**: 강한 종목만 골라 → 아니다 싶으면 -${s.risk.stop_loss_pct}%에 빠르게 손절 → 맞으면 수익을 끝까지 늘린다.`);
+  L.push('');
+  L.push('**📅 전략 변경 이력 (일자별)**');
+  const entries = (changelog && changelog.entries) || [];
+  if (!entries.length) {
+    L.push('- (아직 변경 없음 — 초기 버전 v1 사용 중)');
+  } else {
+    L.push('| 일자 | 버전 | 무엇이 · 왜 바뀌었나 (쉽게) |');
+    L.push('|------|------|------------------------------|');
+    for (const e of entries.slice().reverse()) L.push(`| ${e.date} | v${e.version} | ${e.change} |`);
+  }
+  L.push('> 전략은 고정이 아니라, 전략가 Morgan이 매매일지를 검토해 계속 발전시킵니다(살아있는 전략).');
+  L.push('');
+  return L;
+}
 
 // 모든 브리핑 리포트를 대시보드용 data/reports.js 로 인덱싱 (일자별, 최근 60개)
 function writeReportsIndex() {
@@ -55,6 +155,8 @@ function handoffPrompt(c, ctx) {
 function buildReport(ctx) {
   const ai = ctx.ai || {};
   const s = ctx.stats;
+  const strat = readJson(paths.strategyJson, null);
+  const changelog = readJson(path.join(paths.root, 'strategy', 'changelog.json'), { entries: [] });
   const L = [];
 
   L.push(`# 📋 투자 브리핑 — ${ctx.dateStr}`);
@@ -181,6 +283,12 @@ function buildReport(ctx) {
   L.push('- 규칙: 거래당 2% 리스크 · -7% 손절 · 단계적 익절(1/3)+20일선 트레일링');
   if (ctx.review) { L.push(''); L.push(`**전략 리뷰(Morgan):** ${ctx.review.headline}`); }
   L.push('');
+
+  // 🚦 보유 종목 손절/익절 점검 + 🧬 전략 설명·변경이력
+  if (strat) {
+    for (const ln of holdingReview(ctx, strat)) L.push(ln);
+    for (const ln of strategySection(strat, changelog)) L.push(ln);
+  }
 
   // 📖 용어 풀이
   L.push('## 📖 용어 풀이 (어려운 말 쉽게)');

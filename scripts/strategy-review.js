@@ -80,6 +80,11 @@ function writeStrategyVersion(next, dateStr, rationale) {
   // 히스토리 스냅샷
   const snap = path.join(paths.strategyHistory, `v${newVersion}-${dateStr.slice(0, 7)}.md`);
   writeText(snap, `# 전략 스냅샷 v${newVersion}\n\n- 생성일: ${dateStr}\n- 작성: Morgan (팀 회의)\n\n## 변경 근거\n${rationale.map((r) => `- ${r}`).join('\n')}\n\n## 파라미터\n\n\`\`\`json\n${JSON.stringify(next, null, 2)}\n\`\`\`\n`);
+  // 변경 이력(changelog.json)에 자동 추가
+  const clPath = path.join(paths.root, 'strategy', 'changelog.json');
+  const cl = readJson(clPath, { entries: [] });
+  cl.entries.push({ date: dateStr, version: newVersion, change: rationale.join(' · ') });
+  writeJson(clPath, cl);
   return newVersion;
 }
 
