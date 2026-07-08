@@ -6,110 +6,121 @@ window.RUN_DATA = {
   "strategy_version": 1,
   "hud": {
     "initial_capital": 100000,
-    "equity": 100715.39,
-    "cash": 63091.32,
-    "total_return_pct": 0.72,
-    "holdings_count": 5,
+    "equity": 99232.62,
+    "cash": 69469.96,
+    "total_return_pct": -0.77,
+    "holdings_count": 4,
     "wins": 5,
-    "losses": 2,
-    "max_drawdown": -2.21
+    "losses": 4,
+    "max_drawdown": -3.65
   },
   "holdings": [
     {
       "symbol": "ECO",
       "qty": 141,
       "entry": 53.349998474121094,
-      "current": 53.349998474121094,
-      "pnl_pct": 0,
+      "current": 53.720001220703125,
+      "pnl_pct": 0.69,
       "strategy": "eungbong"
     },
     {
       "symbol": "VIRT",
       "qty": 119,
       "entry": 62.970001220703125,
-      "current": 62.970001220703125,
-      "pnl_pct": 0,
-      "strategy": "eungbong"
-    },
-    {
-      "symbol": "IMOS",
-      "qty": 104,
-      "entry": 72.52999877929688,
-      "current": 72.52999877929688,
-      "pnl_pct": 0,
-      "strategy": "perfect_storm"
-    },
-    {
-      "symbol": "PENG",
-      "qty": 111,
-      "entry": 67.70999908447266,
-      "current": 67.70999908447266,
-      "pnl_pct": 0,
+      "current": 63.22999954223633,
+      "pnl_pct": 0.41,
       "strategy": "eungbong"
     },
     {
       "symbol": "FLXS",
       "qty": 104,
       "entry": 72.58999633789062,
-      "current": 72.58999633789062,
+      "current": 69.55000305175781,
+      "pnl_pct": -4.19,
+      "strategy": "eungbong"
+    },
+    {
+      "symbol": "AIN",
+      "qty": 101,
+      "entry": 73.56999969482422,
+      "current": 73.56999969482422,
       "pnl_pct": 0,
       "strategy": "eungbong"
     }
   ],
-  "recommendations": [],
+  "recommendations": [
+    {
+      "symbol": "AIN",
+      "entry": 73.56999969482422,
+      "qty": 101,
+      "stop": 68.42,
+      "strategy": "eungbong",
+      "reasons": [
+        "RS 상위 27.8%",
+        "50이격 12.26% (≤30)",
+        "정배열 20>60>120",
+        "52주고 96.09%",
+        "ADR 3.52%",
+        "애널 up/down 100%",
+        "10이격 -0.45% 눌림목 진입권",
+        "실적 개선 추세(CY_Trend 5.72)"
+      ]
+    }
+  ],
   "buzz": {
     "trending": [
       {
-        "symbol": "RIVN",
-        "title": "Rivian Automotive Inc"
+        "symbol": "FCEL",
+        "title": "Fuelcell Energy Inc"
       },
       {
-        "symbol": "INTC",
-        "title": "Intel Corp"
-      },
-      {
-        "symbol": "ABTC",
-        "title": "American Bitcoin Corp."
-      },
-      {
-        "symbol": "USO",
-        "title": "United States Oil Fund"
-      },
-      {
-        "symbol": "SOUN",
-        "title": "SoundHound AI Inc"
-      },
-      {
-        "symbol": "CMPS",
-        "title": "COMPASS Pathways"
-      },
-      {
-        "symbol": "JOBY",
-        "title": "Joby Aviation Inc"
-      },
-      {
-        "symbol": "VERA",
-        "title": "Vera Therapeutics Inc - Ordinary Shares - Class A"
+        "symbol": "BCRX",
+        "title": "Biocryst Pharmaceuticals Inc."
       },
       {
         "symbol": "PENG",
         "title": "Penguin Solutions Inc."
       },
       {
-        "symbol": "ENVX",
-        "title": "Enovix Corp"
+        "symbol": "TE",
+        "title": "T1 Energy Inc."
       },
       {
-        "symbol": "CRNX",
-        "title": "Crinetics Pharmaceuticals Inc"
+        "symbol": "NVTS",
+        "title": "Navitas Semiconductor Corp"
       },
       {
-        "symbol": "NET",
-        "title": "Cloudflare Inc"
+        "symbol": "IMMX",
+        "title": "Immix Biopharma Inc"
+      },
+      {
+        "symbol": "VERA",
+        "title": "Vera Therapeutics Inc - Ordinary Shares - Class A"
+      },
+      {
+        "symbol": "CSIQ",
+        "title": "Canadian Solar Inc"
+      },
+      {
+        "symbol": "VKTX",
+        "title": "Viking Therapeutics Inc"
+      },
+      {
+        "symbol": "CMPS",
+        "title": "COMPASS Pathways"
+      },
+      {
+        "symbol": "WULF",
+        "title": "TeraWulf Inc"
+      },
+      {
+        "symbol": "VNDA",
+        "title": "Vanda Pharmaceuticals Inc"
       }
     ],
     "crypto": [
-      "ZEC"
+      "ZEC",
+      "VVV"
     ],
     "reactions": [
       {
@@ -127,25 +138,18 @@ window.RUN_DATA = {
         "watchers": 2268
       },
       {
-        "symbol": "IMOS",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "관심 적음",
-        "watchers": 552
-      },
-      {
-        "symbol": "PENG",
-        "bullPct": 32,
-        "mood": "약세 우위 68%",
-        "activity": "보통",
-        "watchers": 3144
-      },
-      {
         "symbol": "FLXS",
         "bullPct": 100,
         "mood": "강세 우위 100%",
         "activity": "관심 적음",
         "watchers": 293
+      },
+      {
+        "symbol": "AIN",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
+        "activity": "관심 적음",
+        "watchers": 144
       }
     ]
   },
@@ -174,135 +178,156 @@ window.RUN_DATA = {
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "ECO 포착! 👨‍🏫눌림목 · RS상위 5.4% · 정배열 20>60>120",
+      "msg": "ECO 포착! 👨‍🏫눌림목 · RS상위 8.4% · 정배열 20>60>120",
       "phase": "분석",
       "t": 3
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "VIRT 포착! 👨‍🏫눌림목 · RS상위 5.9% · 정배열 20>60>120",
+      "msg": "VIRT 포착! 👨‍🏫눌림목 · RS상위 9.1% · 정배열 20>60>120",
       "phase": "분석",
       "t": 4
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "IMOS 포착! ⚡돌파 · RS상위 15.7% · 정배열 20>60>120",
+      "msg": "FLXS 포착! 👨‍🏫눌림목 · RS상위 22.0% · 정배열 20>60>120",
       "phase": "분석",
       "t": 5
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "PENG 포착! 👨‍🏫눌림목 · RS상위 15.7% · 정배열 20>60>120",
+      "msg": "AIN 포착! 👨‍🏫눌림목 · RS상위 27.8% · 정배열 20>60>120",
       "phase": "분석",
       "t": 6
-    },
-    {
-      "agent": "Alex",
-      "action": "talk",
-      "msg": "FLXS 포착! 👨‍🏫눌림목 · RS상위 18.2% · 정배열 20>60>120",
-      "phase": "분석",
-      "t": 7
     },
     {
       "agent": "Nova",
       "action": "walk",
       "msg": "커뮤니티 스카우트 Nova예요! 미국 투자판 스캔했어요 🛰️",
       "phase": "분석",
-      "t": 8
+      "t": 7
     },
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "요즘 커뮤니티에서 RIVN, INTC, ABTC, USO 이런 종목이 많이 거론돼요",
+      "msg": "요즘 커뮤니티에서 FCEL, BCRX, PENG, TE 이런 종목이 많이 거론돼요",
       "phase": "분석",
-      "t": 9
+      "t": 8
     },
     {
       "agent": "Nova",
       "action": "talk",
       "msg": "우리 종목 반응도 봤어요 — ECO은 커뮤니티에서 강세 우위 87% (관심 적음)",
       "phase": "분석",
-      "t": 10
+      "t": 9
     },
     {
       "agent": "Nova",
       "action": "talk",
       "msg": "저는 참고 정보만 드려요! 판단은 팀 전략이랑 사장님 몫이에요 😊",
       "phase": "분석",
-      "t": 11
+      "t": 10
     },
     {
       "agent": "Sara",
       "action": "walk",
       "msg": "제가 포지션 사이징 들어갈게요. 거래당 리스크 2% 원칙!",
       "phase": "리스크",
-      "t": 12
+      "t": 11
     },
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
+      "msg": "AIN: 101주, 손절 $68.42 (-7%). 최대 손실 딱 2%로 제한했어요.",
       "phase": "리스크",
-      "t": 13
+      "t": 12
     },
     {
       "agent": "Jordan",
       "action": "walk",
       "msg": "기록 담당 조던입니다. 매매일지에 남길게요 ✍️",
       "phase": "거래",
+      "t": 13
+    },
+    {
+      "agent": "Jordan",
+      "action": "talk",
+      "msg": "IMOS 청산 (stop_-7pct). 실현 $-694.72.",
+      "phase": "거래",
       "t": 14
     },
     {
       "agent": "Jordan",
       "action": "talk",
-      "msg": "현재 보유 5종목, 현금 $63,091.32.",
+      "msg": "PENG 청산 (stop_-7pct). 실현 $-555.",
       "phase": "거래",
       "t": 15
+    },
+    {
+      "agent": "Jordan",
+      "action": "talk",
+      "msg": "AIN 101주 @ $73.57 진입 기록 완료 ✅",
+      "phase": "거래",
+      "t": 16
+    },
+    {
+      "agent": "Jordan",
+      "action": "talk",
+      "msg": "현재 보유 4종목, 현금 $69,469.96.",
+      "phase": "거래",
+      "t": 17
     },
     {
       "agent": "Morgan",
       "action": "walk",
       "msg": "전략가 모건이에요. 매매일지 돌아볼게요 📖",
       "phase": "검토",
-      "t": 16
-    },
-    {
-      "agent": "Morgan",
-      "action": "talk",
-      "msg": "[주간 라이트 리뷰] 누적 +0.72% · 승률 71% · 거래 7건",
-      "phase": "검토",
-      "t": 17
-    },
-    {
-      "agent": "Morgan",
-      "action": "talk",
-      "msg": "이번 주 승률 71%, 돌파전략 승률 —%. 파라미터 미세조정 없이 관찰 지속.",
-      "phase": "검토",
       "t": 18
+    },
+    {
+      "agent": "Morgan",
+      "action": "talk",
+      "msg": "[월간 딥 리뷰] 누적 -0.77% · 승률 56% · 거래 9건",
+      "phase": "검토",
+      "t": 19
+    },
+    {
+      "agent": "Morgan",
+      "action": "talk",
+      "msg": "누적 -0.77%로 목표 미달 → RS 필터 상위 25%로 강화",
+      "phase": "검토",
+      "t": 20
+    },
+    {
+      "agent": "Morgan",
+      "action": "talk",
+      "msg": "→ 전략 v1→v2 로 업데이트했습니다!",
+      "phase": "검토",
+      "t": 21
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 19
+      "t": 22
     },
     {
       "agent": "RICH",
       "action": "talk",
-      "msg": "오늘 추천 0종목, 누적 수익률 +0.72%. 텔레그램 발사! 🚀",
+      "msg": "오늘 추천 1종목, 누적 수익률 -0.77%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 20
+      "t": 23
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 21
+      "t": 24
     }
   ]
 };
