@@ -12,6 +12,28 @@ function yes(v) {
   return String(v).trim().toUpperCase() === 'YES';
 }
 
+// 실제 상대강도(RS) 합성 — RS_6mo/3mo/1mo 가중 (RS_Rank_Pct 칸은 노이즈라 미사용)
+// 6·3개월 중기 모멘텀을 크게, 1개월 최근성을 소폭 반영
+function rsComposite(row) {
+  const r6 = num(row.RS_6mo), r3 = num(row.RS_3mo), r1 = num(row.RS_1mo);
+  const parts = [];
+  if (r6 !== null) parts.push([r6, 0.4]);
+  if (r3 !== null) parts.push([r3, 0.4]);
+  if (r1 !== null) parts.push([r1, 0.2]);
+  if (!parts.length) return null;
+  const wsum = parts.reduce((a, p) => a + p[1], 0);
+  return parts.reduce((a, p) => a + p[0] * p[1], 0) / wsum;
+}
+
+// 유니버스 전체에 RS 백분위(0~100, 높을수록 강함) 부여 → row.__rsPct
+function assignRsRank(rows) {
+  const scored = rows.map((r) => ({ r, s: rsComposite(r) })).filter((x) => x.s !== null);
+  scored.sort((a, b) => a.s - b.s); // 약→강 오름차순
+  const n = scored.length;
+  scored.forEach((x, i) => { x.r.__rsPct = n <= 1 ? 100 : (i / (n - 1)) * 100; });
+  rows.forEach((r) => { if (r.__rsPct === undefined) r.__rsPct = 0; }); // RS 없으면 최하위
+}
+
 function loadStrategy() {
   return readJson(paths.strategyJson, null);
 }
@@ -26,7 +48,7 @@ function marketLight() {
 function passesCommonGate(row, s) {
   const reasons = [];
   const fails = [];
-  const rsRank = num(row.RS_Rank_Pct);
+  const rsRank = num(row.__rsPct); // 우리가 계산한 실제 RS 백분위(RS_6mo 기반)
   const div50 = num(row['50DIV']);
   const jeong = yes(row['Jungjanggi Jeongbaeyeol']);
   const high52 = num(row.High_52W_Pct);
@@ -96,6 +118,7 @@ function screenStocks(rows, strategy) {
   if (!s) throw new Error('active-strategy.json 로드 실패');
 
   const light = marketLight();
+  assignRsRank(rows); // 유니버스 전체 RS 백분위 계산 (RS_6mo 기반)
   const candidates = [];
   const rejected = [];
 
@@ -119,7 +142,7 @@ function screenStocks(rows, strategy) {
       price: num(row.Price),
       sector: row.Sector || '',
       industry: row.Industry || '',
-      rsRank: num(row.RS_Rank_Pct),
+      rsRank: num(row.__rsPct),
       div50: num(row['50DIV']),
       div10: num(row['10DIV']),
       adr: num(row.ADR_20D),
