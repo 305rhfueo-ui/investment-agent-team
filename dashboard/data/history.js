@@ -299,16 +299,7 @@ window.HISTORY_DATA = {
       "return_pct": -0.64,
       "cash": 62037.24,
       "holdings_count": 5,
-      "opened": [
-        {
-          "symbol": "CZFS",
-          "entry": 70.12000274658203,
-          "qty": 106,
-          "stop": 65.21,
-          "strategy": "eungbong",
-          "reason": "RS 상위 20.0%"
-        }
-      ],
+      "opened": [],
       "events": [],
       "recommendations": [
         {

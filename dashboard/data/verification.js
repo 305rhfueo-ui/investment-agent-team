@@ -1,5 +1,5 @@
 window.VERIFY_DATA = {
-  "last_run": "2026-07-08 · MU·SNDK 특별심의 (사장님 요청)",
+  "last_run": "2026-07-09 (v2 · heavy)",
   "mode": "heavy",
   "models": [
     { "name": "Opus", "ko": "오퍼스", "role": "심의위원장 · 시장판단 · 펀더멘털 · 악마의변호인 · 최종판정" },
@@ -8,17 +8,17 @@ window.VERIFY_DATA = {
   ],
   "market": {
     "regime": "neutral",
-    "invest_ok": true,
-    "note": "QQQ 사상최고 근접·VIX 16.9로 진입 환경 자체는 가능하나, CPI 4.2% 재가속·매파 Fed로 리더 한정·타이트 손절 필수"
+    "invest_ok": false,
+    "note": "추세는 살아있으나 신규 진입 타이밍 부적합 — 이란 재폭격·유가 급등, 물가 4.2%, 매파 연준(인상 언급), VIX 15→18.85 급등, 7/14 6월 CPI 5일 앞 바이너리 이벤트. '불확실하면 보수적으로'"
   },
   "scores": [
-    { "ticker": "MU", "avg": 60, "recommend": "1/3", "fact": "caution", "veto": true },
-    { "ticker": "SNDK", "avg": 53, "recommend": "1/3", "fact": "caution", "veto": true }
+    { "ticker": "FLXS", "avg": 42, "recommend": "0/3", "fact": "caution", "veto": true },
+    { "ticker": "CZFS", "avg": 42, "recommend": "1/3", "fact": "clear", "veto": true }
   ],
   "final": {
     "invest": false,
     "picks": 0,
-    "note": "MU·SNDK 둘 다 악마의 변호인 거부 → 지금 매수 보류. 펀더멘털(내년 EPS+100~200%)은 최상급이나, '50일선 눌림목=지지'라는 매수 전제가 데이터로 반박됨: 패닉 갭다운(SNDK 7/8 -14.9%)·매집 부재(거래량 평균)·RS 소멸·60일 돌파 없음 = 건강한 조정이 아니라 모멘텀 붕괴. 200일선 +108~125% 파라볼릭 평균회귀 + 메모리 피크어닝 리스크 + MU 가격담합 소송 + 버리 공매도 + 8월 실적 바이너리 이벤트. 리스크·리워드 역전."
+    "note": "시장 자체가 신규 진입 부적합(invest_ok=false) + 두 종목 다 veto → 0종목. 둘 다 응봉 전략의 '거래량 동반 돌파+가속 RS'가 없고(brk60 NO·거래량 위축·RS 감속) 52주고 대비 -22~25% 저가 마감. FLXS 관세 30% 마진 훼손 / CZFS 내년 EPS 성장 절벽(+1%). 7/14 CPI 통과 후 추세·RS 재확인 시 재검토."
   },
-  "top_watch": "MU·SNDK 둘 다 감시 리스트 유지 — 펀더멘털은 대장주급. 단 '50일선 위 재장악 + 거래량 동반 반등' 확인 전까지 진입 보류(나이프 캐칭 금지). 8월 실적 통과 후 재평가."
+  "top_watch": "지금은 관망이 정답. 7월 14일 6월 CPI 발표 통과 후, 거래량 동반 신고가 돌파 + 단기 RS 재점화가 확인되는 리더 종목이 나오면 그때 진입."
 };
