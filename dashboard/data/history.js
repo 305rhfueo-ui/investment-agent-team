@@ -23,8 +23,8 @@ window.HISTORY_DATA = {
     },
     {
       "date": "2026-07-09",
-      "equity": 102945.75,
-      "return_pct": 2.95
+      "equity": 99358.96,
+      "return_pct": -0.64
     },
     {
       "date": "2026-07-10",
@@ -294,14 +294,40 @@ window.HISTORY_DATA = {
     {
       "date": "2026-07-09",
       "market_light": "green",
-      "strategy_version": 1,
-      "equity": 102945.75,
-      "return_pct": 2.95,
-      "cash": 72460.72,
-      "holdings_count": 4,
-      "opened": [],
+      "strategy_version": 2,
+      "equity": 99358.96,
+      "return_pct": -0.64,
+      "cash": 62037.24,
+      "holdings_count": 5,
+      "opened": [
+        {
+          "symbol": "CZFS",
+          "entry": 70.12000274658203,
+          "qty": 106,
+          "stop": 65.21,
+          "strategy": "eungbong",
+          "reason": "RS 상위 20.0%"
+        }
+      ],
       "events": [],
-      "recommendations": []
+      "recommendations": [
+        {
+          "symbol": "FLXS",
+          "strategy": "eungbong",
+          "top_pct": "18.6",
+          "price": 69.9800033569336,
+          "reason": "정배열 20>60>120",
+          "analysis": "### FLXS — Consumer Cyclical / Furnishings, Fixtures & Appliances\n\n- **현재가**: $69.9800033569336  |  **시총**: 0.28B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.71 / 3개월 0.45 / 1개월 0.24  → RS 순위 상위 18.6% (양호 👍)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 90.66% (강함 💪)\n- 50일 이격도: 15.87% (과열 아님 ✅)  |  10일 이격: -2.52%\n- ADR(일 변동폭): 5.17% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -2.52%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 2.8  /  내년(NY_Trend): 19.39\n- EPS(CY/NY): 14.63 / 5.65  |  매출(CY/NY): 2.81 / 3.95\n- 애널리스트 up/down 비율: 100 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 18.6%\n- 50이격 15.87% (≤30)\n- 정배열 20>60>120\n- 52주고 90.66%\n- ADR 5.17%\n- 애널 up/down 100%\n- 10이격 -2.52% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 2.8)\n\n**리스크**\n- 손절: 진입가 -7% ($65.08)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "CZFS",
+          "strategy": "eungbong",
+          "top_pct": "20.0",
+          "price": 70.12000274658203,
+          "reason": "정배열 20>60>120",
+          "analysis": "### CZFS — Financial Services / Banks - Regional\n\n- **현재가**: $70.12000274658203  |  **시총**: 0.35B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.18 / 3개월 0.06 / 1개월 0.08  → RS 순위 상위 20.0% (양호 👍)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 93.87% (강함 💪)\n- 50일 이격도: 6.03% (과열 아님 ✅)  |  10일 이격: -2.82%\n- ADR(일 변동폭): 3.57% (양호 👍) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -2.82%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 5.38  /  내년(NY_Trend): 4.79\n- EPS(CY/NY): 8.01 / 0.97  |  매출(CY/NY): — / —\n- 애널리스트 up/down 비율: 100 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 20.0%\n- 50이격 6.03% (≤30)\n- 정배열 20>60>120\n- 52주고 93.87%\n- ADR 3.57%\n- 애널 up/down 100%\n- 10이격 -2.82% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 5.38)\n\n**리스크**\n- 손절: 진입가 -7% ($65.21)  |  이격 정상권\n"
+        }
+      ]
     },
     {
       "date": "2026-07-10",
@@ -551,8 +577,8 @@ window.HISTORY_DATA = {
       "symbol": "ECO",
       "qty": 141,
       "entry": 53.349998474121094,
-      "current": 53.720001220703125,
-      "pnl_pct": 0.69,
+      "current": 55.040000915527344,
+      "pnl_pct": 3.17,
       "stop": 49.62,
       "strategy": "eungbong",
       "tier1": false,
@@ -562,8 +588,8 @@ window.HISTORY_DATA = {
       "symbol": "VIRT",
       "qty": 119,
       "entry": 62.970001220703125,
-      "current": 63.22999954223633,
-      "pnl_pct": 0.41,
+      "current": 64.2699966430664,
+      "pnl_pct": 2.06,
       "stop": 58.56,
       "strategy": "eungbong",
       "tier1": false,
@@ -573,8 +599,8 @@ window.HISTORY_DATA = {
       "symbol": "FLXS",
       "qty": 104,
       "entry": 72.58999633789062,
-      "current": 69.55000305175781,
-      "pnl_pct": -4.19,
+      "current": 69.9800033569336,
+      "pnl_pct": -3.6,
       "stop": 67.51,
       "strategy": "eungbong",
       "tier1": false,
@@ -584,12 +610,23 @@ window.HISTORY_DATA = {
       "symbol": "AIN",
       "qty": 101,
       "entry": 73.56999969482422,
-      "current": 73.56999969482422,
-      "pnl_pct": 0,
+      "current": 71.30999755859375,
+      "pnl_pct": -3.07,
       "stop": 68.42,
       "strategy": "eungbong",
       "tier1": false,
       "date": "2026-07-08"
+    },
+    {
+      "symbol": "CZFS",
+      "qty": 106,
+      "entry": 70.12000274658203,
+      "current": 70.12000274658203,
+      "pnl_pct": 0,
+      "stop": 65.21,
+      "strategy": "eungbong",
+      "tier1": false,
+      "date": "2026-07-09"
     }
   ]
 };
