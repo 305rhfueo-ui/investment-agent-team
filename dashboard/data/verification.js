@@ -1,6 +1,7 @@
 window.VERIFY_DATA = {
-  "last_run": "2026-07-09 (v2 · heavy)",
+  "last_run": "2026-07-09 (v2 · heavy · RS개선)",
   "mode": "heavy",
+  "picked": ["CRDO"],
   "models": [
     { "name": "Opus", "ko": "오퍼스", "role": "심의위원장 · 시장판단 · 펀더멘털 · 악마의변호인 · 최종판정" },
     { "name": "Sonnet", "ko": "소넷", "role": "기술적 · 모멘텀 구조 검증" },
@@ -8,17 +9,20 @@ window.VERIFY_DATA = {
   ],
   "market": {
     "regime": "neutral",
-    "invest_ok": false,
-    "note": "추세는 살아있으나 신규 진입 타이밍 부적합 — 이란 재폭격·유가 급등, 물가 4.2%, 매파 연준(인상 언급), VIX 15→18.85 급등, 7/14 6월 CPI 5일 앞 바이너리 이벤트. '불확실하면 보수적으로'"
+    "invest_ok": true,
+    "note": "선별 진입 허용(RS 리더 한정·축소 사이즈·타이트 손절). 매파 연준(인상 확률 76%)·물가 4.2%·고점 대비 -4.5% 조정·7/14 CPI 임박은 역풍"
   },
   "scores": [
-    { "ticker": "FLXS", "avg": 42, "recommend": "0/3", "fact": "caution", "veto": true },
-    { "ticker": "CZFS", "avg": 42, "recommend": "1/3", "fact": "clear", "veto": true }
+    { "ticker": "CRDO", "avg": 65, "recommend": "1/3", "fact": "caution", "veto": false },
+    { "ticker": "CRWD", "avg": 52, "recommend": "0/3", "fact": "caution", "veto": true },
+    { "ticker": "PANW", "avg": 43, "recommend": "0/3", "fact": "caution", "veto": true },
+    { "ticker": "FLXS", "avg": 32, "recommend": "0/3", "fact": "caution", "veto": true },
+    { "ticker": "NUTX", "avg": 20, "recommend": "0/3", "fact": "veto", "veto": true }
   ],
   "final": {
-    "invest": false,
-    "picks": 0,
-    "note": "시장 자체가 신규 진입 부적합(invest_ok=false) + 두 종목 다 veto → 0종목. 둘 다 응봉 전략의 '거래량 동반 돌파+가속 RS'가 없고(brk60 NO·거래량 위축·RS 감속) 52주고 대비 -22~25% 저가 마감. FLXS 관세 30% 마진 훼손 / CZFS 내년 EPS 성장 절벽(+1%). 7/14 CPI 통과 후 추세·RS 재확인 시 재검토."
+    "invest": true,
+    "picks": 1,
+    "note": "★ CRDO 1종목 조건부 선정! 5종목 중 유일하게 악마의 변호인 통과. AI 데이터센터 연결칩, 매출 +272%(YoY)·사상 최대 흑자, RS 상위 2.9%·기관 매집(UDR 90). 단 '오늘 추격 매수'는 금지 — 60일 돌파·거래량이 아직 없음. '거래량 동반 신고가 재돌파' 확인 후 축소 포지션(하프 이하)·타이트 손절로 분할 진입. 7/14 CPI 전후는 관망."
   },
-  "top_watch": "지금은 관망이 정답. 7월 14일 6월 CPI 발표 통과 후, 거래량 동반 신고가 돌파 + 단기 RS 재점화가 확인되는 리더 종목이 나오면 그때 진입."
+  "top_watch": "CRDO — 검증 통과 1순위. 거래량 동반 60일 신고가 재돌파 확인 시 진입. 경영진 내부자 매도·고변동(ADR 11%) 주의로 풀사이즈 금지."
 };

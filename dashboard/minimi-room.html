@@ -400,7 +400,7 @@
       `<div class="vhead">📡 시장: ${V.market.invest_ok?'<span class="ok">진입 적합</span>':'<span class="veto">신규진입 부적합</span>'}</div>`+
       `<div style="color:var(--sub);font-size:11px;margin-bottom:6px">${V.market.note}</div>`+
       `<table><thead><tr><th>종목</th><th>폭발력</th><th>매수추천</th><th>판정</th></tr></thead><tbody>`+
-      V.scores.map(s=>`<tr><td><b>${s.ticker}</b></td><td>${s.avg}</td><td>${s.recommend}</td><td>${s.veto?'<span class="veto">거부</span>':'<span style="color:var(--sub)">관망</span>'}</td></tr>`).join("")+
+      V.scores.map(s=>{const picked=(V.picked||[]).includes(s.ticker);const j=picked?'<span class="ok">★ 선정</span>':(s.veto?'<span class="veto">거부</span>':'<span style="color:var(--sub)">관망</span>');return `<tr><td><b>${s.ticker}</b></td><td>${s.avg}</td><td>${s.recommend}</td><td>${j}</td></tr>`;}).join("")+
       `</tbody></table>`+
       `<div style="margin-top:6px"><span class="vbadge" style="background:${invest?'var(--good)':'var(--bad)'};color:#fff">최종: ${invest?'진입':'0종목'}</span> ${V.final.note}</div>`;
   }

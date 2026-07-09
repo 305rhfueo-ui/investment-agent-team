@@ -233,7 +233,9 @@ function buildReport(ctx) {
     L.push('| 종목 | 폭발력(3모델) | 매수추천 | 팩트체크 | 악마의변호인 |');
     L.push('|------|------|------|------|------|');
     for (const s of v.scores) {
-      L.push(`| ${s.ticker} | ${s.avg} | ${s.recommend} | ${s.fact || '—'} | ${s.veto ? '❌ 거부' : '관망'} |`);
+      const picked = (v.picked || []).includes(s.ticker);
+      const j = picked ? '⭐ 선정' : (s.veto ? '❌ 거부' : '관망');
+      L.push(`| ${s.ticker} | ${s.avg} | ${s.recommend} | ${s.fact || '—'} | ${j} |`);
     }
     L.push('');
     L.push(`- **최종 판정**: ${v.invest ? '진입' : '신규 0종목'} — ${v.note}`);
