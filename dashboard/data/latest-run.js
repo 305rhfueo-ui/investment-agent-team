@@ -1,5 +1,5 @@
 window.RUN_DATA = {
-  "run_date": "2026-07-10",
+  "run_date": "2026-07-11",
   "generated_note": "이 파일은 start-investment 실행 시 자동 생성됩니다.",
   "market_light": "green",
   "source": "live",
@@ -80,172 +80,8 @@ window.RUN_DATA = {
       "strategy": "eungbong"
     }
   ],
-  "recommendations": [
-    {
-      "symbol": "AMD",
-      "entry": 546.719970703125,
-      "qty": 13,
-      "stop": 508.45,
-      "strategy": "eungbong",
-      "reasons": [
-        "RS 상위 1.3%",
-        "50이격 14.57% (≤30)",
-        "정배열 20>60>120",
-        "52주고 93.5%",
-        "ADR 5.95%",
-        "애널 up/down 83%",
-        "10이격 1.89% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 0.24)"
-      ]
-    },
-    {
-      "symbol": "ORKA",
-      "entry": 88.2699966430664,
-      "qty": 84,
-      "stop": 82.09,
-      "strategy": "eungbong",
-      "reasons": [
-        "RS 상위 2.0%",
-        "50이격 26.34% (≤30)",
-        "정배열 20>60>120",
-        "52주고 90.27%",
-        "ADR 6.84%",
-        "애널 up/down 86%",
-        "10이격 -0.11% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 0.09)"
-      ]
-    },
-    {
-      "symbol": "PANW",
-      "entry": 338.30999755859375,
-      "qty": 22,
-      "stop": 314.63,
-      "strategy": "eungbong",
-      "reasons": [
-        "RS 상위 2.9%",
-        "50이격 28.05% (≤30)",
-        "정배열 20>60>120",
-        "52주고 91.89%",
-        "ADR 5.11%",
-        "애널 up/down 87%",
-        "10이격 1.78% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 2.21)"
-      ]
-    }
-  ],
-  "buzz": {
-    "trending": [
-      {
-        "symbol": "META",
-        "title": "Meta Platforms Inc"
-      },
-      {
-        "symbol": "ONDS",
-        "title": "Ondas Inc"
-      },
-      {
-        "symbol": "OPEN",
-        "title": "Opendoor Technologies Inc"
-      },
-      {
-        "symbol": "FRMI",
-        "title": "Fermi LLC"
-      },
-      {
-        "symbol": "FUBO",
-        "title": "fuboTV Inc"
-      },
-      {
-        "symbol": "DIS",
-        "title": "Walt Disney Co"
-      },
-      {
-        "symbol": "UUUU",
-        "title": "Energy Fuels Inc"
-      },
-      {
-        "symbol": "HPE",
-        "title": "Hewlett Packard Enterprise Co"
-      },
-      {
-        "symbol": "SBUX",
-        "title": "Starbucks Corp"
-      },
-      {
-        "symbol": "MARA",
-        "title": "Marathon Digital Holdings Inc"
-      },
-      {
-        "symbol": "SMH",
-        "title": "VanEck Semiconductor ETF"
-      },
-      {
-        "symbol": "TSM",
-        "title": "Taiwan Semiconductor Manufacturing - ADR"
-      }
-    ],
-    "crypto": [
-      "BNB"
-    ],
-    "reactions": [
-      {
-        "symbol": "AMD",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "매우 활발",
-        "watchers": 560677
-      },
-      {
-        "symbol": "ORKA",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "관심 적음",
-        "watchers": 402
-      },
-      {
-        "symbol": "PANW",
-        "bullPct": 44,
-        "mood": "혼조 (강세 44%)",
-        "activity": "활발",
-        "watchers": 38628
-      },
-      {
-        "symbol": "FLXS",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "관심 적음",
-        "watchers": 293
-      },
-      {
-        "symbol": "SNEX",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "관심 적음",
-        "watchers": 803
-      },
-      {
-        "symbol": "ECO",
-        "bullPct": 87,
-        "mood": "강세 우위 87%",
-        "activity": "관심 적음",
-        "watchers": 239
-      },
-      {
-        "symbol": "VIRT",
-        "bullPct": 88,
-        "mood": "강세 우위 88%",
-        "activity": "보통",
-        "watchers": 2268
-      },
-      {
-        "symbol": "AIN",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "관심 적음",
-        "watchers": 144
-      }
-    ]
-  },
+  "recommendations": [],
+  "buzz": null,
   "timeline": [
     {
       "agent": "Alex",
@@ -304,137 +140,67 @@ window.RUN_DATA = {
       "t": 7
     },
     {
-      "agent": "Nova",
-      "action": "walk",
-      "msg": "커뮤니티 스카우트 Nova예요! 미국 투자판 스캔했어요 🛰️",
-      "phase": "분석",
-      "t": 8
-    },
-    {
-      "agent": "Nova",
-      "action": "talk",
-      "msg": "요즘 커뮤니티에서 META, ONDS, OPEN, FRMI 이런 종목이 많이 거론돼요",
-      "phase": "분석",
-      "t": 9
-    },
-    {
-      "agent": "Nova",
-      "action": "talk",
-      "msg": "우리 종목 반응도 봤어요 — AMD은 커뮤니티에서 강세 우위 100% (매우 활발)",
-      "phase": "분석",
-      "t": 10
-    },
-    {
-      "agent": "Nova",
-      "action": "talk",
-      "msg": "저는 참고 정보만 드려요! 판단은 팀 전략이랑 사장님 몫이에요 😊",
-      "phase": "분석",
-      "t": 11
-    },
-    {
       "agent": "Sara",
       "action": "walk",
       "msg": "제가 포지션 사이징 들어갈게요. 거래당 리스크 2% 원칙!",
       "phase": "리스크",
-      "t": 12
+      "t": 8
     },
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "AMD: 13주, 손절 $508.45 (-7%). 최대 손실 딱 2%로 제한했어요.",
+      "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
       "phase": "리스크",
-      "t": 13
-    },
-    {
-      "agent": "Sara",
-      "action": "talk",
-      "msg": "ORKA: 84주, 손절 $82.09 (-7%). 최대 손실 딱 2%로 제한했어요.",
-      "phase": "리스크",
-      "t": 14
-    },
-    {
-      "agent": "Sara",
-      "action": "talk",
-      "msg": "PANW: 22주, 손절 $314.63 (-7%). 최대 손실 딱 2%로 제한했어요.",
-      "phase": "리스크",
-      "t": 15
+      "t": 9
     },
     {
       "agent": "Jordan",
       "action": "walk",
       "msg": "기록 담당 조던입니다. 매매일지에 남길게요 ✍️",
       "phase": "거래",
-      "t": 16
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "AMD 13주 @ $546.72 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 17
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "ORKA 84주 @ $88.27 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 18
-    },
-    {
-      "agent": "Jordan",
-      "action": "talk",
-      "msg": "PANW 22주 @ $338.31 진입 기록 완료 ✅",
-      "phase": "거래",
-      "t": 19
+      "t": 10
     },
     {
       "agent": "Jordan",
       "action": "talk",
       "msg": "현재 보유 8종목, 현금 $40,072.38.",
       "phase": "거래",
-      "t": 20
+      "t": 11
     },
     {
       "agent": "Morgan",
       "action": "walk",
       "msg": "전략가 모건이에요. 매매일지 돌아볼게요 📖",
       "phase": "검토",
-      "t": 21
+      "t": 12
     },
     {
       "agent": "Morgan",
       "action": "talk",
-      "msg": "[주간 라이트 리뷰] 누적 -0.25% · 승률 56% · 거래 9건",
+      "msg": "누적 수익률 -0.25% · 승 5 / 패 4. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
       "phase": "검토",
-      "t": 22
-    },
-    {
-      "agent": "Morgan",
-      "action": "talk",
-      "msg": "이번 주 승률 56%, 돌파전략 승률 0%. 파라미터 미세조정 없이 관찰 지속.",
-      "phase": "검토",
-      "t": 23
+      "t": 13
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 24
+      "t": 14
     },
     {
       "agent": "RICH",
       "action": "talk",
-      "msg": "오늘 추천 3종목, 누적 수익률 -0.25%. 텔레그램 발사! 🚀",
+      "msg": "오늘 추천 0종목, 누적 수익률 -0.25%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 25
+      "t": 15
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 26
+      "t": 16
     }
   ]
 };
