@@ -667,15 +667,15 @@
     el = el || $("tab-report");
     const R=(window.__NO_REPORTS||!window.REPORTS_DATA)?[]:window.REPORTS_DATA;
     if(!R.length){ el.innerHTML='<div class="empty">아직 리포트가 없습니다.<br>start-investment 실행 시 일자별 브리핑이 여기 쌓입니다.</div>'; return; }
-    el.innerHTML='<div class="rptbar" id="rptbar"></div><div class="rptbody" id="rptbody"></div>';
-    const bar=$("rptbar"), body=$("rptbody");
+    el.innerHTML='<div class="rptbar"></div><div class="rptbody"></div>';
+    const bar=el.querySelector(".rptbar"), body=el.querySelector(".rptbody");
     bar.innerHTML=R.map((r,idx)=>`<button class="rptchip${idx===0?" on":""}" data-idx="${idx}">📅 ${r.date}</button>`).join("")
       +'<button class="rptchip dlbtn" id="dlWord">📥 Word 저장</button>';
     let cur=0;
     const show=(idx)=>{ cur=idx; body.innerHTML=mdToHtml(R[idx].md); bar.querySelectorAll("[data-idx]").forEach(c=>c.classList.toggle("on",+c.dataset.idx===idx)); body.scrollTop=0;
       body.querySelectorAll(".codeblk").forEach(pre=>pre.onclick=()=>{const rg=document.createRange();rg.selectNodeContents(pre);const sel=getSelection();sel.removeAllRanges();sel.addRange(rg);}); };
     bar.querySelectorAll(".rptchip[data-idx]").forEach(b=>b.onclick=()=>show(+b.dataset.idx));
-    $("dlWord").onclick=()=>downloadWord(R[cur]);
+    bar.querySelector(".dlbtn").onclick=()=>downloadWord(R[cur]);
     show(0);
   }
 
