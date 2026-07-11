@@ -114,11 +114,12 @@ function eungbongPullback(row, s) {
 }
 
 // 메인 스크리닝
-function screenStocks(rows, strategy) {
+// opts.marketLight: 실데이터 시장국면(green/yellow/red)을 주입하면 env 기본(green)을 대체
+function screenStocks(rows, strategy, opts = {}) {
   const s = strategy || loadStrategy();
   if (!s) throw new Error('active-strategy.json 로드 실패');
 
-  const light = marketLight();
+  const light = opts.marketLight || marketLight();
   assignRsRank(rows); // 유니버스 전체 RS 백분위 계산 (RS_6mo 기반)
   const candidates = [];
   const rejected = [];
@@ -195,8 +196,11 @@ module.exports = { screenStocks, loadStrategy, num, yes, rsComposite, assignRsRa
 if (require.main === module) {
   require('./lib/util').loadEnv();
   const { fetchRsData } = require('./fetch-rs-data');
-  fetchRsData().then(({ rows }) => {
-    const res = screenStocks(rows);
+  const { classify } = require('./lib/market-regime');
+  fetchRsData().then(({ rows, meta }) => {
+    const regime = classify(meta && meta.market_condition, rows);
+    const res = screenStocks(rows, null, { marketLight: regime.light });
+    console.log(`시장국면: ${regime.note}`);
     console.log('\n선정 종목:');
     for (const c of res.candidates) {
       console.log(`  ${c.ticker} [${c.strategy}] RS${c.rsRank} — ${c.reasons.slice(0, 3).join(', ')}`);
