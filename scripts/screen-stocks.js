@@ -44,10 +44,11 @@ function marketLight() {
   return ['green', 'yellow', 'red'].includes(v) ? v : 'green';
 }
 
-// 공통 관문 통과 여부 + 사유
+// 공통 관문 통과 여부 + 사유 (failKeys = 안정적 카테고리 키, drop-off 집계용)
 function passesCommonGate(row, s) {
   const reasons = [];
   const fails = [];
+  const failKeys = [];
   const rsRank = num(row.__rsPct); // 우리가 계산한 실제 RS 백분위(RS_6mo 기반)
   const div50 = num(row['50DIV']);
   const jeong = yes(row['Jungjanggi Jeongbaeyeol']);
@@ -59,26 +60,26 @@ function passesCommonGate(row, s) {
   const div50Max = s.screening.div50_max;
 
   if (rsRank !== null && rsRank >= s.screening.rs_rank_pct_min) reasons.push(`RS 상위 ${topPct(rsRank)}%`);
-  else fails.push('RS 순위 미달');
+  else { fails.push('RS 순위 미달'); failKeys.push('rs'); }
 
   if (div50 !== null && div50 <= div50Max) reasons.push(`50이격 ${div50}% (≤${div50Max})`);
-  else fails.push(`50이격 과열(${div50}%)`);
+  else { fails.push(`50이격 과열(${div50}%)`); failKeys.push('div50'); }
 
   if (s.screening.require_jungjanggi_jeongbaeyeol ? jeong : true) reasons.push('정배열 20>60>120');
-  else fails.push('정배열 아님');
+  else { fails.push('정배열 아님'); failKeys.push('jeongbae'); }
 
   if (high52 !== null && high52 >= s.screening.high_52w_pct_min) reasons.push(`52주고 ${high52}%`);
-  else fails.push(`52주고 근접 부족(${high52}%)`);
+  else { fails.push(`52주고 근접 부족(${high52}%)`); failKeys.push('high52'); }
 
   if (adr !== null && adr >= s.screening.adr_min) reasons.push(`ADR ${adr}%`);
-  else fails.push(`ADR 부족(${adr}%)`);
+  else { fails.push(`ADR 부족(${adr}%)`); failKeys.push('adr'); }
 
   // 애널리스트 비율은 "선호" 조건(soft): 값이 없으면 중립(통과), 있으면 기준 적용
   if (udr === null) { /* 정보 없음 → 중립 */ }
   else if (udr >= s.screening.up_down_ratio_min) reasons.push(`애널 up/down ${udr.toFixed(0)}%`);
-  else fails.push(`애널 비율 낮음(${udr.toFixed(0)}%)`);
+  else { fails.push(`애널 비율 낮음(${udr.toFixed(0)}%)`); failKeys.push('udr'); }
 
-  return { pass: fails.length === 0, reasons, fails };
+  return { pass: fails.length === 0, reasons, fails, failKeys };
 }
 
 function perfectStormEntry(row, s) {
@@ -121,21 +122,32 @@ function screenStocks(rows, strategy) {
   assignRsRank(rows); // 유니버스 전체 RS 백분위 계산 (RS_6mo 기반)
   const candidates = [];
   const rejected = [];
+  // drop-off 계측: 유니버스가 각 단계에서 얼마나 걸러지는지 (0종목 원인 진단)
+  const GATE_LABELS = { rs: 'RS 순위', div50: '50이격 과열', jeongbae: '정배열', high52: '52주고 근접', adr: 'ADR', udr: '애널 비율' };
+  const dropoff = { total: 0, hasTicker: 0, gateFail: 0, byGate: { rs: 0, div50: 0, jeongbae: 0, high52: 0, adr: 0, udr: 0 }, gatePass: 0, noEntry: 0, entryPass: 0, byStrategy: { perfect_storm: 0, eungbong: 0 } };
 
   for (const row of rows) {
+    dropoff.total++;
     const ticker = row.Ticker || row.ticker;
     if (!ticker) continue;
+    dropoff.hasTicker++;
     const gate = passesCommonGate(row, s);
     if (!gate.pass) {
+      dropoff.gateFail++;
+      for (const k of gate.failKeys) dropoff.byGate[k] = (dropoff.byGate[k] || 0) + 1;
       rejected.push({ ticker, fails: gate.fails });
       continue;
     }
+    dropoff.gatePass++;
     const ps = perfectStormEntry(row, s);
     const eb = eungbongPullback(row, s);
     if (!ps.ok && !eb.ok) {
+      dropoff.noEntry++;
       rejected.push({ ticker, fails: ['진입신호 없음(돌파X, 눌림목X)'] });
       continue;
     }
+    dropoff.entryPass++;
+    dropoff.byStrategy[ps.ok ? 'perfect_storm' : 'eungbong']++;
     const strategyTag = ps.ok ? 'perfect_storm' : 'eungbong';
     candidates.push({
       ticker,
@@ -165,12 +177,20 @@ function screenStocks(rows, strategy) {
   if (light === 'red') {
     say('Alex', '빨강불 → 신규 진입 전면 중단(현금 보존). 후보만 관찰 리스트로 보고합니다.');
   }
-  say('Alex', `전체 ${rows.length}개 중 후보 ${candidates.length}개 → 상위 ${top.length}개 선정`);
 
-  return { candidates: top, allCandidates: candidates, rejected, marketLight: light };
+  // drop-off 브리핑: 어느 단계에서 얼마나 죽었는지 (0종목 원인 진단)
+  const gateBreak = Object.entries(dropoff.byGate)
+    .filter(([, v]) => v > 0)
+    .sort((a, b) => b[1] - a[1])
+    .map(([k, v]) => `${GATE_LABELS[k]} ${v}`)
+    .join(', ');
+  say('Alex', `📉 drop-off: 전체 ${dropoff.total} → 공통관문 통과 ${dropoff.gatePass} (탈락 ${dropoff.gateFail}: ${gateBreak || '-'})`);
+  say('Alex', `  → 진입신호 통과 ${dropoff.entryPass} (돌파 ${dropoff.byStrategy.perfect_storm}·눌림목 ${dropoff.byStrategy.eungbong}, 신호없음 ${dropoff.noEntry}) → 상위 ${top.length}개 선정`);
+
+  return { candidates: top, allCandidates: candidates, rejected, marketLight: light, dropoff };
 }
 
-module.exports = { screenStocks, loadStrategy, num, yes };
+module.exports = { screenStocks, loadStrategy, num, yes, rsComposite, assignRsRank, passesCommonGate, perfectStormEntry, eungbongPullback };
 
 if (require.main === module) {
   require('./lib/util').loadEnv();

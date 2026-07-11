@@ -12,6 +12,7 @@ const paths = {
   strategyMd: path.join(ROOT, 'strategy', 'active-strategy.md'),
   strategyHistory: path.join(ROOT, 'strategy', 'history'),
   performance: path.join(ROOT, 'portfolio', 'performance.json'),
+  realAccounts: path.join(ROOT, 'portfolio', 'real-accounts.json'),
   journalDir: path.join(ROOT, 'trading-journal'),
   recDir: path.join(ROOT, 'analysis', 'stock-recommendations'),
   insightsDir: path.join(ROOT, 'analysis', 'team-insights'),

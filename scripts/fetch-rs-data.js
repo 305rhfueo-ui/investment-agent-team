@@ -19,6 +19,16 @@ function normalize(raw) {
   return rows.filter((r) => r && (r.Ticker || r.ticker));
 }
 
+// 종목 행 외의 부가 데이터(섹터 랭킹·시장국면) 추출
+function extractMeta(raw) {
+  if (!raw || Array.isArray(raw)) return { wrs_data: [], market_condition: null, last_updated: null };
+  return {
+    wrs_data: Array.isArray(raw.wrs_data) ? raw.wrs_data : [],
+    market_condition: raw.market_condition != null ? raw.market_condition : null,
+    last_updated: raw.last_updated || null,
+  };
+}
+
 async function fetchRsData(opts = {}) {
   const url = opts.url || process.env.RS_DATA_URL || DEFAULT_URL;
   try {
@@ -32,17 +42,17 @@ async function fetchRsData(opts = {}) {
     const rows = normalize(raw);
     if (rows.length === 0) throw new Error('빈 데이터');
     say('Alex', `RS 데이터 ${rows.length}개 종목 수신 (라이브)`);
-    return { rows, source: 'live', url };
+    return { rows, source: 'live', url, meta: extractMeta(raw) };
   } catch (e) {
     say('SYSTEM', `라이브 수신 실패(${e.message}) → 번들 샘플 사용`);
     const sample = readJson(paths.sampleData, { data: [] });
     const rows = normalize(sample);
     say('Alex', `RS 데이터 ${rows.length}개 종목 (샘플)`);
-    return { rows, source: 'sample', url };
+    return { rows, source: 'sample', url, meta: extractMeta(sample) };
   }
 }
 
-module.exports = { fetchRsData, normalize, parseLooseJson };
+module.exports = { fetchRsData, normalize, parseLooseJson, extractMeta };
 
 // 단독 실행 시
 if (require.main === module) {

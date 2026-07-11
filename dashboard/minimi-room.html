@@ -10,6 +10,7 @@
 <script src="data/reports.js" onerror="window.__NO_REPORTS=true"></script>
 <script src="data/verification.js" onerror="window.__NO_VERIFY=true"></script>
 <script src="data/qna.js" onerror="window.__NO_QNA=true"></script>
+<script src="data/real-accounts.js" onerror="window.__NO_REAL=true"></script>
 <style>
   :root{
     --bg1:#ffe8f0; --bg2:#e7f0ff; --floor:#f6d9b8; --floor2:#eac59a;
@@ -265,6 +266,7 @@
     <div class="side">
       <div class="tabs">
         <button class="tab on" data-tab="log">💬 로그</button>
+        <button class="tab" data-tab="accounts">💼 계좌</button>
         <button class="tab" data-tab="daily">📅 일자별</button>
         <button class="tab" data-tab="curve">📈 추이</button>
         <button class="tab" data-tab="reco">📊 추천</button>
@@ -277,6 +279,7 @@
         <div class="log" id="log"></div>
         <div class="recos" id="recos"></div>
       </div>
+      <div class="tabview" id="tab-accounts" hidden></div>
       <div class="tabview" id="tab-daily" hidden></div>
       <div class="tabview" id="tab-curve" hidden></div>
       <div class="tabview" id="tab-reco" hidden></div>
@@ -693,20 +696,60 @@
     el.querySelectorAll(".codeblk").forEach(pre=>pre.onclick=()=>{const rg=document.createRange();rg.selectNodeContents(pre);const s=getSelection();s.removeAllRanges();s.addRange(rg);});
   }
 
+  // ── 💼 계좌 탭 (모의 + 실제 장기/단기, 각각 독립 표시) ──
+  function wonf(n){ n=Math.round(Number(n)||0); const s=n<0?'-':''; n=Math.abs(n);
+    if(n>=1e8) return s+(n/1e8).toFixed(2).replace(/\.?0+$/,'')+'억';
+    return s+Math.round(n/1e4).toLocaleString()+'만'; }
+  function pbar(pctv){ const w=Math.max(0,Math.min(100,Number(pctv)||0));
+    return `<div style="height:9px;background:rgba(128,128,128,.22);border-radius:6px;overflow:hidden;margin:7px 0 4px">`
+      +`<div style="height:100%;width:${w}%;background:linear-gradient(90deg,#22b07d,#3aa0ff)"></div></div>`; }
+  function acctCardReal(a){
+    const pc=a.unrealized_pnl_pct>=0?'pos':'neg';
+    const holds=(a.holdings||[]).map(h=>{const c=h.pnl_pct>=0?'pos':'neg';
+      return `<div style="display:flex;justify-content:space-between;padding:3px 0;font-size:12px;border-top:1px solid rgba(128,128,128,.12)">`
+        +`<span><b>${h.ticker}</b> <span style="color:var(--sub)">${h.shares}주·비중${h.weight_pct}%</span></span>`
+        +`<span class="${c}">${h.pnl_pct>=0?'+':''}${h.pnl_pct}%</span></div>`;}).join('');
+    return `<div style="background:var(--panel);border:1px solid rgba(128,128,128,.18);border-radius:12px;padding:12px 14px;margin-bottom:12px">`
+      +`<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">${a.emoji} ${a.name}</b>`
+      +`<span class="${pc}" style="font-weight:800">${a.unrealized_pnl_pct>=0?'+':''}${a.unrealized_pnl_pct}% <span style="color:var(--sub);font-weight:600;font-size:11px">평가손익</span></span></div>`
+      +`<div style="font-size:20px;font-weight:800;margin-top:6px">${wonf(a.current_krw)}<span style="color:var(--sub);font-size:13px;font-weight:600"> / 목표 ${wonf(a.target_krw)}</span></div>`
+      +pbar(a.progress_pct)
+      +`<div style="font-size:12px;color:var(--sub)">🎯 목표 달성률 <b style="color:var(--fg,inherit)">${a.progress_pct}%</b> · 남은 ${wonf(a.remaining_krw)}</div>`
+      +(holds?`<div style="margin-top:8px">${holds}</div>`:`<div style="font-size:12px;color:var(--sub);margin-top:6px">💵 현금 100% (관망)</div>`)
+      +`</div>`;
+  }
+  function acctCardMock(h){
+    const r=Number(h.total_return_pct)||0, c=r>=0?'pos':'neg';
+    return `<div style="background:var(--panel);border:1px solid rgba(128,128,128,.18);border-radius:12px;padding:12px 14px;margin-bottom:12px">`
+      +`<div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:14px">🧪 모의투자 (페이퍼)</b>`
+      +`<span class="${c}" style="font-weight:800">${r>=0?'+':''}${r.toFixed(2)}%</span></div>`
+      +`<div style="font-size:20px;font-weight:800;margin-top:6px">${money(h.equity)}<span style="color:var(--sub);font-size:13px;font-weight:600"> / 시작 ${money(h.initial_capital||100000)}</span></div>`
+      +`<div style="font-size:12px;color:var(--sub);margin-top:4px">전략 실험·훈련용 · 보유 ${h.holdings_count||0}종목 · 승 ${h.wins||0}/패 ${h.losses||0}</div></div>`;
+  }
+  function renderAccounts(el){
+    el = el || $("tab-accounts");
+    const RA=(window.__NO_REAL||!window.REAL_ACCOUNTS_DATA)?null:window.REAL_ACCOUNTS_DATA;
+    let html=`<h3><span>💼 포트폴리오 현황</span><span style="color:var(--sub);font-weight:600">각 계좌 독립 · ${RA&&RA.generated?RA.generated:''}</span></h3>`;
+    if(RA&&RA.accounts){ for(const k of ['long','short']){ if(RA.accounts[k]) html+=acctCardReal(RA.accounts[k]); } }
+    html+=acctCardMock(DATA.hud||{});
+    if(!RA) html+=`<div style="font-size:12px;color:var(--sub)">실제 계좌 데이터 없음 — 'start investment' 후 표시됩니다.</div>`;
+    el.innerHTML=html;
+  }
+
   // 탭 전환
   const rendered={};
-  const RENDERERS={daily:renderDaily,curve:renderCurve,reco:renderReco,report:renderReports,qna:renderQna};
+  const RENDERERS={accounts:renderAccounts,daily:renderDaily,curve:renderCurve,reco:renderReco,report:renderReports,qna:renderQna};
   document.querySelectorAll(".tab[data-tab]").forEach(btn=>{
     btn.onclick=()=>{
       const t=btn.dataset.tab;
       document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b===btn));
-      ["log","daily","curve","reco","report","qna"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
+      ["log","accounts","daily","curve","reco","report","qna"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
       if(!rendered[t] && RENDERERS[t]){ RENDERERS[t](); rendered[t]=true; }
     };
   });
 
   // ── 팝업(모달) — 탭 내용 크게 보기 ──
-  const MODAL_TABS=[{k:"report",label:"📋 리포트"},{k:"daily",label:"📅 일자별"},{k:"curve",label:"📈 추이"},{k:"reco",label:"📊 추천"},{k:"qna",label:"💬 질문종목"}];
+  const MODAL_TABS=[{k:"accounts",label:"💼 계좌"},{k:"report",label:"📋 리포트"},{k:"daily",label:"📅 일자별"},{k:"curve",label:"📈 추이"},{k:"reco",label:"📊 추천"},{k:"qna",label:"💬 질문종목"}];
   function openModal(startTab){
     const tabsEl=$("modalTabs"), body=$("modalBody");
     tabsEl.innerHTML=MODAL_TABS.map(t=>`<button class="mtab" data-k="${t.k}">${t.label}</button>`).join("");
