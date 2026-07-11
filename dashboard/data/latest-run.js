@@ -6,9 +6,9 @@ window.RUN_DATA = {
   "strategy_version": 2,
   "hud": {
     "initial_capital": 100000,
-    "equity": 99753.99,
+    "equity": 99567.12,
     "cash": 40072.38,
-    "total_return_pct": -0.25,
+    "total_return_pct": -0.43,
     "holdings_count": 8,
     "wins": 5,
     "losses": 4,
@@ -19,69 +19,184 @@ window.RUN_DATA = {
       "symbol": "ECO",
       "qty": 141,
       "entry": 53.349998474121094,
-      "current": 52.22999954223633,
-      "pnl_pct": -2.1,
+      "current": 54.939998626708984,
+      "pnl_pct": 2.98,
       "strategy": "eungbong"
     },
     {
       "symbol": "VIRT",
       "qty": 119,
       "entry": 62.970001220703125,
-      "current": 66.81999969482422,
-      "pnl_pct": 6.11,
+      "current": 65.80000305175781,
+      "pnl_pct": 4.49,
       "strategy": "eungbong"
     },
     {
       "symbol": "FLXS",
       "qty": 104,
       "entry": 72.58999633789062,
-      "current": 71.79000091552734,
-      "pnl_pct": -1.1,
+      "current": 71.30000305175781,
+      "pnl_pct": -1.78,
       "strategy": "eungbong"
     },
     {
       "symbol": "AIN",
       "qty": 101,
       "entry": 73.56999969482422,
-      "current": 72.87999725341797,
-      "pnl_pct": -0.94,
+      "current": 72.56999969482422,
+      "pnl_pct": -1.36,
       "strategy": "eungbong"
     },
     {
       "symbol": "CZFS",
       "qty": 106,
       "entry": 70.12000274658203,
-      "current": 71.44999694824219,
-      "pnl_pct": 1.9,
+      "current": 70.37999725341797,
+      "pnl_pct": 0.37,
       "strategy": "eungbong"
     },
     {
       "symbol": "AMD",
       "qty": 13,
       "entry": 546.719970703125,
-      "current": 546.719970703125,
-      "pnl_pct": 0,
+      "current": 557.8900146484375,
+      "pnl_pct": 2.04,
       "strategy": "eungbong"
     },
     {
       "symbol": "ORKA",
       "qty": 84,
       "entry": 88.2699966430664,
-      "current": 88.2699966430664,
-      "pnl_pct": 0,
+      "current": 86.79000091552734,
+      "pnl_pct": -1.68,
       "strategy": "eungbong"
     },
     {
       "symbol": "PANW",
       "qty": 22,
       "entry": 338.30999755859375,
-      "current": 338.30999755859375,
-      "pnl_pct": 0,
+      "current": 325.9100036621094,
+      "pnl_pct": -3.67,
       "strategy": "eungbong"
     }
   ],
   "recommendations": [],
-  "buzz": null,
+  "buzz": {
+    "trending": [
+      {
+        "symbol": "AMD",
+        "title": "Advanced Micro Devices Inc"
+      },
+      {
+        "symbol": "SHAK",
+        "title": "Shake Shack Inc - Ordinary Shares - Class A"
+      },
+      {
+        "symbol": "COST",
+        "title": "Costco Wholesale Corp"
+      },
+      {
+        "symbol": "SQQQ",
+        "title": "ProShares UltraPro Short QQQ"
+      },
+      {
+        "symbol": "QUANT",
+        "title": "Quant Traders and Investors"
+      },
+      {
+        "symbol": "STUDY",
+        "title": "Stocktwits Education"
+      },
+      {
+        "symbol": "XLF",
+        "title": "Financial Select Sector SPDR Fund"
+      },
+      {
+        "symbol": "CLSK",
+        "title": "Cleanspark Inc"
+      },
+      {
+        "symbol": "PYPL",
+        "title": "PayPal Holdings Inc"
+      },
+      {
+        "symbol": "BA",
+        "title": "Boeing Co"
+      },
+      {
+        "symbol": "BOIL",
+        "title": "ProShares Ultra Bloomberg Natural Gas"
+      },
+      {
+        "symbol": "MRK",
+        "title": "Merck & Co Inc"
+      }
+    ],
+    "crypto": [
+      "ZORA",
+      "LIT",
+      "PYTH",
+      "ICP"
+    ],
+    "reactions": [
+      {
+        "symbol": "SNDK",
+        "bullPct": 80,
+        "mood": "강세 우위 80%",
+        "activity": "활발",
+        "watchers": 27239
+      },
+      {
+        "symbol": "ALAB",
+        "bullPct": 50,
+        "mood": "혼조 (강세 50%)",
+        "activity": "활발",
+        "watchers": 12097
+      },
+      {
+        "symbol": "DDOG",
+        "bullPct": 88,
+        "mood": "강세 우위 88%",
+        "activity": "활발",
+        "watchers": 25445
+      },
+      {
+        "symbol": "ORKA",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
+        "activity": "관심 적음",
+        "watchers": 401
+      },
+      {
+        "symbol": "PANW",
+        "bullPct": 43,
+        "mood": "혼조 (강세 43%)",
+        "activity": "활발",
+        "watchers": 38641
+      },
+      {
+        "symbol": "ECO",
+        "bullPct": 87,
+        "mood": "강세 우위 87%",
+        "activity": "관심 적음",
+        "watchers": 238
+      },
+      {
+        "symbol": "VIRT",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
+        "activity": "보통",
+        "watchers": 2269
+      },
+      {
+        "symbol": "FLXS",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
+        "activity": "관심 적음",
+        "watchers": 293
+      }
+    ]
+  },
   "timeline": [
     {
       "agent": "Alex",
@@ -107,100 +222,128 @@ window.RUN_DATA = {
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "AMD 포착! 👨‍🏫눌림목 · RS상위 1.3% · 정배열 20>60>120",
+      "msg": "SNDK 포착! 👨‍🏫눌림목 · RS상위 0.4% · 정배열 20>60>120",
       "phase": "분석",
       "t": 3
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "ORKA 포착! 👨‍🏫눌림목 · RS상위 2.0% · 정배열 20>60>120",
+      "msg": "ALAB 포착! 👨‍🏫눌림목 · RS상위 1.0% · 정배열 20>60>120",
       "phase": "분석",
       "t": 4
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "PANW 포착! 👨‍🏫눌림목 · RS상위 2.9% · 정배열 20>60>120",
+      "msg": "DDOG 포착! 👨‍🏫눌림목 · RS상위 1.6% · 정배열 20>60>120",
       "phase": "분석",
       "t": 5
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "FLXS 포착! 👨‍🏫눌림목 · RS상위 6.1% · 정배열 20>60>120",
+      "msg": "ORKA 포착! 👨‍🏫눌림목 · RS상위 2.0% · 정배열 20>60>120",
       "phase": "분석",
       "t": 6
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "SNEX 포착! 👨‍🏫눌림목 · RS상위 8.2% · 정배열 20>60>120",
+      "msg": "PANW 포착! 👨‍🏫눌림목 · RS상위 2.9% · 정배열 20>60>120",
       "phase": "분석",
       "t": 7
+    },
+    {
+      "agent": "Nova",
+      "action": "walk",
+      "msg": "커뮤니티 스카우트 Nova예요! 미국 투자판 스캔했어요 🛰️",
+      "phase": "분석",
+      "t": 8
+    },
+    {
+      "agent": "Nova",
+      "action": "talk",
+      "msg": "요즘 커뮤니티에서 AMD, SHAK, COST, SQQQ 이런 종목이 많이 거론돼요",
+      "phase": "분석",
+      "t": 9
+    },
+    {
+      "agent": "Nova",
+      "action": "talk",
+      "msg": "우리 종목 반응도 봤어요 — SNDK은 커뮤니티에서 강세 우위 80% (활발)",
+      "phase": "분석",
+      "t": 10
+    },
+    {
+      "agent": "Nova",
+      "action": "talk",
+      "msg": "저는 참고 정보만 드려요! 판단은 팀 전략이랑 사장님 몫이에요 😊",
+      "phase": "분석",
+      "t": 11
     },
     {
       "agent": "Sara",
       "action": "walk",
       "msg": "제가 포지션 사이징 들어갈게요. 거래당 리스크 2% 원칙!",
       "phase": "리스크",
-      "t": 8
+      "t": 12
     },
     {
       "agent": "Sara",
       "action": "talk",
       "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
       "phase": "리스크",
-      "t": 9
+      "t": 13
     },
     {
       "agent": "Jordan",
       "action": "walk",
       "msg": "기록 담당 조던입니다. 매매일지에 남길게요 ✍️",
       "phase": "거래",
-      "t": 10
+      "t": 14
     },
     {
       "agent": "Jordan",
       "action": "talk",
       "msg": "현재 보유 8종목, 현금 $40,072.38.",
       "phase": "거래",
-      "t": 11
+      "t": 15
     },
     {
       "agent": "Morgan",
       "action": "walk",
       "msg": "전략가 모건이에요. 매매일지 돌아볼게요 📖",
       "phase": "검토",
-      "t": 12
+      "t": 16
     },
     {
       "agent": "Morgan",
       "action": "talk",
-      "msg": "누적 수익률 -0.25% · 승 5 / 패 4. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
+      "msg": "누적 수익률 -0.43% · 승 5 / 패 4. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
       "phase": "검토",
-      "t": 13
+      "t": 17
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 14
+      "t": 18
     },
     {
       "agent": "RICH",
       "action": "talk",
-      "msg": "오늘 추천 0종목, 누적 수익률 -0.25%. 텔레그램 발사! 🚀",
+      "msg": "오늘 추천 0종목, 누적 수익률 -0.43%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 15
+      "t": 19
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 16
+      "t": 20
     }
   ]
 };
