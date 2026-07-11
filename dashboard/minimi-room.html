@@ -11,6 +11,7 @@
 <script src="data/verification.js" onerror="window.__NO_VERIFY=true"></script>
 <script src="data/qna.js" onerror="window.__NO_QNA=true"></script>
 <script src="data/real-accounts.js" onerror="window.__NO_REAL=true"></script>
+<script src="data/briefing.js" onerror="window.__NO_BRIEFING=true"></script>
 <style>
   :root{
     --bg1:#ffe8f0; --bg2:#e7f0ff; --floor:#f6d9b8; --floor2:#eac59a;
@@ -266,6 +267,7 @@
     <div class="side">
       <div class="tabs">
         <button class="tab on" data-tab="log">💬 로그</button>
+        <button class="tab" data-tab="briefing">📋 브리핑</button>
         <button class="tab" data-tab="accounts">💼 계좌</button>
         <button class="tab" data-tab="daily">📅 일자별</button>
         <button class="tab" data-tab="curve">📈 추이</button>
@@ -279,6 +281,7 @@
         <div class="log" id="log"></div>
         <div class="recos" id="recos"></div>
       </div>
+      <div class="tabview" id="tab-briefing" hidden></div>
       <div class="tabview" id="tab-accounts" hidden></div>
       <div class="tabview" id="tab-daily" hidden></div>
       <div class="tabview" id="tab-curve" hidden></div>
@@ -736,20 +739,44 @@
     el.innerHTML=html;
   }
 
+  // ── 📋 브리핑 탭 (시장국면·주도섹터·주도주·과열·2단계후보·보유주점검) ──
+  function lightBadge(l){ const m={green:['🟢','#22b07d'],yellow:['🟡','#e2a03f'],red:['🔴','#e5484d']}; const x=m[l]||m.yellow;
+    return `<span style="color:${x[1]};font-weight:800">${x[0]} ${String(l||'').toUpperCase()}</span>`; }
+  function ohBadge(o){ if(!o) return ''; const c=o.status==='overheat'?'#e5484d':o.status==='reentry'||o.status==='extreme'?'#22b07d':'var(--sub)';
+    return `<span style="color:${c};font-size:11px">${o.label||''}</span>`; }
+  function renderBriefing(el){
+    el = el || $("tab-briefing");
+    const B=(window.__NO_BRIEFING||!window.BRIEFING_DATA)?null:window.BRIEFING_DATA;
+    if(!B){ el.innerHTML=`<h3>📋 브리핑</h3><div style="color:var(--sub);font-size:13px">아직 브리핑 데이터가 없어요 — 'start investment' 실행 후 표시됩니다.</div>`; return; }
+    const secs=(B.leading_sectors||[]).map(s=>`${s.name} <b>${Math.round(s.sharePct)}%</b>`).join(' · ');
+    const stocks=(B.leading_stocks||[]).slice(0,8).map(s=>`<a href="https://finviz.com/quote.ashx?t=${s.ticker}" target="_blank" style="text-decoration:none;color:inherit"><b>${s.ticker}</b></a> <span style="color:var(--sub);font-size:11px">RS${s.rsTop||'?'}</span> ${ohBadge(s.overheat)}`).join('<br>');
+    const tierItems=t=>(t.items||[]).map(it=>`<div style="display:flex;justify-content:space-between;padding:3px 0;border-top:1px solid rgba(128,128,128,.12);font-size:12px"><span><a href="${it.chart}" target="_blank" style="color:inherit"><b>${it.ticker}</b></a> <span style="color:var(--sub)">${it.industry||''} · RS${it.rsTop} · ${it.volx}x</span></span>${ohBadge(it.overheat)}</div>`).join('')||'<div style="color:var(--sub);font-size:12px">없음</div>';
+    const holds=B.holdings_review&&B.holdings_review.long?B.holdings_review.long.holdings.map(h=>{const al=h.advice&&h.advice.includes('차익')?'#e5484d':h.advice&&h.advice.includes('재진입')?'#22b07d':'var(--sub)';
+      return `<div style="display:flex;justify-content:space-between;padding:3px 0;border-top:1px solid rgba(128,128,128,.12);font-size:12px"><span><b>${h.ticker}</b> <span style="color:var(--sub)">${h.inUniverse?'RS'+h.rsTop+' 200div'+(h.div200!=null?Math.round(h.div200)+'%':'-'):'유니버스밖'}</span></span><span style="color:${al}">${h.advice}</span></div>`;}).join(''):'';
+    const box=(title,inner)=>`<div style="background:var(--panel);border:1px solid rgba(128,128,128,.18);border-radius:12px;padding:12px 14px;margin-bottom:12px"><div style="font-weight:800;font-size:13px;margin-bottom:7px">${title}</div>${inner}</div>`;
+    el.innerHTML=`<h3><span>📋 오늘의 브리핑</span><span style="color:var(--sub);font-weight:600">${B.generated||''}</span></h3>`
+      +box(`🚦 시장국면 ${lightBadge(B.market&&B.market.light)}`,`<div style="font-size:12px;color:var(--sub)">${B.market?B.market.note:''}<br>🔥 과열(200div+150↑) ${B.overheat?B.overheat.over150:'-'}개 · 최대 ${B.overheat&&B.overheat.max?Math.round(B.overheat.max)+'%':'-'}</div>`)
+      +box('🏆 주도 섹터',`<div style="font-size:12px">${secs}</div>`)
+      +box('🎯 주도 종목 (RS 상위 + 과열)',`<div style="font-size:12px;line-height:1.9">${stocks}</div>`)
+      +box(`🚀 ${B.tiers.tier1.label} (${B.tiers.tier1.items.length})`,`<div style="font-size:11px;color:var(--sub);margin-bottom:4px">${B.tiers.tier1.note}</div>`+tierItems(B.tiers.tier1))
+      +box(`👀 ${B.tiers.tier2.label} (${B.tiers.tier2.items.length})`,`<div style="font-size:11px;color:var(--sub);margin-bottom:4px">${B.tiers.tier2.note}</div>`+tierItems(B.tiers.tier2))
+      +(holds?box('💰 장기 보유주 점검',holds):'');
+  }
+
   // 탭 전환
   const rendered={};
-  const RENDERERS={accounts:renderAccounts,daily:renderDaily,curve:renderCurve,reco:renderReco,report:renderReports,qna:renderQna};
+  const RENDERERS={briefing:renderBriefing,accounts:renderAccounts,daily:renderDaily,curve:renderCurve,reco:renderReco,report:renderReports,qna:renderQna};
   document.querySelectorAll(".tab[data-tab]").forEach(btn=>{
     btn.onclick=()=>{
       const t=btn.dataset.tab;
       document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b===btn));
-      ["log","accounts","daily","curve","reco","report","qna"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
+      ["log","briefing","accounts","daily","curve","reco","report","qna"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
       if(!rendered[t] && RENDERERS[t]){ RENDERERS[t](); rendered[t]=true; }
     };
   });
 
   // ── 팝업(모달) — 탭 내용 크게 보기 ──
-  const MODAL_TABS=[{k:"accounts",label:"💼 계좌"},{k:"report",label:"📋 리포트"},{k:"daily",label:"📅 일자별"},{k:"curve",label:"📈 추이"},{k:"reco",label:"📊 추천"},{k:"qna",label:"💬 질문종목"}];
+  const MODAL_TABS=[{k:"briefing",label:"📋 브리핑"},{k:"accounts",label:"💼 계좌"},{k:"report",label:"📋 리포트"},{k:"daily",label:"📅 일자별"},{k:"curve",label:"📈 추이"},{k:"reco",label:"📊 추천"},{k:"qna",label:"💬 질문종목"}];
   function openModal(startTab){
     const tabsEl=$("modalTabs"), body=$("modalBody");
     tabsEl.innerHTML=MODAL_TABS.map(t=>`<button class="mtab" data-k="${t.k}">${t.label}</button>`).join("");
