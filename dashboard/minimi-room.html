@@ -89,6 +89,8 @@
   .roomswitch{position:absolute;top:10px;left:50%;transform:translateX(-50%);z-index:15;display:flex;gap:4px;background:var(--panel);padding:4px;border-radius:14px;box-shadow:var(--shadow)}
   .rmbtn{border:none;background:transparent;color:var(--sub);font-weight:800;font-size:12.5px;padding:6px 12px;border-radius:10px;cursor:pointer;white-space:nowrap}
   .rmbtn.on{background:var(--accent);color:#fff}
+  .execbadge{position:absolute;top:12px;right:12px;z-index:16;font-size:11.5px;font-weight:800;padding:5px 10px;border-radius:12px;background:linear-gradient(135deg,#5a4a2a,#9a7b3a);color:#ffe9b0;box-shadow:var(--shadow);cursor:pointer;white-space:nowrap}
+  .wall-r{background:linear-gradient(180deg,#2a2440,#221c36)}
   .scene{position:relative;flex:1 1 0;min-width:0;overflow:hidden}
   .scene[hidden]{display:none}
   .scene + .scene{border-left:2px solid var(--line)}
@@ -235,9 +237,11 @@
     <div class="room">
       <div class="roomswitch">
         <button class="rmbtn" data-room="team">🏢 실무진</button>
+        <button class="rmbtn" data-room="research">🔬 리서치</button>
         <button class="rmbtn" data-room="verify">⚖️ 검증단</button>
-        <button class="rmbtn on" data-room="both">🖥️ 둘 다</button>
+        <button class="rmbtn on" data-room="both">🖥️ 실무+검증</button>
       </div>
+      <div class="execbadge" id="execBadge" title="임원 총괄 — 3팀장 통솔">👔 임원 Victor</div>
 
       <!-- 실무진 방 -->
       <div class="scene" id="scene-team">
@@ -261,6 +265,19 @@
         </div>
         <div class="floor floor-v"></div>
         <div class="stage" id="stage-verify"><!-- 검증단 캐릭터 주입 --></div>
+      </div>
+
+      <!-- 리서치팀 방 (노트북LM 심층 리서치) -->
+      <div class="scene" id="scene-research" hidden>
+        <div class="wall wall-r"></div>
+        <div class="vboard">
+          <span class="cap">🔬 리서치팀 (출처 기반 심층분석) <small id="rDate"></small></span>
+          <div id="rBoard" class="vverdict">노트북LM 기반 기업·시장 리서치 — heavy 실행 시 표시</div>
+        </div>
+        <div class="plant" style="left:3%">📚</div>
+        <div class="plant" style="right:3%">🔎</div>
+        <div class="floor"></div>
+        <div class="stage" id="stage-research"><!-- 리서치팀 캐릭터 주입 --></div>
       </div>
     </div>
 
@@ -396,6 +413,20 @@
     vstage.appendChild(wrap);
   });
 
+  // ── 리서치팀 캐릭터 (노트북LM) ──
+  const RESEARCHERS = {
+    Ria:  {ko:"리아", role:"리서치 팀장", emoji:"🔬", color:"#c9772b", skin:"#ffe0bd", hair:"#5a3a20", jacket:"#E8955A", pants:"#a85f2a", acc:"magnify"},
+    Remy: {ko:"레미", role:"섹터 리서처", emoji:"📚", color:"#b06fd0", skin:"#f8d0a8", hair:"#4a2f55", jacket:"#C08CE0", pants:"#7a4a90", acc:"book"},
+  };
+  const rstage = document.getElementById("stage-research");
+  if(rstage){ ["Ria","Remy"].forEach(name=>{
+    const c=RESEARCHERS[name];
+    const wrap=document.createElement("div"); wrap.className="char";
+    wrap.innerHTML=`<div class="svgwrap">${charSVG(c)}</div><div class="desk"></div><div class="nametag">${c.emoji} ${name} <small>${c.role}</small></div>`;
+    wrap.onclick=()=>showMember(name,c);
+    rstage.appendChild(wrap);
+  }); }
+
   // ── 팀원 클릭 → 역할·기여 팝업 (조직: 임원 Victor · 실무진팀장 RICH · 리서치 Ria · 검증단 Vera) ──
   const MEMBER_INFO = {
     Alex:{team:"실무진",desc:"주도섹터·주도주·과열/재진입 브리핑, RS 스크리닝, 2단계 후보(돌파확인/관찰) 산출"},
@@ -407,6 +438,10 @@
     Opus:{team:"검증단",desc:"심의위원장 — 펀더멘털·악마의 변호인·최종 판정"},
     Sonnet:{team:"검증단",desc:"기술 검증 — 기술적·모멘텀 구조"},
     Haiku:{team:"검증단",desc:"팩트체크 — 촉매·테마·함정 거르기"},
+    Ria:{team:"리서치 팀장 🔬",desc:"노트북LM 기반 출처 리서치 총괄 — 장기 보유주 심층·전략문서 근거화·시장 매크로"},
+    Remy:{team:"리서치",desc:"섹터 리서처 — 신규 후보 팩트체크(출처 기반)"},
+    Vera:{team:"검증단 팀장 ⚖️",desc:"검증 심의 총괄 — Opus·Sonnet·Haiku 3모델 의견 종합(진실=Veritas)"},
+    Victor:{team:"임원 총괄 👔",desc:"3팀장(RICH·Ria·Vera) 통솔 — 최종 종합 브리핑"},
   };
   function showMember(name, c){
     const info = MEMBER_INFO[name] || {team:"",desc:c.role||""};
@@ -442,12 +477,14 @@
       const r=btn.dataset.room;
       document.querySelectorAll(".rmbtn").forEach(b=>b.classList.toggle("on",b===btn));
       roomEl.classList.toggle("split", r==="both");
-      document.getElementById("scene-team").hidden=(r==="verify");
-      document.getElementById("scene-verify").hidden=(r==="team");
+      document.getElementById("scene-team").hidden=!(r==="team"||r==="both");
+      document.getElementById("scene-verify").hidden=!(r==="verify"||r==="both");
+      const sr=document.getElementById("scene-research"); if(sr) sr.hidden=!(r==="research");
       if((r==="verify"||r==="both") && !vRendered){ renderVerdict(); vRendered=true; }
     };
   });
-  // 기본값: 둘 다(좌우 반반)
+  const eb=document.getElementById("execBadge"); if(eb) eb.onclick=()=>showMember("Victor",{emoji:"👔"});
+  // 기본값: 실무+검증(좌우 반반)
   document.querySelector('.rmbtn[data-room="both"]').click();
 
   // ── 미니 캔들 차트 (장식) ──
