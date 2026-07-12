@@ -457,19 +457,33 @@
 
   // ── 방 전환 + 검증 판정 렌더 ──
   let vRendered=false;
+  const MNAME={opus:"오퍼스",sonnet:"소넷",haiku:"하이쿠"};
   function renderVerdict(){
     const V=(window.__NO_VERIFY||!window.VERIFY_DATA)?null:window.VERIFY_DATA;
     const el=document.getElementById("vVerdict"), dEl=document.getElementById("vDate");
     if(!V){ el.innerHTML='<div style="color:var(--sub)">아직 검증 기록이 없어요. <b>start investment heavy</b> 실행 시 검증단(Opus·Sonnet·Haiku)이 작동합니다.</div>'; return; }
-    dEl.textContent='· 최근 검증 '+V.last_run;
+    if(dEl) dEl.textContent='· 최근 검증 '+V.last_run;
     const invest=V.final.invest;
+    const stocks=(V.scores||[]).map(s=>{
+      const picked=(V.picked||[]).includes(s.ticker);
+      const j=picked?'<span class="ok">★ 선정</span>':(s.veto?'<span class="veto">❌ 거부</span>':'<span style="color:var(--sub)">관망</span>');
+      let detail='';
+      if(s.votes&&s.votes.length){
+        const badges=s.votes.map(v=>{const ok=(v.ok!=null?v.ok:v.recommend);const nm=MNAME[String(v.model).toLowerCase()]||v.model;const sc=(v.score!=null?v.score:v.explosive_score);
+          return `<span style="display:inline-block;font-size:11px;padding:1px 6px;margin:1px;border-radius:8px;background:rgba(128,128,128,.15);color:${ok?'#22b07d':'#e5484d'}"><b>${nm}</b> ${sc} ${ok?'👍승인':'👎거부'}</span>`;}).join(' ');
+        const ops=s.votes.filter(v=>v.opinion||v.bull||v.bear).map(v=>{const nm=MNAME[String(v.model).toLowerCase()]||v.model;const ok=(v.ok!=null?v.ok:v.recommend);
+          return `<div style="font-size:11px;color:var(--sub);margin-top:2px"><b style="color:inherit">${nm}:</b> ${esc(v.opinion||(ok?v.bull:v.bear)||'')}</div>`;}).join('');
+        const devil=s.devil?`<div style="font-size:11px;margin-top:4px;color:${s.devil.veto?'#e5484d':'#22b07d'}">😈 악마의 변호인(오퍼스): <b>${s.devil.veto?'거부':'통과'}</b> — <span style="color:var(--sub)">${esc(s.devil.reason||s.devil.strongest_bear||'')}</span></div>`:'';
+        detail=`<div style="margin-top:5px">${badges}${ops}${devil}</div>`;
+      }
+      return `<div style="border-top:1px solid rgba(128,128,128,.14);padding:7px 0"><div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px"><span><b>${s.ticker}</b> <span style="color:var(--sub)">평균 ${s.avg}/100 · 매수 ${s.recommend}</span></span>${j}</div>${detail}</div>`;
+    }).join('');
     el.innerHTML=
       `<div class="vhead">📡 시장: ${V.market.invest_ok?'<span class="ok">진입 적합</span>':'<span class="veto">신규진입 부적합</span>'}</div>`+
-      `<div style="color:var(--sub);font-size:11px;margin-bottom:6px">${V.market.note}</div>`+
-      `<table><thead><tr><th>종목</th><th>폭발력</th><th>매수추천</th><th>판정</th></tr></thead><tbody>`+
-      V.scores.map(s=>{const picked=(V.picked||[]).includes(s.ticker);const j=picked?'<span class="ok">★ 선정</span>':(s.veto?'<span class="veto">거부</span>':'<span style="color:var(--sub)">관망</span>');return `<tr><td><b>${s.ticker}</b></td><td>${s.avg}</td><td>${s.recommend}</td><td>${j}</td></tr>`;}).join("")+
-      `</tbody></table>`+
-      `<div style="margin-top:6px"><span class="vbadge" style="background:${invest?'var(--good)':'var(--bad)'};color:#fff">최종: ${invest?'진입':'0종목'}</span> ${V.final.note}</div>`;
+      `<div style="color:var(--sub);font-size:11px;margin-bottom:4px">${V.market.note}</div>`+
+      stocks+
+      `<div style="margin-top:7px"><span class="vbadge" style="background:${invest?'var(--good)':'var(--bad)'};color:#fff">최종: ${invest?'진입':'0종목'}</span> <span style="font-size:11px">${V.final.note||''}</span></div>`+
+      `<div style="margin-top:6px;font-size:10.5px;color:var(--sub)">ℹ️ 폭발력 점수 = 0~100점 만점 · 악마의 변호인 = 오퍼스(Opus) · 검증단은 <b>참고 도우미</b>(최종 결정은 사장님)</div>`;
   }
   const roomEl=document.querySelector(".room");
   document.querySelectorAll(".rmbtn").forEach(btn=>{
