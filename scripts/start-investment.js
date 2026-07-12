@@ -18,6 +18,9 @@ const { writeReport } = require('./build-report');
 const { sendReport } = require('./telegram-reporter');
 const { openRoom } = require('./open-room');
 const { commitAndPush } = require('./update-github');
+const { classify } = require('./lib/market-regime');
+const realAccounts = require('./lib/real-accounts');
+const briefing = require('./build-briefing');
 
 function num(v) { const n = parseFloat(v); return Number.isFinite(n) ? n : null; }
 
@@ -128,8 +131,11 @@ async function main() {
   say('Alex', `활성 전략 v${strategyVersion} 로드`);
 
   // 1) 데이터 수집
-  const { rows, source } = await fetchRsData();
+  const { rows, source, meta } = await fetchRsData();
   const priceLookup = priceLookupFrom(rows);
+  // 시장국면: 사이트 market_condition(정본) 실데이터 — 가짜 green 하드코딩 대체
+  const regime = classify(meta && meta.market_condition, rows);
+  say('Alex', `시장국면 ${regime.light.toUpperCase()} — ${regime.note}`);
 
   // 2) 포트폴리오 로드/초기화
   const p = portfolioLib.loadPortfolio(process.env.INITIAL_CAPITAL || 100000);
@@ -141,8 +147,8 @@ async function main() {
   say('Jordan', '기존 보유 종목 시세 갱신 및 트레일링 점검…');
   const updateEvents = portfolioLib.updateHoldings(p, priceLookup, strategy, dateStr);
 
-  // 4) 스크리닝 (Alex)
-  const { candidates, marketLight } = screenStocks(rows, strategy);
+  // 4) 스크리닝 (Alex) — 실데이터 시장국면 주입(green 버그 대체)
+  const { candidates, marketLight } = screenStocks(rows, strategy, { marketLight: regime.light });
 
   // 4-1) 커뮤니티 스캔 (Nova) — 일반 버즈 + 우리 추천/보유 종목 반응 (참고용)
   say('Nova', '미국 투자 커뮤니티 스캔 중… 🛰️');
@@ -182,6 +188,15 @@ async function main() {
   writeTimeline(ctx);
   recordRun(p, ctx);
   writeHistory(p);
+
+  // 9-1) 통합 브리핑(시장국면·주도주·과열·2단계후보·보유주점검) + 실제 계좌 대시보드 데이터
+  try {
+    await briefing.build();
+    realAccounts.writeDashboardData();
+    say('Alex', '📋 브리핑 + 💼 실제 계좌 대시보드 데이터 생성 완료');
+  } catch (e) {
+    say('SYSTEM', `브리핑 생성 경고: ${e.message}`);
+  }
 
   // 10) 저장
   portfolioLib.save(p);

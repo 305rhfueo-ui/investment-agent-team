@@ -1,7 +1,7 @@
 {
-  "run_date": "2026-07-11",
+  "run_date": "2026-07-12",
   "generated_note": "이 파일은 start-investment 실행 시 자동 생성됩니다.",
-  "market_light": "green",
+  "market_light": "red",
   "source": "live",
   "strategy_version": 2,
   "hud": {
@@ -82,104 +82,29 @@
   ],
   "recommendations": [],
   "buzz": {
-    "trending": [
-      {
-        "symbol": "AMD",
-        "title": "Advanced Micro Devices Inc"
-      },
-      {
-        "symbol": "SHAK",
-        "title": "Shake Shack Inc - Ordinary Shares - Class A"
-      },
-      {
-        "symbol": "COST",
-        "title": "Costco Wholesale Corp"
-      },
-      {
-        "symbol": "SQQQ",
-        "title": "ProShares UltraPro Short QQQ"
-      },
-      {
-        "symbol": "QUANT",
-        "title": "Quant Traders and Investors"
-      },
-      {
-        "symbol": "STUDY",
-        "title": "Stocktwits Education"
-      },
-      {
-        "symbol": "XLF",
-        "title": "Financial Select Sector SPDR Fund"
-      },
-      {
-        "symbol": "CLSK",
-        "title": "Cleanspark Inc"
-      },
-      {
-        "symbol": "PYPL",
-        "title": "PayPal Holdings Inc"
-      },
-      {
-        "symbol": "BA",
-        "title": "Boeing Co"
-      },
-      {
-        "symbol": "BOIL",
-        "title": "ProShares Ultra Bloomberg Natural Gas"
-      },
-      {
-        "symbol": "MRK",
-        "title": "Merck & Co Inc"
-      }
-    ],
-    "crypto": [
-      "ZORA",
-      "LIT",
-      "PYTH",
-      "ICP"
-    ],
+    "trending": [],
+    "crypto": [],
     "reactions": [
       {
         "symbol": "SNDK",
-        "bullPct": 80,
-        "mood": "강세 우위 80%",
+        "bullPct": 75,
+        "mood": "강세 우위 75%",
         "activity": "활발",
-        "watchers": 27239
-      },
-      {
-        "symbol": "ALAB",
-        "bullPct": 50,
-        "mood": "혼조 (강세 50%)",
-        "activity": "활발",
-        "watchers": 12097
+        "watchers": 27282
       },
       {
         "symbol": "DDOG",
-        "bullPct": 88,
-        "mood": "강세 우위 88%",
+        "bullPct": 86,
+        "mood": "강세 우위 86%",
         "activity": "활발",
-        "watchers": 25445
-      },
-      {
-        "symbol": "ORKA",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "관심 적음",
-        "watchers": 401
+        "watchers": 25455
       },
       {
         "symbol": "PANW",
-        "bullPct": 43,
-        "mood": "혼조 (강세 43%)",
+        "bullPct": 40,
+        "mood": "약세 우위 60%",
         "activity": "활발",
-        "watchers": 38641
-      },
-      {
-        "symbol": "ECO",
-        "bullPct": 87,
-        "mood": "강세 우위 87%",
-        "activity": "관심 적음",
-        "watchers": 238
+        "watchers": 38648
       },
       {
         "symbol": "VIRT",
@@ -187,13 +112,6 @@
         "mood": "강세 우위 100%",
         "activity": "보통",
         "watchers": 2269
-      },
-      {
-        "symbol": "FLXS",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
-        "activity": "관심 적음",
-        "watchers": 293
       }
     ]
   },
@@ -208,7 +126,7 @@
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "QQQ 상태 점검 → 🟢 초록불. 신규 진입 가능!",
+      "msg": "QQQ 상태 점검 → 🔴 빨강불. 빨강불이라 신규 진입 중단, 현금 지킵니다.",
       "phase": "분석",
       "t": 1
     },
@@ -264,86 +182,79 @@
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "요즘 커뮤니티에서 AMD, SHAK, COST, SQQQ 이런 종목이 많이 거론돼요",
+      "msg": "우리 종목 반응도 봤어요 — SNDK은 커뮤니티에서 강세 우위 75% (활발)",
       "phase": "분석",
       "t": 9
     },
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "우리 종목 반응도 봤어요 — SNDK은 커뮤니티에서 강세 우위 80% (활발)",
-      "phase": "분석",
-      "t": 10
-    },
-    {
-      "agent": "Nova",
-      "action": "talk",
       "msg": "저는 참고 정보만 드려요! 판단은 팀 전략이랑 사장님 몫이에요 😊",
       "phase": "분석",
-      "t": 11
+      "t": 10
     },
     {
       "agent": "Sara",
       "action": "walk",
       "msg": "제가 포지션 사이징 들어갈게요. 거래당 리스크 2% 원칙!",
       "phase": "리스크",
-      "t": 12
+      "t": 11
     },
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
+      "msg": "빨강불이라 신규 진입 안 합니다. 현금 $40,072.38 보존.",
       "phase": "리스크",
-      "t": 13
+      "t": 12
     },
     {
       "agent": "Jordan",
       "action": "walk",
       "msg": "기록 담당 조던입니다. 매매일지에 남길게요 ✍️",
       "phase": "거래",
-      "t": 14
+      "t": 13
     },
     {
       "agent": "Jordan",
       "action": "talk",
       "msg": "현재 보유 8종목, 현금 $40,072.38.",
       "phase": "거래",
-      "t": 15
+      "t": 14
     },
     {
       "agent": "Morgan",
       "action": "walk",
       "msg": "전략가 모건이에요. 매매일지 돌아볼게요 📖",
       "phase": "검토",
-      "t": 16
+      "t": 15
     },
     {
       "agent": "Morgan",
       "action": "talk",
       "msg": "누적 수익률 -0.43% · 승 5 / 패 4. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
       "phase": "검토",
-      "t": 17
+      "t": 16
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 18
+      "t": 17
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "오늘 추천 0종목, 누적 수익률 -0.43%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 19
+      "t": 18
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 20
+      "t": 19
     }
   ]
 }
