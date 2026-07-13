@@ -87,10 +87,10 @@ window.RUN_DATA = {
     "reactions": [
       {
         "symbol": "SNDK",
-        "bullPct": 75,
-        "mood": "강세 우위 75%",
+        "bullPct": 78,
+        "mood": "강세 우위 78%",
         "activity": "활발",
-        "watchers": 27282
+        "watchers": 27284
       },
       {
         "symbol": "DDOG",
@@ -101,8 +101,8 @@ window.RUN_DATA = {
       },
       {
         "symbol": "PANW",
-        "bullPct": 40,
-        "mood": "약세 우위 60%",
+        "bullPct": 50,
+        "mood": "혼조 (강세 50%)",
         "activity": "활발",
         "watchers": 38648
       },
@@ -182,7 +182,7 @@ window.RUN_DATA = {
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "우리 종목 반응도 봤어요 — SNDK은 커뮤니티에서 강세 우위 75% (활발)",
+      "msg": "우리 종목 반응도 봤어요 — SNDK은 커뮤니티에서 강세 우위 78% (활발)",
       "phase": "분석",
       "t": 9
     },
