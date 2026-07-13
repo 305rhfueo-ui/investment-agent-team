@@ -54,6 +54,22 @@
   @media(max-width:820px){.main{grid-template-columns:1fr}}
 
   .room{position:relative;overflow:hidden;display:flex}
+  /* 4-room 그리드 (실무진·리서치·검증단·임원실 동시 표시) */
+  .room.rooms4{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;padding:8px}
+  .rcell{position:relative;border-radius:14px;overflow:hidden;min-height:0;box-shadow:0 8px 22px rgba(0,0,0,.22),inset 0 0 0 1px rgba(255,255,255,.05)}
+  .rhead{position:absolute;top:7px;left:8px;z-index:6;font-size:10.5px;font-weight:800;padding:3px 10px;border-radius:11px;
+    background:rgba(24,16,8,.5);color:#ffe6c2;backdrop-filter:blur(5px);letter-spacing:.2px;box-shadow:0 2px 6px rgba(0,0,0,.25)}
+  .rhead small{font-weight:600;font-size:9px}
+  .scene.mini{position:absolute;inset:0}
+  .scene.mini .stage{bottom:7%;gap:min(2vw,18px);padding:0 8px;z-index:2}
+  .scene.mini .char{width:clamp(34px,4.2vw,58px)}
+  .scene.mini .nametag{font-size:8.5px;padding:2px 7px;margin-top:3px}
+  .scene.mini .nametag small{display:none}
+  .scene.mini .bubble{max-width:130px;font-size:10px}
+  .minichart{position:absolute;top:30px;left:8px;right:8px;height:32%;background:linear-gradient(165deg,#161a26,#0b0d14);
+    border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,.4),inset 0 0 0 1px rgba(120,150,200,.14);padding:6px;overflow:hidden;z-index:1}
+  .deskrow{position:absolute;left:7%;right:7%;bottom:4.5%;height:16px;border-radius:7px 7px 4px 4px;
+    background:linear-gradient(180deg,#8a6640,#5f4327);box-shadow:0 6px 14px rgba(0,0,0,.32),inset 0 1px 0 rgba(255,255,255,.12);z-index:3}
   /* 뒷벽 */
   .wall{position:absolute;inset:0 0 34% 0;background:
     repeating-linear-gradient(90deg, rgba(60,40,20,.10) 0 1.5px, transparent 1.5px 74px),
@@ -74,9 +90,10 @@
     background-image:repeating-linear-gradient(90deg,rgba(0,0,0,.10) 0 2px,transparent 2px 68px);}
   /* 차트 월 */
   .chartwall{position:absolute;top:6%;left:50%;transform:translateX(-50%);
-    width:min(58%,520px);height:38%;background:var(--card);border-radius:16px;box-shadow:var(--shadow);
-    border:3px solid rgba(255,255,255,.4);padding:8px;overflow:hidden}
-  .chartwall .cap{position:absolute;top:6px;left:12px;font-size:11px;color:var(--sub);font-weight:700}
+    width:min(58%,520px);height:38%;background:linear-gradient(165deg,#161a26,#0b0d14);border-radius:14px;
+    box-shadow:0 14px 34px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.06),inset 0 0 0 1px rgba(120,150,200,.14);
+    padding:8px;overflow:hidden}
+  .chartwall .cap{position:absolute;top:7px;left:13px;font-size:11px;color:#8493b5;font-weight:700;letter-spacing:.4px}
   .plant{position:absolute;bottom:34%;font-size:34px;filter:drop-shadow(0 4px 3px rgba(0,0,0,.15))}
 
   /* 캐릭터 스테이션 */
@@ -113,8 +130,17 @@
   .room.split .vboard{width:88%;font-size:11px}
   .room.split .chartwall{width:86%}
   /* 검증단 방 */
-  .wall-v{background:radial-gradient(120% 80% at 50% 0%, rgba(120,110,180,.22), transparent 60%),#2c2550}
-  :root[data-theme="light"] .wall-v{background:radial-gradient(120% 80% at 50% 0%, rgba(140,120,220,.18), transparent 60%),#e9e3fb}
+  /* 검증단·리서치 방도 원목 통일 (조명 색만 살짝 다르게) */
+  .wall-v, .wall-r{background:
+    repeating-linear-gradient(90deg, rgba(60,40,20,.10) 0 1.5px, transparent 1.5px 74px),
+    radial-gradient(130% 90% at 50% -8%, rgba(190,205,255,.12), transparent 55%),
+    linear-gradient(180deg,#caa27b,#b98a5f);
+    box-shadow:inset 0 -26px 46px rgba(50,30,12,.20)}
+  :root[data-theme="dark"] .wall-v, :root[data-theme="dark"] .wall-r{background:
+    repeating-linear-gradient(90deg, rgba(0,0,0,.24) 0 1.5px, transparent 1.5px 74px),
+    radial-gradient(130% 90% at 50% -8%, rgba(150,175,255,.08), transparent 55%),
+    linear-gradient(180deg,#4b3927,#38291a);
+    box-shadow:inset 0 -26px 46px rgba(0,0,0,.38)}
   .floor-v{background:linear-gradient(#413a63,#332d50)}
   :root[data-theme="light"] .floor-v{background:linear-gradient(#d7cff0,#c7bde8)}
   .vboard{position:absolute;top:6%;left:50%;transform:translateX(-50%);width:min(72%,600px);max-height:44%;overflow:auto;background:var(--card);border-radius:16px;box-shadow:var(--shadow);border:3px solid rgba(180,160,240,.35);padding:12px 14px}
@@ -244,50 +270,47 @@
   </div>
 
   <div class="main">
-    <div class="room">
-      <div class="roomswitch">
-        <button class="rmbtn" data-room="team">🏢 실무진</button>
-        <button class="rmbtn" data-room="research">🔬 리서치</button>
-        <button class="rmbtn" data-room="verify">⚖️ 검증단</button>
-        <button class="rmbtn on" data-room="both">🖥️ 실무+검증</button>
-      </div>
-      <div class="execbadge" id="execBadge" title="임원 총괄 — 3팀장 통솔">👔 임원 Victor</div>
-
-      <!-- 실무진 방 -->
-      <div class="scene" id="scene-team">
-        <div class="wall"></div>
-        <div class="chartwall">
-          <span class="cap">📈 RS 차트 월</span>
-          <svg id="miniChart" viewBox="0 0 500 180" preserveAspectRatio="none" style="width:100%;height:100%"></svg>
+    <div class="room rooms4">
+      <!-- 🏢 실무진 방 -->
+      <div class="rcell">
+        <div class="rhead">🏢 실무진 팀</div>
+        <div class="scene mini" id="scene-team">
+          <div class="wall"></div>
+          <div class="minichart"><svg id="miniChart" viewBox="0 0 500 180" preserveAspectRatio="none" style="width:100%;height:100%"></svg></div>
+          <div class="floor"></div>
+          <div class="deskrow"></div>
+          <div class="stage" id="stage"><!-- 캐릭터 주입 --></div>
         </div>
-        <div class="plant" style="left:3%">🪴</div>
-        <div class="plant" style="right:3%">🌿</div>
-        <div class="floor"></div>
-        <div class="stage" id="stage"><!-- 캐릭터 주입 --></div>
       </div>
-
-      <!-- 검증단 방 (AI 심의실) -->
-      <div class="scene verifyscene" id="scene-verify" hidden>
-        <div class="wall wall-v"></div>
-        <div class="vboard">
-          <span class="cap">⚖️ AI 검증 심의실 <small id="vDate"></small></span>
-          <div id="vVerdict" class="vverdict"></div>
+      <!-- 🔬 리서치팀 방 -->
+      <div class="rcell">
+        <div class="rhead">🔬 리서치팀 · Ria</div>
+        <div class="scene mini" id="scene-research">
+          <div class="wall wall-r"></div>
+          <div class="floor"></div>
+          <div class="deskrow"></div>
+          <div class="stage" id="stage-research"><!-- 리서치팀 캐릭터 주입 --></div>
         </div>
-        <div class="floor floor-v"></div>
-        <div class="stage" id="stage-verify"><!-- 검증단 캐릭터 주입 --></div>
       </div>
-
-      <!-- 리서치팀 방 (노트북LM 심층 리서치) -->
-      <div class="scene" id="scene-research" hidden>
-        <div class="wall wall-r"></div>
-        <div class="vboard">
-          <span class="cap">🔬 리서치팀 (출처 기반 심층분석) <small id="rDate"></small></span>
-          <div id="rBoard" class="vverdict">노트북LM 기반 기업·시장 리서치 — heavy 실행 시 표시</div>
+      <!-- ⚖️ 검증단 방 -->
+      <div class="rcell">
+        <div class="rhead">⚖️ 검증단 · Vera <small id="vDate" style="opacity:.7"></small></div>
+        <div class="scene mini" id="scene-verify">
+          <div class="wall wall-v"></div>
+          <div class="floor"></div>
+          <div class="deskrow"></div>
+          <div class="stage" id="stage-verify"><!-- 검증단 캐릭터 주입 --></div>
         </div>
-        <div class="plant" style="left:3%">📚</div>
-        <div class="plant" style="right:3%">🔎</div>
-        <div class="floor"></div>
-        <div class="stage" id="stage-research"><!-- 리서치팀 캐릭터 주입 --></div>
+      </div>
+      <!-- 👔 임원실 -->
+      <div class="rcell">
+        <div class="rhead">👔 임원실 · Victor</div>
+        <div class="scene mini" id="scene-exec">
+          <div class="wall"></div>
+          <div class="floor"></div>
+          <div class="deskrow"></div>
+          <div class="stage" id="stage-exec"><!-- 임원 주입 --></div>
+        </div>
       </div>
     </div>
 
@@ -295,6 +318,7 @@
       <div class="tabs">
         <button class="tab on" data-tab="log">💬 로그</button>
         <button class="tab" data-tab="briefing">📋 브리핑</button>
+        <button class="tab" data-tab="verdict">⚖️ 검증</button>
         <button class="tab" data-tab="accounts">💼 계좌</button>
         <button class="tab" data-tab="daily">📅 일자별</button>
         <button class="tab" data-tab="curve">📈 추이</button>
@@ -309,6 +333,7 @@
         <div class="recos" id="recos"></div>
       </div>
       <div class="tabview" id="tab-briefing" hidden></div>
+      <div class="tabview" id="tab-verdict" hidden></div>
       <div class="tabview" id="tab-accounts" hidden></div>
       <div class="tabview" id="tab-daily" hidden></div>
       <div class="tabview" id="tab-curve" hidden></div>
@@ -407,12 +432,13 @@
 
   // ── 검증단(AI 심의) 캐릭터 ──
   const VERIFIERS = {
-    Opus:  {ko:"오퍼스", role:"심의위원장", emoji:"⚖️", color:"#6a5acd", skin:"#ffe0bd", hair:"#3a3358", jacket:"#5C4D9C", pants:"#3f356e", acc:"gavel"},
+    Vera:  {ko:"베라", role:"검증단 팀장", emoji:"⚖️", color:"#d05a8a", skin:"#ffe0bd", hair:"#5a2a44", jacket:"#D96BA0", pants:"#9a4570", acc:"gavel"},
+    Opus:  {ko:"오퍼스", role:"심의위원장", emoji:"🟣", color:"#6a5acd", skin:"#ffe0bd", hair:"#3a3358", jacket:"#5C4D9C", pants:"#3f356e", acc:"crown"},
     Sonnet:{ko:"소넷", role:"기술 검증", emoji:"📐", color:"#4a90d9", skin:"#ffe0bd", hair:"#2a3f5a", jacket:"#4A90D9", pants:"#2f6090", acc:"ruler"},
     Haiku: {ko:"하이쿠", role:"팩트체크", emoji:"🔍", color:"#17a58c", skin:"#f8d0a8", hair:"#2a5048", jacket:"#20B89A", pants:"#177567", acc:"magnify"},
   };
   const vstage = document.getElementById("stage-verify");
-  ["Opus","Sonnet","Haiku"].forEach(name=>{
+  ["Vera","Opus","Sonnet","Haiku"].forEach(name=>{
     const c=VERIFIERS[name];
     const wrap=document.createElement("div"); wrap.className="char";
     wrap.innerHTML=`<div class="svgwrap">${charSVG(c)}</div><div class="desk"></div><div class="nametag">${c.emoji} ${name} <small>${c.role}</small></div>`;
@@ -465,11 +491,13 @@
   // ── 방 전환 + 검증 판정 렌더 ──
   let vRendered=false;
   const MNAME={opus:"오퍼스",sonnet:"소넷",haiku:"하이쿠"};
-  function renderVerdict(){
+  function renderVerdict(el){
+    el = el || document.getElementById("tab-verdict");
+    if(!el) return;
     const V=(window.__NO_VERIFY||!window.VERIFY_DATA)?null:window.VERIFY_DATA;
-    const el=document.getElementById("vVerdict"), dEl=document.getElementById("vDate");
-    if(!V){ el.innerHTML='<div style="color:var(--sub)">아직 검증 기록이 없어요. <b>start investment heavy</b> 실행 시 검증단(Opus·Sonnet·Haiku)이 작동합니다.</div>'; return; }
-    if(dEl) dEl.textContent='· 최근 검증 '+V.last_run;
+    const dEl=document.getElementById("vDate");
+    if(!V){ el.innerHTML='<h3>⚖️ 검증단 심의</h3><div style="color:var(--sub);font-size:13px">아직 검증 기록이 없어요. <b>start investment heavy</b> 실행 시 검증단(Opus·Sonnet·Haiku)이 작동합니다.</div>'; return; }
+    if(dEl) dEl.textContent='· '+V.last_run.split(" ")[0];
     const invest=V.final.invest;
     const stocks=(V.scores||[]).map(s=>{
       const picked=(V.picked||[]).includes(s.ticker);
@@ -492,21 +520,14 @@
       `<div style="margin-top:7px"><span class="vbadge" style="background:${invest?'var(--good)':'var(--bad)'};color:#fff">최종: ${invest?'진입':'0종목'}</span> <span style="font-size:11px">${V.final.note||''}</span></div>`+
       `<div style="margin-top:6px;font-size:10.5px;color:var(--sub)">ℹ️ 폭발력 점수 = 0~100점 만점 · 악마의 변호인 = 오퍼스(Opus) · 검증단은 <b>참고 도우미</b>(최종 결정은 사장님)</div>`;
   }
-  const roomEl=document.querySelector(".room");
-  document.querySelectorAll(".rmbtn").forEach(btn=>{
-    btn.onclick=()=>{
-      const r=btn.dataset.room;
-      document.querySelectorAll(".rmbtn").forEach(b=>b.classList.toggle("on",b===btn));
-      roomEl.classList.toggle("split", r==="both");
-      document.getElementById("scene-team").hidden=!(r==="team"||r==="both");
-      document.getElementById("scene-verify").hidden=!(r==="verify"||r==="both");
-      const sr=document.getElementById("scene-research"); if(sr) sr.hidden=!(r==="research");
-      if((r==="verify"||r==="both") && !vRendered){ renderVerdict(); vRendered=true; }
-    };
-  });
-  const eb=document.getElementById("execBadge"); if(eb) eb.onclick=()=>showMember("Victor",{emoji:"👔"});
-  // 기본값: 실무+검증(좌우 반반)
-  document.querySelector('.rmbtn[data-room="both"]').click();
+  // 4방 동시 표시 (방 전환 없음). 임원 Victor를 임원실에 배치.
+  (function(){
+    const EXEC={role:"임원 총괄",emoji:"👔",skin:"#f8d0a8",hair:"#3a3020",jacket:"#6a5aa0",pants:"#3f3570",acc:"crown"};
+    const es=document.getElementById("stage-exec");
+    if(es){ const wrap=document.createElement("div"); wrap.className="char";
+      wrap.innerHTML=`<div class="svgwrap">${charSVG(EXEC)}</div><div class="desk"></div><div class="nametag">👔 Victor <small>${EXEC.role}</small></div>`;
+      wrap.onclick=()=>showMember("Victor",EXEC); es.appendChild(wrap); }
+  })();
 
   // ── 미니 캔들 차트 (장식) ──
   (function drawChart(){
@@ -849,18 +870,18 @@
 
   // 탭 전환
   const rendered={};
-  const RENDERERS={briefing:renderBriefing,accounts:renderAccounts,daily:renderDaily,curve:renderCurve,reco:renderReco,report:renderReports,qna:renderQna};
+  const RENDERERS={briefing:renderBriefing,verdict:renderVerdict,accounts:renderAccounts,daily:renderDaily,curve:renderCurve,reco:renderReco,report:renderReports,qna:renderQna};
   document.querySelectorAll(".tab[data-tab]").forEach(btn=>{
     btn.onclick=()=>{
       const t=btn.dataset.tab;
       document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on",b===btn));
-      ["log","briefing","accounts","daily","curve","reco","report","qna"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
+      ["log","briefing","verdict","accounts","daily","curve","reco","report","qna"].forEach(k=>{ $("tab-"+k).hidden = (k!==t); });
       if(!rendered[t] && RENDERERS[t]){ RENDERERS[t](); rendered[t]=true; }
     };
   });
 
   // ── 팝업(모달) — 탭 내용 크게 보기 ──
-  const MODAL_TABS=[{k:"briefing",label:"📋 브리핑"},{k:"accounts",label:"💼 계좌"},{k:"report",label:"📋 리포트"},{k:"daily",label:"📅 일자별"},{k:"curve",label:"📈 추이"},{k:"reco",label:"📊 추천"},{k:"qna",label:"💬 질문종목"}];
+  const MODAL_TABS=[{k:"briefing",label:"📋 브리핑"},{k:"verdict",label:"⚖️ 검증"},{k:"accounts",label:"💼 계좌"},{k:"report",label:"📋 리포트"},{k:"daily",label:"📅 일자별"},{k:"curve",label:"📈 추이"},{k:"reco",label:"📊 추천"},{k:"qna",label:"💬 질문종목"}];
   function openModal(startTab){
     const tabsEl=$("modalTabs"), body=$("modalBody");
     tabsEl.innerHTML=MODAL_TABS.map(t=>`<button class="mtab" data-k="${t.k}">${t.label}</button>`).join("");
