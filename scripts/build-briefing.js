@@ -10,13 +10,32 @@ const { leadingStocks, leadingSectors, marketOverheat } = require('./lib/leaders
 const { buildTiers } = require('./lib/candidates');
 const ra = require('./lib/real-accounts');
 const { reviewAccounts } = require('./lib/holdings-review');
+const { chartRead } = require('./lib/ta');
 const { writeText, paths, today, say } = require('./lib/util');
+
+// 실측 TA 주입 (야후 봉) — 모든 후보에 진짜 50일선·저항·돌파. 순차(레이트리밋 회피).
+async function enrichTA(items) {
+  for (const it of items) {
+    try {
+      const r = await chartRead(it.ticker);
+      if (r && r.ok) it.ta = {
+        price: r.price, ma50: r.ma50, distMA50: r.distMA50, near50: r.near50,
+        pullbackFromHigh: r.pullbackFromHigh, resistance: r.resistance,
+        brokeResistance: r.brokeResistance, contraction: r.contraction, trend: r.trend, summary: r.summary,
+      };
+    } catch (e) { /* skip */ }
+  }
+}
 
 async function build() {
   const { rows, meta } = await fetchRsData();
   const regime = classify(meta && meta.market_condition, rows);
   const res = screenStocks(rows, null, { marketLight: regime.light });
   const realSummary = ra.summarize();
+  const tiers = buildTiers(res.allCandidates, { cap: 6 });
+  say('Alex', '실측 TA(야후 봉) 계산 중… 50일선·저항·돌파');
+  await enrichTA(tiers.tier1.items);
+  await enrichTA(tiers.tier2.items);
 
   const briefing = {
     generated: today(),
@@ -24,7 +43,7 @@ async function build() {
     overheat: marketOverheat(rows),
     leading_sectors: leadingSectors(rows, { topN: 50, sectorN: 5, by: 'Sector' }),
     leading_stocks: leadingStocks(rows, 10),
-    tiers: buildTiers(res.allCandidates, { cap: 6 }),
+    tiers,
     holdings_review: realSummary ? reviewAccounts(realSummary, rows) : null,
     dropoff: res.dropoff,
   };
