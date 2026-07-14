@@ -12,6 +12,7 @@
 <script src="data/qna.js" onerror="window.__NO_QNA=true"></script>
 <script src="data/real-accounts.js" onerror="window.__NO_REAL=true"></script>
 <script src="data/briefing.js" onerror="window.__NO_BRIEFING=true"></script>
+<script src="data/watchlist.js" onerror="window.__NO_WATCH=true"></script>
 <style>
   :root{
     --bg1:#ffe8f0; --bg2:#e7f0ff; --floor:#f6d9b8; --floor2:#eac59a;
@@ -863,8 +864,11 @@
     const holds=B.holdings_review&&B.holdings_review.long?B.holdings_review.long.holdings.map(h=>{const al=h.advice&&h.advice.includes('차익')?'#e5484d':h.advice&&h.advice.includes('재진입')?'#22b07d':'var(--sub)';
       return `<div style="display:flex;justify-content:space-between;padding:3px 0;border-top:1px solid rgba(128,128,128,.12);font-size:12px"><span><b>${h.ticker}</b> <span style="color:var(--sub)">${h.inUniverse?'RS'+h.rsTop+' 200div'+(h.div200!=null?Math.round(h.div200)+'%':'-'):'유니버스밖'}</span></span><span style="color:${al}">${h.advice}</span></div>`;}).join(''):'';
     const box=(title,inner)=>`<div style="background:var(--panel);border:1px solid rgba(128,128,128,.18);border-radius:12px;padding:12px 14px;margin-bottom:12px"><div style="font-weight:800;font-size:13px;margin-bottom:7px">${title}</div>${inner}</div>`;
+    const W=(window.__NO_WATCH||!window.WATCHLIST_DATA)?null:window.WATCHLIST_DATA;
+    const watchInner = W&&W.items&&W.items.length ? W.items.map(w=>{const col=w.status==='bounce'?'#22b07d':w.status==='broke_down'?'#e5484d':'#e2a03f';return `<div style="font-size:12px;padding:2px 0"><b>${w.ticker}</b> <span style="color:${col};font-weight:700">${w.flag}</span>${w.ta?`<div style="font-size:10.5px;color:var(--sub)">${w.ta.summary}</div>`:''}${w.trigger?`<div style="font-size:10px;color:var(--sub)">🎯 트리거: ${w.trigger}</div>`:''}</div>`;}).join('') : null;
     el.innerHTML=`<h3><span>📋 오늘의 브리핑</span><span style="color:var(--sub);font-weight:600">${B.generated||''}</span></h3>`
       +box(`🚦 시장국면 ${lightBadge(B.market&&B.market.light)}`,`<div style="font-size:12px;color:var(--sub)">${B.market?B.market.note:''}<br>🔥 과열(200div+150↑) ${B.overheat?B.overheat.over150:'-'}개 · 최대 ${B.overheat&&B.overheat.max?Math.round(B.overheat.max)+'%':'-'}</div>`)
+      +(watchInner?box('👀 감시 종목 (반등 대기)',watchInner):'')
       +box('🏆 주도 섹터',`<div style="font-size:12px">${secs}</div>`)
       +box('🎯 주도 종목 (RS 상위 + 과열)',`<div style="font-size:12px;line-height:1.9">${stocks}</div>`)
       +box(`🚀 ${B.tiers.tier1.label} (${B.tiers.tier1.items.length})`,`<div style="font-size:11px;color:var(--sub);margin-bottom:4px">${B.tiers.tier1.note}</div>`+tierItems(B.tiers.tier1))

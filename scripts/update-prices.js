@@ -6,6 +6,7 @@
 const { loadEnv, today, say } = require('./lib/util');
 const ra = require('./lib/real-accounts');
 const { getPrices } = require('./lib/fetch-prices');
+const watch = require('./lib/watch');
 
 async function run() {
   loadEnv();
@@ -42,6 +43,15 @@ async function run() {
   ra.save(data);
   const file = ra.writeDashboardData(data);
   say('Jordan', `가격 갱신: 스케일 ${scaled} · 앵커 ${anchored} · 실패 ${missing} → ${file}`);
+
+  // 감시 종목(워치리스트) 실측 TA 트리거 체크
+  try {
+    const { results } = await watch.checkAndWrite();
+    for (const r of results) {
+      const tag = r.status === 'bounce' ? 'Sara' : 'Alex';
+      say(tag, `👀 ${r.ticker}: ${r.flag}`);
+    }
+  } catch (e) { say('SYSTEM', `감시 체크 경고: ${e.message}`); }
 }
 
 module.exports = { run };
