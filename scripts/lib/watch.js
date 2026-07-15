@@ -19,9 +19,8 @@ async function check() {
     let status = 'watching', flag = '⏳ 관찰중(반등 미확인)';
     if (r && r.ok) {
       if (r.distMA50 != null && r.distMA50 < -5) { status = 'broke_down'; flag = '⚠️ 50일선 -5% 이탈 — 추세 붕괴 위험(감시 재검토)'; }
-      else if (r.aboveMA50 && r.trend !== 'down' && (r.brokeResistance || r.trend === 'up')) {
-        status = 'bounce'; flag = '🟢 반등 신호! 50일선 재장악' + (r.brokeResistance ? ' + 거래량 저항 돌파' : '');
-      }
+      else if (r.brokeResistance) { status = 'bounce'; flag = '🟢 진입 신호! 거래량 동반 저항 돌파'; }
+      else if (r.aboveMA50 && r.trend === 'up') { status = 'recovering'; flag = `🟡 50일선 재장악(추세 up) — 단 저항 $${r.resistance} 돌파 대기`; }
     }
     out.push({ ...w, status, flag, ta: r && r.ok ? { price: r.price, ma50: r.ma50, distMA50: r.distMA50, resistance: r.resistance, brokeResistance: r.brokeResistance, trend: r.trend, summary: r.summary } : null });
   }
