@@ -1,22 +1,44 @@
 window.BRIEFING_DATA = {
-  "generated": "2026-07-14",
+  "generated": "2026-07-16",
   "market": {
-    "light": "red",
+    "light": "yellow",
     "invest_ok": false,
+    "arkk": {
+      "price": 79.6,
+      "m10": {
+        "ma": 76.98,
+        "dir": "flat",
+        "dirKo": "횡보→",
+        "pct": -1.3
+      },
+      "w30": {
+        "ma": 75.65,
+        "dir": "flat",
+        "dirKo": "횡보→",
+        "pct": -0.1,
+        "priceAbove": true
+      },
+      "stage": "Stage 1/3 전환기",
+      "국면": "방향성 탐색(박스권)",
+      "action": "관망 — 위/아래 방향 대기",
+      "light": "yellow",
+      "invest_ok": false,
+      "posture": "wait"
+    },
     "market_condition": "BAD",
-    "breadth_pct": 71.4,
-    "note": "사이트 market_condition=BAD · 200일선 위 71.4% → 신규 진입 주의(현금 보존)"
+    "breadth_pct": 71.9,
+    "note": "📐 ARKK 매트릭스: 월봉10 횡보→·주봉30 횡보→·가격 >주봉30 → 【방향성 탐색(박스권)】 → 관망 — 위/아래 방향 대기 (참고: 사이트 BAD·200일선위 71.9%)"
   },
   "overheat": {
-    "count": 1396,
-    "over150": 4,
+    "count": 1393,
+    "over150": 3,
     "over100": 11,
-    "max": 216.5
+    "max": 230.93
   },
   "leading_sectors": [
     {
       "name": "Technology",
-      "count": 32,
+      "count": 31,
       "tickers": [
         "MGRT",
         "BAND",
@@ -25,36 +47,27 @@ window.BRIEFING_DATA = {
         "DELL",
         "SNDK"
       ],
-      "sharePct": 64
+      "sharePct": 62
     },
     {
       "name": "Healthcare",
-      "count": 11,
+      "count": 12,
       "tickers": [
         "AGL",
+        "SYRE",
         "CORT",
         "HNGE",
-        "SYRE",
-        "ANAB",
-        "DVA"
+        "LQDA",
+        "ORKA"
       ],
-      "sharePct": 22
+      "sharePct": 24
     },
     {
       "name": "Industrials",
       "count": 2,
       "tickers": [
-        "XMTR",
-        "CDNL"
-      ],
-      "sharePct": 4
-    },
-    {
-      "name": "Basic Materials",
-      "count": 2,
-      "tickers": [
-        "NWPX",
-        "ODC"
+        "CDNL",
+        "XMTR"
       ],
       "sharePct": 4
     },
@@ -65,6 +78,14 @@ window.BRIEFING_DATA = {
         "ATEX"
       ],
       "sharePct": 2
+    },
+    {
+      "name": "Financial Services",
+      "count": 1,
+      "tickers": [
+        "SEZL"
+      ],
+      "sharePct": 2
     }
   ],
   "leading_stocks": [
@@ -73,39 +94,39 @@ window.BRIEFING_DATA = {
       "sector": "Technology",
       "industry": "Information Technology Services",
       "rsPct": 100,
-      "price": 80.55999755859375,
-      "div200": 119.09,
+      "price": 74.9800033569336,
+      "div200": 100,
       "overheat": {
         "status": "normal",
-        "label": "정상(119%)",
-        "div200": 119.09
-      }
-    },
-    {
-      "ticker": "BAND",
-      "sector": "Technology",
-      "industry": "Software - Infrastructure",
-      "rsPct": 99.92816091954023,
-      "price": 73.80999755859375,
-      "div200": 179.29,
-      "overheat": {
-        "status": "overheat",
-        "label": "🔥과열(+179%)",
-        "div200": 179.29,
-        "note": "분할 차익검토(유동성 −면 최대 1/2·신규중단, +면 1/3+트레일링). 전량매도 금지"
+        "label": "정상(100%)",
+        "div200": 100
       }
     },
     {
       "ticker": "AGL",
       "sector": "Healthcare",
       "industry": "Medical Care Facilities",
-      "rsPct": 99.85632183908046,
-      "price": 115.8499984741211,
-      "div200": 216.5,
+      "rsPct": 99.92805755395683,
+      "price": 124.29000091552734,
+      "div200": 230.93,
       "overheat": {
         "status": "overheat",
-        "label": "🔥과열(+217%)",
-        "div200": 216.5,
+        "label": "🔥과열(+231%)",
+        "div200": 230.93,
+        "note": "분할 차익검토(유동성 −면 최대 1/2·신규중단, +면 1/3+트레일링). 전량매도 금지"
+      }
+    },
+    {
+      "ticker": "BAND",
+      "sector": "Technology",
+      "industry": "Software - Infrastructure",
+      "rsPct": 99.85611510791367,
+      "price": 70.97000122070312,
+      "div200": 162.99,
+      "overheat": {
+        "status": "overheat",
+        "label": "🔥과열(+163%)",
+        "div200": 162.99,
         "note": "분할 차익검토(유동성 −면 최대 1/2·신규중단, +면 1/3+트레일링). 전량매도 금지"
       }
     },
@@ -113,26 +134,26 @@ window.BRIEFING_DATA = {
       "ticker": "MXL",
       "sector": "Technology",
       "industry": "Semiconductors",
-      "rsPct": 99.78448275862068,
-      "price": 89.30000305175781,
-      "div200": 142.89,
+      "rsPct": 99.78417266187051,
+      "price": 88.83999633789062,
+      "div200": 136.83,
       "overheat": {
         "status": "normal",
-        "label": "정상(143%)",
-        "div200": 142.89
+        "label": "정상(137%)",
+        "div200": 136.83
       }
     },
     {
       "ticker": "ATEX",
       "sector": "Communication Services",
       "industry": "Telecom Services",
-      "rsPct": 99.71264367816092,
-      "price": 103.3499984741211,
-      "div200": 163.51,
+      "rsPct": 99.71223021582733,
+      "price": 105.33999633789062,
+      "div200": 163.01,
       "overheat": {
         "status": "overheat",
-        "label": "🔥과열(+164%)",
-        "div200": 163.51,
+        "label": "🔥과열(+163%)",
+        "div200": 163.01,
         "note": "분할 차익검토(유동성 −면 최대 1/2·신규중단, +면 1/3+트레일링). 전량매도 금지"
       }
     },
@@ -140,66 +161,65 @@ window.BRIEFING_DATA = {
       "ticker": "PENG",
       "sector": "Technology",
       "industry": "Information Technology Services",
-      "rsPct": 99.64080459770115,
-      "price": 77.20999908447266,
-      "div200": 154.78,
+      "rsPct": 99.64028776978418,
+      "price": 72.8499984741211,
+      "div200": 136.61,
       "overheat": {
-        "status": "overheat",
-        "label": "🔥과열(+155%)",
-        "div200": 154.78,
-        "note": "분할 차익검토(유동성 −면 최대 1/2·신규중단, +면 1/3+트레일링). 전량매도 금지"
+        "status": "normal",
+        "label": "정상(137%)",
+        "div200": 136.61
       }
     },
     {
       "ticker": "DELL",
       "sector": "Technology",
       "industry": "Computer Hardware",
-      "rsPct": 99.56896551724138,
-      "price": 427.1099853515625,
-      "div200": 118.93,
+      "rsPct": 99.568345323741,
+      "price": 412.67999267578125,
+      "div200": 108.28,
       "overheat": {
         "status": "normal",
-        "label": "정상(119%)",
-        "div200": 118.93
+        "label": "정상(108%)",
+        "div200": 108.28
+      }
+    },
+    {
+      "ticker": "SEZL",
+      "sector": "Financial Services",
+      "industry": "Credit Services",
+      "rsPct": 99.49640287769785,
+      "price": 188.5500030517578,
+      "div200": 120.93,
+      "overheat": {
+        "status": "normal",
+        "label": "정상(121%)",
+        "div200": 120.93
       }
     },
     {
       "ticker": "SNDK",
       "sector": "Technology",
       "industry": "Computer Hardware",
-      "rsPct": 99.49712643678161,
-      "price": 1673.969970703125,
-      "div200": 122.29,
+      "rsPct": 99.42446043165467,
+      "price": 1615,
+      "div200": 110.02,
       "overheat": {
         "status": "normal",
-        "label": "정상(122%)",
-        "div200": 122.29
+        "label": "정상(110%)",
+        "div200": 110.02
       }
     },
     {
       "ticker": "AMBQ",
       "sector": "Technology",
       "industry": "Semiconductors",
-      "rsPct": 99.42528735632183,
-      "price": 81.3499984741211,
-      "div200": 99.78,
+      "rsPct": 99.35251798561151,
+      "price": 82.22000122070312,
+      "div200": 99.32,
       "overheat": {
         "status": "normal",
-        "label": "정상(100%)",
-        "div200": 99.78
-      }
-    },
-    {
-      "ticker": "SIMO",
-      "sector": "Technology",
-      "industry": "Semiconductors",
-      "rsPct": 99.35344827586206,
-      "price": 299.510009765625,
-      "div200": 96.37,
-      "overheat": {
-        "status": "normal",
-        "label": "정상(96%)",
-        "div200": 96.37
+        "label": "정상(99%)",
+        "div200": 99.32
       }
     }
   ],
@@ -214,219 +234,219 @@ window.BRIEFING_DATA = {
       "note": "아직 미돌파(눌림목)지만 RS 주도·실적 강함 → 돌파 시 매수 대기",
       "items": [
         {
-          "ticker": "DELL",
+          "ticker": "PENG",
           "sector": "Technology",
-          "industry": "Computer Hardware",
-          "price": 427.1099853515625,
+          "industry": "Information Technology Services",
+          "price": 72.8499984741211,
           "rsTop": "0.4",
-          "volx": 0.54,
-          "div50": 22.33,
-          "div10": 0.76,
-          "adr": 7.05,
-          "high52": 90.98,
+          "volx": 1.96,
+          "div50": 22.2,
+          "div10": 0.24,
+          "adr": 13.13,
+          "high52": 81.07,
           "overheat": {
             "status": "normal",
-            "label": "정상(119%)",
-            "div200": 118.93
+            "label": "정상(137%)",
+            "div200": 136.61
           },
-          "chart": "https://finviz.com/quote.ashx?t=DELL",
+          "chart": "https://finviz.com/quote.ashx?t=PENG",
           "strategy": "eungbong",
           "reasons": [
             "RS 상위 0.4%",
-            "50이격 22.33% (≤30)",
+            "50이격 22.2% (≤30)",
             "정배열 20>60>120"
           ],
           "ta": {
-            "price": 427.11,
-            "ma50": 349.15,
-            "distMA50": 22.33,
+            "price": 72.85,
+            "ma50": 59.61,
+            "distMA50": 22.2,
             "near50": false,
-            "pullbackFromHigh": -9.02,
-            "resistance": 444,
+            "pullbackFromHigh": -18.93,
+            "resistance": 73.24,
             "brokeResistance": false,
-            "contraction": 1.08,
+            "contraction": 1.36,
             "trend": "up",
-            "summary": "DELL $427.11 · 고점대비 -9.02% 되돌림 · 50일선 대비 +22.33% · 200일선 위(118.26%) · 저항 $444 미돌파 · 확장(1.08) · 월봉10MA 위 · 추세 up"
-          }
-        },
-        {
-          "ticker": "AMD",
-          "sector": "Technology",
-          "industry": "Semiconductors",
-          "price": 534.3900146484375,
-          "rsTop": "1.1",
-          "volx": 0.75,
-          "div50": 9.99,
-          "div10": -1.11,
-          "adr": 5.69,
-          "high52": 91.39,
-          "overheat": {
-            "status": "normal",
-            "label": "정상(85%)",
-            "div200": 84.57
-          },
-          "chart": "https://finviz.com/quote.ashx?t=AMD",
-          "strategy": "eungbong",
-          "reasons": [
-            "RS 상위 1.1%",
-            "50이격 9.99% (≤30)",
-            "정배열 20>60>120"
-          ],
-          "ta": {
-            "price": 534.39,
-            "ma50": 485.84,
-            "distMA50": 9.99,
-            "near50": false,
-            "pullbackFromHigh": -8.61,
-            "resistance": 546.44,
-            "brokeResistance": false,
-            "contraction": 1.15,
-            "trend": "up",
-            "summary": "AMD $534.39 · 고점대비 -8.61% 되돌림 · 50일선 대비 +9.99% · 200일선 위(84.57%) · 저항 $546.44 미돌파 · 확장(1.15) · 월봉10MA 위 · 추세 up"
+            "summary": "PENG $72.85 · 고점대비 -18.93% 되돌림 · 50일선 대비 +22.2% · 200일선 위(136.61%) · 저항 $73.24 미돌파 · 확장(1.36) · 월봉10MA 위 · 추세 up"
           }
         },
         {
           "ticker": "DDOG",
           "sector": "Technology",
           "industry": "Software - Application",
-          "price": 260.239990234375,
-          "rsTop": "1.2",
-          "volx": 0.89,
-          "div50": 16.5,
-          "div10": 0.33,
-          "adr": 5.09,
-          "high52": 93.37,
+          "price": 264.4599914550781,
+          "rsTop": "1.0",
+          "volx": 0.68,
+          "div50": 15.67,
+          "div10": 0.94,
+          "adr": 5.33,
+          "high52": 94.89,
           "overheat": {
             "status": "normal",
-            "label": "정상(63%)",
-            "div200": 62.87
+            "label": "정상(64%)",
+            "div200": 64.17
           },
           "chart": "https://finviz.com/quote.ashx?t=DDOG",
           "strategy": "eungbong",
           "reasons": [
-            "RS 상위 1.2%",
-            "50이격 16.5% (≤30)",
+            "RS 상위 1.0%",
+            "50이격 15.67% (≤30)",
             "정배열 20>60>120"
           ],
           "ta": {
-            "price": 260.24,
-            "ma50": 223.38,
-            "distMA50": 16.5,
+            "price": 264.46,
+            "ma50": 228.63,
+            "distMA50": 15.67,
             "near50": false,
-            "pullbackFromHigh": -6.63,
+            "pullbackFromHigh": -5.11,
             "resistance": 278.7,
             "brokeResistance": false,
-            "contraction": 1.26,
+            "contraction": 1.22,
             "trend": "up",
-            "summary": "DDOG $260.24 · 고점대비 -6.63% 되돌림 · 50일선 대비 +16.5% · 200일선 위(62.87%) · 저항 $278.7 미돌파 · 확장(1.26) · 월봉10MA 위 · 추세 up"
+            "summary": "DDOG $264.46 · 고점대비 -5.11% 되돌림 · 50일선 대비 +15.67% · 200일선 위(64.17%) · 저항 $278.7 미돌파 · 확장(1.22) · 월봉10MA 위 · 추세 up"
           }
         },
         {
-          "ticker": "PANW",
-          "sector": "Technology",
-          "industry": "Software - Infrastructure",
-          "price": 330.29998779296875,
-          "rsTop": "2.3",
-          "volx": 0.74,
-          "div50": 22.3,
-          "div10": -2.36,
-          "adr": 4.94,
-          "high52": 89.71,
-          "overheat": {
-            "status": "normal",
-            "label": "정상(61%)",
-            "div200": 60.83
-          },
-          "chart": "https://finviz.com/quote.ashx?t=PANW",
-          "strategy": "eungbong",
-          "reasons": [
-            "RS 상위 2.3%",
-            "50이격 22.3% (≤30)",
-            "정배열 20>60>120"
-          ],
-          "ta": {
-            "price": 330.3,
-            "ma50": 270.07,
-            "distMA50": 22.3,
-            "near50": false,
-            "pullbackFromHigh": -10.29,
-            "resistance": 368.17,
-            "brokeResistance": false,
-            "contraction": 1.93,
-            "trend": "up",
-            "summary": "PANW $330.3 · 고점대비 -10.29% 되돌림 · 50일선 대비 +22.3% · 200일선 위(60.83%) · 저항 $368.17 미돌파 · 확장(1.93) · 월봉10MA 위 · 추세 up"
-          }
-        },
-        {
-          "ticker": "DNTH",
+          "ticker": "HNGE",
           "sector": "Healthcare",
-          "industry": "Biotechnology",
-          "price": 98.63999938964844,
-          "rsTop": "3.9",
-          "volx": 0.41,
-          "div50": 12.08,
-          "div10": 2.63,
-          "adr": 5.99,
-          "high52": 96.39,
+          "industry": "Health Information Services",
+          "price": 85.75,
+          "rsTop": "1.4",
+          "volx": 0.85,
+          "div50": 28.67,
+          "div10": -2.47,
+          "adr": 4.93,
+          "high52": 93.72,
           "overheat": {
             "status": "normal",
-            "label": "정상(59%)",
-            "div200": 59.28
+            "label": "정상(71%)",
+            "div200": 71.33
           },
-          "chart": "https://finviz.com/quote.ashx?t=DNTH",
+          "chart": "https://finviz.com/quote.ashx?t=HNGE",
           "strategy": "eungbong",
           "reasons": [
-            "RS 상위 3.9%",
-            "50이격 12.08% (≤30)",
+            "RS 상위 1.4%",
+            "50이격 28.67% (≤30)",
             "정배열 20>60>120"
           ],
           "ta": {
-            "price": 98.64,
-            "ma50": 88.01,
-            "distMA50": 12.08,
+            "price": 85.75,
+            "ma50": 66.64,
+            "distMA50": 28.67,
             "near50": false,
-            "pullbackFromHigh": -3.61,
+            "pullbackFromHigh": -6.28,
             "resistance": null,
             "brokeResistance": false,
-            "contraction": 1.08,
+            "contraction": 0.97,
             "trend": "up",
-            "summary": "DNTH $98.64 · 고점대비 -3.61% 되돌림 · 50일선 대비 +12.08% · 200일선 위(59.28%) ·  · 확장(1.08) · 월봉10MA 위 · 추세 up"
+            "summary": "HNGE $85.75 · 고점대비 -6.28% 되돌림 · 50일선 대비 +28.67% · 200일선 위(71.33%) ·  · 약수축(0.97) · 월봉10MA 위 · 추세 up"
           }
         },
         {
-          "ticker": "FLXS",
-          "sector": "Consumer Cyclical",
-          "industry": "Furnishings, Fixtures & Appliances",
-          "price": 71.5,
-          "rsTop": "4.0",
-          "volx": 1.19,
-          "div50": 16.54,
-          "div10": -1.1,
-          "adr": 5.15,
-          "high52": 92.63,
+          "ticker": "AMD",
+          "sector": "Technology",
+          "industry": "Semiconductors",
+          "price": 529.1400146484375,
+          "rsTop": "1.6",
+          "volx": 0.94,
+          "div50": 7.31,
+          "div10": -1.29,
+          "adr": 5.89,
+          "high52": 90.49,
           "overheat": {
             "status": "normal",
-            "label": "정상(50%)",
-            "div200": 49.9
+            "label": "정상(80%)",
+            "div200": 80.4
           },
-          "chart": "https://finviz.com/quote.ashx?t=FLXS",
+          "chart": "https://finviz.com/quote.ashx?t=AMD",
           "strategy": "eungbong",
           "reasons": [
-            "RS 상위 4.0%",
-            "50이격 16.54% (≤30)",
+            "RS 상위 1.6%",
+            "50이격 7.31% (≤30)",
             "정배열 20>60>120"
           ],
           "ta": {
-            "price": 71.5,
-            "ma50": 61.51,
-            "distMA50": 16.24,
+            "price": 529.14,
+            "ma50": 493.09,
+            "distMA50": 7.31,
             "near50": false,
-            "pullbackFromHigh": -7.37,
-            "resistance": 77.19,
+            "pullbackFromHigh": -9.51,
+            "resistance": 546.44,
+            "brokeResistance": false,
+            "contraction": 1.01,
+            "trend": "up",
+            "summary": "AMD $529.14 · 고점대비 -9.51% 되돌림 · 50일선 대비 +7.31% · 200일선 위(80.4%) · 저항 $546.44 미돌파 · 확장(1.01) · 월봉10MA 위 · 추세 up"
+          }
+        },
+        {
+          "ticker": "ORKA",
+          "sector": "Healthcare",
+          "industry": "Biotechnology",
+          "price": 86.6500015258789,
+          "rsTop": "2.1",
+          "volx": 0.46,
+          "div50": 21.51,
+          "div10": 0.26,
+          "adr": 6.27,
+          "high52": 88.62,
+          "overheat": {
+            "status": "normal",
+            "label": "정상(94%)",
+            "div200": 93.59
+          },
+          "chart": "https://finviz.com/quote.ashx?t=ORKA",
+          "strategy": "eungbong",
+          "reasons": [
+            "RS 상위 2.1%",
+            "50이격 21.51% (≤30)",
+            "정배열 20>60>120"
+          ],
+          "ta": {
+            "price": 86.65,
+            "ma50": 71.31,
+            "distMA50": 21.51,
+            "near50": false,
+            "pullbackFromHigh": -11.38,
+            "resistance": 91,
+            "brokeResistance": false,
+            "contraction": 0.9,
+            "trend": "up",
+            "summary": "ORKA $86.65 · 고점대비 -11.38% 되돌림 · 50일선 대비 +21.51% · 200일선 위(93.59%) · 저항 $91 미돌파 · 약수축(0.9) · 월봉10MA 위 · 추세 up"
+          }
+        },
+        {
+          "ticker": "NWPX",
+          "sector": "Basic Materials",
+          "industry": "Steel",
+          "price": 135.11000061035156,
+          "rsTop": "2.8",
+          "volx": 0.68,
+          "div50": 7.45,
+          "div10": -1.02,
+          "adr": 4.96,
+          "high52": 88.87,
+          "overheat": {
+            "status": "normal",
+            "label": "정상(65%)",
+            "div200": 64.76
+          },
+          "chart": "https://finviz.com/quote.ashx?t=NWPX",
+          "strategy": "eungbong",
+          "reasons": [
+            "RS 상위 2.8%",
+            "50이격 7.45% (≤30)",
+            "정배열 20>60>120"
+          ],
+          "ta": {
+            "price": 135.11,
+            "ma50": 125.75,
+            "distMA50": 7.45,
+            "near50": false,
+            "pullbackFromHigh": -11.13,
+            "resistance": 152.03,
             "brokeResistance": false,
             "contraction": 1.18,
             "trend": "up",
-            "summary": "FLXS $71.5 · 고점대비 -7.37% 되돌림 · 50일선 대비 +16.24% · 200일선 위(48.82%) · 저항 $77.19 미돌파 · 확장(1.18) · 월봉10MA 위 · 추세 up"
+            "summary": "NWPX $135.11 · 고점대비 -11.13% 되돌림 · 50일선 대비 +7.45% · 200일선 위(64.76%) · 저항 $152.03 미돌파 · 확장(1.18) · 월봉10MA 위 · 추세 up"
           }
         }
       ]
@@ -439,17 +459,17 @@ window.BRIEFING_DATA = {
         {
           "ticker": "MU",
           "name": "마이크론",
-          "pnl_pct": 92.98,
-          "weight_pct": 50.8,
+          "pnl_pct": 93.74,
+          "weight_pct": 52.1,
           "inUniverse": true,
-          "div200": 100.15,
+          "div200": 89.97,
           "overheat": {
             "status": "normal",
-            "label": "정상(100%)",
-            "div200": 100.15
+            "label": "정상(90%)",
+            "div200": 89.97
           },
-          "rsTop": "0.9",
-          "div50": 3.27,
+          "rsTop": "1.2",
+          "div50": -2.12,
           "advice": "홀딩",
           "note": "월봉10MA·주봉 넥라인 이탈 여부는 차트 직접 확인",
           "humanCheck": "월봉 10MA / 주봉 헤드앤숄더 넥라인"
@@ -457,17 +477,17 @@ window.BRIEFING_DATA = {
         {
           "ticker": "TSLA",
           "name": "테슬라",
-          "pnl_pct": 44.82,
-          "weight_pct": 24,
+          "pnl_pct": 40.71,
+          "weight_pct": 23.8,
           "inUniverse": true,
-          "div200": -5.56,
+          "div200": -5.54,
           "overheat": {
             "status": "normal",
             "label": "정상(-6%)",
-            "div200": -5.56
+            "div200": -5.54
           },
-          "rsTop": "76.4",
-          "div50": -3.63,
+          "rsTop": "77.3",
+          "div50": -3.79,
           "advice": "홀딩",
           "note": "월봉10MA·주봉 넥라인 이탈 여부는 차트 직접 확인",
           "humanCheck": "월봉 10MA / 주봉 헤드앤숄더 넥라인"
@@ -475,17 +495,17 @@ window.BRIEFING_DATA = {
         {
           "ticker": "TER",
           "name": "테라다인",
-          "pnl_pct": -18.48,
+          "pnl_pct": -19.92,
           "weight_pct": 7.5,
           "inUniverse": true,
-          "div200": 24.14,
+          "div200": 23.54,
           "overheat": {
             "status": "normal",
             "label": "정상(24%)",
-            "div200": 24.14
+            "div200": 23.54
           },
-          "rsTop": "28.4",
-          "div50": -10.59,
+          "rsTop": "35.6",
+          "div50": -10.36,
           "advice": "홀딩",
           "note": "월봉10MA·주봉 넥라인 이탈 여부는 차트 직접 확인",
           "humanCheck": "월봉 10MA / 주봉 헤드앤숄더 넥라인"
@@ -493,16 +513,16 @@ window.BRIEFING_DATA = {
         {
           "ticker": "KLAC",
           "name": "KLA",
-          "pnl_pct": -19.8,
-          "weight_pct": 6,
+          "pnl_pct": -20.2,
+          "weight_pct": 6.1,
           "inUniverse": true,
-          "div200": 43.04,
+          "div200": 43.36,
           "overheat": {
             "status": "normal",
             "label": "정상(43%)",
-            "div200": 43.04
+            "div200": 43.36
           },
-          "rsTop": "13.1",
+          "rsTop": "12.2",
           "div50": 4.02,
           "advice": "홀딩",
           "note": "월봉10MA·주봉 넥라인 이탈 여부는 차트 직접 확인",
@@ -511,35 +531,36 @@ window.BRIEFING_DATA = {
         {
           "ticker": "IBM",
           "name": "IBM",
-          "pnl_pct": -4.22,
-          "weight_pct": 5.5,
+          "pnl_pct": -27.7,
+          "weight_pct": 4.2,
           "inUniverse": true,
-          "div200": 6.47,
+          "div200": -22.36,
           "overheat": {
-            "status": "normal",
-            "label": "정상(6%)",
-            "div200": 6.47
+            "status": "reentry",
+            "label": "🟢재진입 관찰(-22%)",
+            "div200": -22.36,
+            "note": "하락 멈춤 + RS 회복 확인 후 분할매수"
           },
-          "rsTop": "49.5",
-          "div50": 10.48,
-          "advice": "홀딩",
-          "note": "월봉10MA·주봉 넥라인 이탈 여부는 차트 직접 확인",
+          "rsTop": "95.7",
+          "div50": -19.41,
+          "advice": "🟢 재진입 관찰",
+          "note": "하락 멈춤 + RS 회복 확인 후 분할매수",
           "humanCheck": "월봉 10MA / 주봉 헤드앤숄더 넥라인"
         },
         {
           "ticker": "AMAT",
           "name": "어플라이드 머티어리얼즈",
-          "pnl_pct": -15.97,
+          "pnl_pct": -16.92,
           "weight_pct": 4.2,
           "inUniverse": true,
-          "div200": 64.15,
+          "div200": 63.49,
           "overheat": {
             "status": "normal",
-            "label": "정상(64%)",
-            "div200": 64.15
+            "label": "정상(63%)",
+            "div200": 63.49
           },
-          "rsTop": "4.5",
-          "div50": 12.41,
+          "rsTop": "4.7",
+          "div50": 11.49,
           "advice": "홀딩",
           "note": "월봉10MA·주봉 넥라인 이탈 여부는 차트 직접 확인",
           "humanCheck": "월봉 10MA / 주봉 헤드앤숄더 넥라인"
@@ -547,17 +568,17 @@ window.BRIEFING_DATA = {
         {
           "ticker": "INTC",
           "name": "인텔",
-          "pnl_pct": -21.96,
+          "pnl_pct": -23.43,
           "weight_pct": 1.9,
           "inUniverse": true,
-          "div200": 64.11,
+          "div200": 62.03,
           "overheat": {
             "status": "normal",
-            "label": "정상(64%)",
-            "div200": 64.11
+            "label": "정상(62%)",
+            "div200": 62.03
           },
-          "rsTop": "2.7",
-          "div50": -11.99,
+          "rsTop": "4.1",
+          "div50": -12.35,
           "advice": "홀딩",
           "note": "월봉10MA·주봉 넥라인 이탈 여부는 차트 직접 확인",
           "humanCheck": "월봉 10MA / 주봉 헤드앤숄더 넥라인"
@@ -572,21 +593,21 @@ window.BRIEFING_DATA = {
   "dropoff": {
     "total": 1412,
     "hasTicker": 1412,
-    "gateFail": 1357,
+    "gateFail": 1352,
     "byGate": {
-      "rs": 1063,
-      "div50": 23,
-      "jeongbae": 702,
-      "high52": 491,
-      "adr": 823,
+      "rs": 1064,
+      "div50": 27,
+      "jeongbae": 722,
+      "high52": 483,
+      "adr": 826,
       "udr": 920
     },
-    "gatePass": 55,
+    "gatePass": 60,
     "noEntry": 39,
-    "entryPass": 16,
+    "entryPass": 21,
     "byStrategy": {
       "perfect_storm": 0,
-      "eungbong": 16
+      "eungbong": 21
     }
   }
 };

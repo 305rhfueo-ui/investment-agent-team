@@ -867,7 +867,9 @@
     const W=(window.__NO_WATCH||!window.WATCHLIST_DATA)?null:window.WATCHLIST_DATA;
     const watchInner = W&&W.items&&W.items.length ? W.items.map(w=>{const col=w.status==='bounce'?'#22b07d':w.status==='broke_down'?'#e5484d':'#e2a03f';return `<div style="font-size:12px;padding:2px 0"><b>${w.ticker}</b> <span style="color:${col};font-weight:700">${w.flag}</span>${w.ta?`<div style="font-size:10.5px;color:var(--sub)">${w.ta.summary}</div>`:''}${w.trigger?`<div style="font-size:10px;color:var(--sub)">🎯 트리거: ${w.trigger}</div>`:''}</div>`;}).join('') : null;
     el.innerHTML=`<h3><span>📋 오늘의 브리핑</span><span style="color:var(--sub);font-weight:600">${B.generated||''}</span></h3>`
-      +box(`🚦 시장국면 ${lightBadge(B.market&&B.market.light)}`,`<div style="font-size:12px;color:var(--sub)">${B.market?B.market.note:''}<br>🔥 과열(200div+150↑) ${B.overheat?B.overheat.over150:'-'}개 · 최대 ${B.overheat&&B.overheat.max?Math.round(B.overheat.max)+'%':'-'}</div>`)
+      +box(`🚦 시장국면 ${lightBadge(B.market&&B.market.light)}`,
+        ((a=>a?`<div style="font-size:11.5px;padding:7px 9px;background:rgba(128,128,128,.12);border-radius:9px;margin-bottom:6px"><b>📐 ARKK 스테이지: ${a.stage}</b> · 【${a.국면}】<br><span style="color:var(--sub)">월봉10 ${a.m10.dirKo} · 주봉30 ${a.w30.dirKo} · 가격 ${a.w30.priceAbove?'>':'<'}주봉30 ($${a.price})</span><br>👉 <b>${a.action}</b></div>`:'')(B.market&&B.market.arkk))
+        +`<div style="font-size:11.5px;color:var(--sub)">🔥 과열(200div+150↑) ${B.overheat?B.overheat.over150:'-'}개 · 최대 ${B.overheat&&B.overheat.max?Math.round(B.overheat.max)+'%':'-'} · 200일선위 ${B.market&&B.market.breadth_pct!=null?B.market.breadth_pct+'%':'-'}</div>`)
       +(watchInner?box('👀 감시 종목 (반등 대기)',watchInner):'')
       +box('🏆 주도 섹터',`<div style="font-size:12px">${secs}</div>`)
       +box('🎯 주도 종목 (RS 상위 + 과열)',`<div style="font-size:12px;line-height:1.9">${stocks}</div>`)

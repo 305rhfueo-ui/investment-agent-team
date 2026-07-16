@@ -1,14 +1,14 @@
 {
-  "run_date": "2026-07-12",
+  "run_date": "2026-07-16",
   "generated_note": "이 파일은 start-investment 실행 시 자동 생성됩니다.",
-  "market_light": "red",
+  "market_light": "yellow",
   "source": "live",
   "strategy_version": 2,
   "hud": {
     "initial_capital": 100000,
-    "equity": 99567.12,
+    "equity": 99996.65,
     "cash": 40072.38,
-    "total_return_pct": -0.43,
+    "total_return_pct": 0,
     "holdings_count": 8,
     "wins": 5,
     "losses": 4,
@@ -19,64 +19,64 @@
       "symbol": "ECO",
       "qty": 141,
       "entry": 53.349998474121094,
-      "current": 54.939998626708984,
-      "pnl_pct": 2.98,
+      "current": 56.650001525878906,
+      "pnl_pct": 6.19,
       "strategy": "eungbong"
     },
     {
       "symbol": "VIRT",
       "qty": 119,
       "entry": 62.970001220703125,
-      "current": 65.80000305175781,
-      "pnl_pct": 4.49,
+      "current": 60.59000015258789,
+      "pnl_pct": -3.78,
       "strategy": "eungbong"
     },
     {
       "symbol": "FLXS",
       "qty": 104,
       "entry": 72.58999633789062,
-      "current": 71.30000305175781,
-      "pnl_pct": -1.78,
+      "current": 72.23999786376953,
+      "pnl_pct": -0.48,
       "strategy": "eungbong"
     },
     {
       "symbol": "AIN",
       "qty": 101,
       "entry": 73.56999969482422,
-      "current": 72.56999969482422,
-      "pnl_pct": -1.36,
+      "current": 74.33000183105469,
+      "pnl_pct": 1.03,
       "strategy": "eungbong"
     },
     {
       "symbol": "CZFS",
       "qty": 106,
       "entry": 70.12000274658203,
-      "current": 70.37999725341797,
-      "pnl_pct": 0.37,
+      "current": 73.20999908447266,
+      "pnl_pct": 4.41,
       "strategy": "eungbong"
     },
     {
       "symbol": "AMD",
       "qty": 13,
       "entry": 546.719970703125,
-      "current": 557.8900146484375,
-      "pnl_pct": 2.04,
+      "current": 529.1400146484375,
+      "pnl_pct": -3.22,
       "strategy": "eungbong"
     },
     {
       "symbol": "ORKA",
       "qty": 84,
       "entry": 88.2699966430664,
-      "current": 86.79000091552734,
-      "pnl_pct": -1.68,
+      "current": 86.6500015258789,
+      "pnl_pct": -1.84,
       "strategy": "eungbong"
     },
     {
       "symbol": "PANW",
       "qty": 22,
       "entry": 338.30999755859375,
-      "current": 325.9100036621094,
-      "pnl_pct": -3.67,
+      "current": 354.0199890136719,
+      "pnl_pct": 4.64,
       "strategy": "eungbong"
     }
   ],
@@ -86,32 +86,11 @@
     "crypto": [],
     "reactions": [
       {
-        "symbol": "SNDK",
-        "bullPct": 78,
-        "mood": "강세 우위 78%",
-        "activity": "활발",
-        "watchers": 27284
-      },
-      {
-        "symbol": "DDOG",
-        "bullPct": 86,
-        "mood": "강세 우위 86%",
-        "activity": "활발",
-        "watchers": 25455
-      },
-      {
-        "symbol": "PANW",
-        "bullPct": 50,
-        "mood": "혼조 (강세 50%)",
-        "activity": "활발",
-        "watchers": 38648
-      },
-      {
-        "symbol": "VIRT",
-        "bullPct": 100,
-        "mood": "강세 우위 100%",
+        "symbol": "PENG",
+        "bullPct": 71,
+        "mood": "강세 우위 71%",
         "activity": "보통",
-        "watchers": 2269
+        "watchers": 3796
       }
     ]
   },
@@ -126,7 +105,7 @@
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "QQQ 상태 점검 → 🔴 빨강불. 빨강불이라 신규 진입 중단, 현금 지킵니다.",
+      "msg": "QQQ 상태 점검 → 🟡 노랑불. 조심스럽게 봅니다.",
       "phase": "분석",
       "t": 1
     },
@@ -140,35 +119,35 @@
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "SNDK 포착! 👨‍🏫눌림목 · RS상위 0.4% · 정배열 20>60>120",
+      "msg": "PENG 포착! 👨‍🏫눌림목 · RS상위 0.4% · 정배열 20>60>120",
       "phase": "분석",
       "t": 3
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "ALAB 포착! 👨‍🏫눌림목 · RS상위 1.0% · 정배열 20>60>120",
+      "msg": "DDOG 포착! 👨‍🏫눌림목 · RS상위 1.0% · 정배열 20>60>120",
       "phase": "분석",
       "t": 4
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "DDOG 포착! 👨‍🏫눌림목 · RS상위 1.6% · 정배열 20>60>120",
+      "msg": "HNGE 포착! 👨‍🏫눌림목 · RS상위 1.4% · 정배열 20>60>120",
       "phase": "분석",
       "t": 5
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "ORKA 포착! 👨‍🏫눌림목 · RS상위 2.0% · 정배열 20>60>120",
+      "msg": "AMD 포착! 👨‍🏫눌림목 · RS상위 1.6% · 정배열 20>60>120",
       "phase": "분석",
       "t": 6
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "PANW 포착! 👨‍🏫눌림목 · RS상위 2.9% · 정배열 20>60>120",
+      "msg": "ORKA 포착! 👨‍🏫눌림목 · RS상위 2.1% · 정배열 20>60>120",
       "phase": "분석",
       "t": 7
     },
@@ -182,7 +161,7 @@
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "우리 종목 반응도 봤어요 — SNDK은 커뮤니티에서 강세 우위 78% (활발)",
+      "msg": "우리 종목 반응도 봤어요 — PENG은 커뮤니티에서 강세 우위 71% (보통)",
       "phase": "분석",
       "t": 9
     },
@@ -203,7 +182,7 @@
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "빨강불이라 신규 진입 안 합니다. 현금 $40,072.38 보존.",
+      "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
       "phase": "리스크",
       "t": 12
     },
@@ -231,30 +210,37 @@
     {
       "agent": "Morgan",
       "action": "talk",
-      "msg": "누적 수익률 -0.43% · 승 5 / 패 4. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
+      "msg": "[주간 라이트 리뷰] 누적 +0.00% · 승률 56% · 거래 9건",
       "phase": "검토",
       "t": 16
+    },
+    {
+      "agent": "Morgan",
+      "action": "talk",
+      "msg": "이번 주 승률 56%, 돌파전략 승률 0%. 파라미터 미세조정 없이 관찰 지속.",
+      "phase": "검토",
+      "t": 17
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 17
+      "t": 18
     },
     {
       "agent": "RICH",
       "action": "talk",
-      "msg": "오늘 추천 0종목, 누적 수익률 -0.43%. 텔레그램 발사! 🚀",
+      "msg": "오늘 추천 0종목, 누적 수익률 +0.00%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 18
+      "t": 19
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 19
+      "t": 20
     }
   ]
 }

@@ -18,7 +18,7 @@ const { writeReport } = require('./build-report');
 const { sendReport } = require('./telegram-reporter');
 const { openRoom } = require('./open-room');
 const { commitAndPush } = require('./update-github');
-const { classify } = require('./lib/market-regime');
+const { regime: computeRegime } = require('./lib/market-regime');
 const realAccounts = require('./lib/real-accounts');
 const briefing = require('./build-briefing');
 
@@ -133,8 +133,8 @@ async function main() {
   // 1) 데이터 수집
   const { rows, source, meta } = await fetchRsData();
   const priceLookup = priceLookupFrom(rows);
-  // 시장국면: 사이트 market_condition(정본) 실데이터 — 가짜 green 하드코딩 대체
-  const regime = classify(meta && meta.market_condition, rows);
+  // 시장국면: ARKK 스테이지 매트릭스(월봉10×주봉30) + 사이트 market_condition·breadth 종합
+  const regime = await computeRegime(meta && meta.market_condition, rows);
   say('Alex', `시장국면 ${regime.light.toUpperCase()} — ${regime.note}`);
 
   // 2) 포트폴리오 로드/초기화

@@ -38,4 +38,66 @@ function classify(marketCondition, rows = []) {
   };
 }
 
-module.exports = { classify };
+// ── ARKK 스테이지 매트릭스 (사용자 프레임워크: 와인스타인 스테이지 + ARKK 심리) ──
+const { fetchBars, sma } = require('./ta');
+const DIR_KO = { up: '상승↑', flat: '횡보→', down: '하락↓' };
+
+function slopeDir(bars, period, lookback) {
+  const now = sma(bars, period);
+  const past = sma(bars.slice(0, bars.length - lookback), period);
+  if (now == null || past == null) return { dir: null };
+  const pct = ((now - past) / past) * 100;
+  return { now, past, pct: Math.round(pct * 10) / 10, dir: pct > 1.5 ? 'up' : pct < -1.5 ? 'down' : 'flat' };
+}
+
+// 월봉10(대세) × 주봉30(중기) × 가격위치 → 9칸 매트릭스
+function matrixCell(m, w, priceAboveW) {
+  const A = priceAboveW;
+  if (m === 'up' && w === 'up' && A) return { 국면: '최강 제2단계', action: '적극 매수·홀딩(비중 최대)', light: 'green', invest_ok: true, posture: 'aggressive' };
+  if (m === 'up' && w === 'up' && !A) return { 국면: '일시적 눌림목', action: '추가 매수 기회 — 주봉 지지 확인 후 진입', light: 'green', invest_ok: true, posture: 'buy_dip' };
+  if (m === 'up' && w === 'flat') return { 국면: '에너지 응축', action: '관심 등록 — 주봉 돌파 시점이 핵심 타점', light: 'yellow', invest_ok: true, posture: 'watch' };
+  if (m === 'up' && w === 'down') return { 국면: '깊은 조정', action: '보수적 — 주봉 위 안착 전 신규 금지', light: 'yellow', invest_ok: false, posture: 'defensive' };
+  if (m === 'flat' && w === 'up') return { 국면: '바닥 탈출(1→2)', action: '분할 매수 시작 — 월봉 저항 돌파 시 비중 확대', light: 'green', invest_ok: true, posture: 'scale_in' };
+  if (m === 'flat' && w === 'flat') return { 국면: '방향성 탐색(박스권)', action: '관망 — 위/아래 방향 대기', light: 'yellow', invest_ok: false, posture: 'wait' };
+  if (m === 'flat' && w === 'down') return { 국면: '하락 전환 전조', action: '리스크 관리 — 보유 축소·현금 확보', light: 'red', invest_ok: false, posture: 'reduce' };
+  if (m === 'down' && w === 'up') return { 국면: '기술적 반등', action: '단기 매매만 — 월봉 저항 강하니 짧게 익절', light: 'yellow', invest_ok: false, posture: 'short_only' };
+  if (m === 'down' && w === 'down') return { 국면: '공포 제4단계', action: '전량 현금화 — 어떤 반등도 매도 기회', light: 'red', invest_ok: false, posture: 'cash' };
+  return { 국면: '혼조', action: '관망', light: 'yellow', invest_ok: false, posture: 'wait' };
+}
+
+// ARKK 실측 스테이지 (야후 봉)
+async function stageArkk() {
+  try {
+    const mo = await fetchBars('ARKK', { range: '5y', interval: '1mo' });
+    const wk = await fetchBars('ARKK', { range: '2y', interval: '1wk' });
+    if (mo.bars.length < 13 || wk.bars.length < 34) return null;
+    const price = mo.bars[mo.bars.length - 1].c;
+    const m10 = slopeDir(mo.bars, 10, 3);
+    const w30 = slopeDir(wk.bars, 30, 4);
+    if (!m10.dir || !w30.dir) return null;
+    const priceAboveW = price > w30.now;
+    const cell = matrixCell(m10.dir, w30.dir, priceAboveW);
+    let stage;
+    if (priceAboveW && w30.dir === 'up') stage = 'Stage 2 강세장';
+    else if (!priceAboveW && w30.dir === 'down') stage = 'Stage 4 하락장';
+    else stage = 'Stage 1/3 전환기';
+    return {
+      price: Math.round(price * 100) / 100,
+      m10: { ma: Math.round(m10.now * 100) / 100, dir: m10.dir, dirKo: DIR_KO[m10.dir], pct: m10.pct },
+      w30: { ma: Math.round(w30.now * 100) / 100, dir: w30.dir, dirKo: DIR_KO[w30.dir], pct: w30.pct, priceAbove: priceAboveW },
+      stage, ...cell,
+    };
+  } catch (e) { return null; }
+}
+
+// 종합 시장 판단 = ARKK 매트릭스(1차) + 사이트 market_condition·breadth(참고)
+async function regime(marketCondition, rows) {
+  const base = classify(marketCondition, rows);
+  const arkk = await stageArkk();
+  if (!arkk) return { ...base, arkk: null, note: base.note + ' · (ARKK 매트릭스 계산 실패 → 사이트 판정 사용)' };
+  const note = `📐 ARKK 매트릭스: 월봉10 ${arkk.m10.dirKo}·주봉30 ${arkk.w30.dirKo}·가격 ${arkk.w30.priceAbove ? '>' : '<'}주봉30 → 【${arkk.국면}】 → ${arkk.action}` +
+    ` (참고: 사이트 ${marketCondition == null ? 'N/A' : marketCondition}·200일선위 ${base.breadth_pct}%)`;
+  return { light: arkk.light, invest_ok: arkk.invest_ok, arkk, market_condition: marketCondition, breadth_pct: base.breadth_pct, note };
+}
+
+module.exports = { classify, stageArkk, regime, matrixCell };

@@ -5,7 +5,7 @@
 const path = require('path');
 const { fetchRsData } = require('./fetch-rs-data');
 const { screenStocks } = require('./screen-stocks');
-const { classify } = require('./lib/market-regime');
+const { regime: computeRegime } = require('./lib/market-regime');
 const { leadingStocks, leadingSectors, marketOverheat } = require('./lib/leaders');
 const { buildTiers } = require('./lib/candidates');
 const ra = require('./lib/real-accounts');
@@ -29,7 +29,7 @@ async function enrichTA(items) {
 
 async function build() {
   const { rows, meta } = await fetchRsData();
-  const regime = classify(meta && meta.market_condition, rows);
+  const regime = await computeRegime(meta && meta.market_condition, rows);
   const res = screenStocks(rows, null, { marketLight: regime.light });
   const realSummary = ra.summarize();
   const tiers = buildTiers(res.allCandidates, { cap: 6 });
