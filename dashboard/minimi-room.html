@@ -514,10 +514,20 @@
       }
       return `<div style="border-top:1px solid rgba(128,128,128,.14);padding:7px 0"><div style="display:flex;justify-content:space-between;align-items:center;font-size:12.5px"><span><b>${s.ticker}</b> <span style="color:var(--sub)">평균 ${s.avg}/100 · 매수 ${s.recommend}</span></span>${j}</div>${detail}</div>`;
     }).join('');
+    const picksBlock=(V.picks&&V.picks.length)?
+      `<div style="margin:6px 0;padding:8px 9px;background:rgba(34,176,125,.10);border:1px solid rgba(34,176,125,.3);border-radius:10px">`+
+      `<div style="font-size:12px;font-weight:800;margin-bottom:4px">🏆 검증단 최종 선정 (${V.picks.length})</div>`+
+      V.picks.map(p=>`<div style="font-size:11.5px;padding:4px 0;border-top:1px solid rgba(128,128,128,.14)"><b>#${p.rank} ${p.ticker}</b> <span style="color:var(--sub)">폭발력 ${p.score}/100</span><br><span style="color:var(--sub)">${esc(p.thesis||'')}</span>${p.entry?`<br>🎯 <b>진입</b>: ${esc(p.entry)}`:''}${p.dissent?`<br>⚠️ <b>반대</b>: ${esc(p.dissent)}`:''}</div>`).join('')+
+      `</div>`:'';
+    const skipBlock=(V.skipped&&V.skipped.length)?
+      `<div style="margin:5px 0;font-size:11px;color:var(--sub)"><b>제외:</b> ${V.skipped.map(s=>`${s.ticker}`).join(', ')}</div>`:'';
     el.innerHTML=
-      `<div class="vhead">📡 시장: ${V.market.invest_ok?'<span class="ok">진입 적합</span>':'<span class="veto">신규진입 부적합</span>'}</div>`+
+      `<div class="vhead">📡 시장: ${V.market.invest_ok?'<span class="ok">진입 적합</span>':'<span class="veto">신규진입 부적합</span>'} <span style="font-size:11px;color:var(--sub)">(${V.market.regime||''})</span></div>`+
       `<div style="color:var(--sub);font-size:11px;margin-bottom:4px">${V.market.note}</div>`+
+      picksBlock+
+      `<div style="font-size:12px;font-weight:700;margin:6px 0 2px">🔬 6종목 개별 심의</div>`+
       stocks+
+      skipBlock+
       `<div style="margin-top:7px"><span class="vbadge" style="background:${invest?'var(--good)':'var(--bad)'};color:#fff">최종: ${invest?'진입':'0종목'}</span> <span style="font-size:11px">${V.final.note||''}</span></div>`+
       `<div style="margin-top:6px;font-size:10.5px;color:var(--sub)">ℹ️ 폭발력 점수 = 0~100점 만점 · 악마의 변호인 = 오퍼스(Opus) · 검증단은 <b>참고 도우미</b>(최종 결정은 사장님)</div>`;
   }

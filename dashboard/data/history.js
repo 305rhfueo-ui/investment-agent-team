@@ -511,7 +511,7 @@ window.HISTORY_DATA = {
     },
     {
       "date": "2026-07-16",
-      "market_light": "yellow",
+      "market_light": "green",
       "strategy_version": 2,
       "equity": 99996.65,
       "return_pct": 0,
