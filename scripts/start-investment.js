@@ -133,7 +133,7 @@ async function main() {
   // 1) 데이터 수집
   const { rows, source, meta } = await fetchRsData();
   const priceLookup = priceLookupFrom(rows);
-  // 시장국면: ARKK 스테이지 매트릭스(월봉10×주봉30) + 사이트 market_condition·breadth 종합
+  // 시장국면: QQQ 스테이지 매트릭스(월봉10×주봉30) 게이트 + ARKK 거부권 센서 + 사이트 breadth 참고
   const regime = await computeRegime(meta && meta.market_condition, rows);
   say('Alex', `시장국면 ${regime.light.toUpperCase()} — ${regime.note}`);
 

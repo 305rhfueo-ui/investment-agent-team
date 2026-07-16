@@ -38,7 +38,7 @@ function classify(marketCondition, rows = []) {
   };
 }
 
-// ── ARKK 스테이지 매트릭스 (사용자 프레임워크: 와인스타인 스테이지 + ARKK 심리) ──
+// ── 스테이지 매트릭스 (사용자 프레임워크: 와인스타인 주봉30 + Faber 월봉10) — 기본 QQQ ──
 const { fetchBars, sma } = require('./ta');
 const DIR_KO = { up: '상승↑', flat: '횡보→', down: '하락↓' };
 
@@ -65,11 +65,11 @@ function matrixCell(m, w, priceAboveW) {
   return { 국면: '혼조', action: '관망', light: 'yellow', invest_ok: false, posture: 'wait' };
 }
 
-// ARKK 실측 스테이지 (야후 봉)
-async function stageArkk() {
+// 지수 실측 스테이지 (야후 봉) — 기본 QQQ (사용자 전략의 대세 지표). ARKK 등도 가능.
+async function stageIndex(ticker = 'QQQ') {
   try {
-    const mo = await fetchBars('ARKK', { range: '5y', interval: '1mo' });
-    const wk = await fetchBars('ARKK', { range: '2y', interval: '1wk' });
+    const mo = await fetchBars(ticker, { range: '5y', interval: '1mo' });
+    const wk = await fetchBars(ticker, { range: '2y', interval: '1wk' });
     if (mo.bars.length < 13 || wk.bars.length < 34) return null;
     const price = mo.bars[mo.bars.length - 1].c;
     const m10 = slopeDir(mo.bars, 10, 3);
@@ -82,6 +82,7 @@ async function stageArkk() {
     else if (!priceAboveW && w30.dir === 'down') stage = 'Stage 4 하락장';
     else stage = 'Stage 1/3 전환기';
     return {
+      ticker,
       price: Math.round(price * 100) / 100,
       m10: { ma: Math.round(m10.now * 100) / 100, dir: m10.dir, dirKo: DIR_KO[m10.dir], pct: m10.pct },
       w30: { ma: Math.round(w30.now * 100) / 100, dir: w30.dir, dirKo: DIR_KO[w30.dir], pct: w30.pct, priceAbove: priceAboveW },
@@ -90,14 +91,38 @@ async function stageArkk() {
   } catch (e) { return null; }
 }
 
-// 종합 시장 판단 = ARKK 매트릭스(1차) + 사이트 market_condition·breadth(참고)
+// 종합 시장 판단 (규칙 기반):
+//   1차 게이트 = QQQ 스테이지 매트릭스(월봉10×주봉30×가격위치, matrixCell 규칙)
+//   거부권 센서 = ARKK(위험선호). QQQ green인데 ARKK red면 "내부 균열" → yellow 하향(딱 한 규칙).
+//   사이트 market_condition·breadth는 참고 표기.
+// ── 검증 근거(2단계): 다지수 2/1/0 점수합산은 폐기함.
+//   · SPY는 QQQ와 상관 0.93·종목 86% 중복(이중계산), ARKK는 베타 1.56 노이즈 → 점수 X.
+//   · MA 게이트는 "수익 증대"가 아니라 "낙폭 방어"용(느린 거시필터). 후행 ~수개월.
+//   · 진입 타이밍은 개별종목 일봉 TA(ta.chartRead)가 담당 — 시간축 분리.
 async function regime(marketCondition, rows) {
   const base = classify(marketCondition, rows);
-  const arkk = await stageArkk();
-  if (!arkk) return { ...base, arkk: null, note: base.note + ' · (ARKK 매트릭스 계산 실패 → 사이트 판정 사용)' };
-  const note = `📐 ARKK 매트릭스: 월봉10 ${arkk.m10.dirKo}·주봉30 ${arkk.w30.dirKo}·가격 ${arkk.w30.priceAbove ? '>' : '<'}주봉30 → 【${arkk.국면}】 → ${arkk.action}` +
-    ` (참고: 사이트 ${marketCondition == null ? 'N/A' : marketCondition}·200일선위 ${base.breadth_pct}%)`;
-  return { light: arkk.light, invest_ok: arkk.invest_ok, arkk, market_condition: marketCondition, breadth_pct: base.breadth_pct, note };
+  const [idx, sensor] = await Promise.all([stageIndex('QQQ'), stageIndex('ARKK')]);
+  if (!idx) return { ...base, index: null, risk_sensor: sensor || null, note: base.note + ' · (QQQ 매트릭스 계산 실패 → 사이트 판정 사용)' };
+
+  // 기본 = QQQ 판정
+  let light = idx.light;
+  let invest_ok = idx.invest_ok;
+  let veto = '';
+
+  // 거부권 센서: QQQ 강세(green)인데 위험선호(ARKK) 붕괴(red) → 내부 균열, 신규 신중
+  if (sensor && idx.light === 'green' && sensor.light === 'red') {
+    light = 'yellow';
+    invest_ok = true; // 전면 금지는 아님(선별·신중)
+    veto = ' · ⚠️ 지수 강세나 위험선호(ARKK) 붕괴 — 내부 균열, 신규 신중';
+  }
+
+  const sensorKo = sensor
+    ? `위험선호 ARKK: ${sensor.light === 'green' ? '양호' : sensor.light === 'red' ? '경계' : '관망'}`
+    : '위험선호 ARKK: 계산불가';
+  const note = `📐 QQQ 매트릭스: 월봉10 ${idx.m10.dirKo}·주봉30 ${idx.w30.dirKo}·가격 ${idx.w30.priceAbove ? '>' : '<'}주봉30 → 【${idx.국면}】 → ${idx.action}` +
+    ` (${sensorKo} · 사이트 ${marketCondition == null ? 'N/A' : marketCondition}·200일선위 ${base.breadth_pct}%)` + veto;
+
+  return { light, invest_ok, index: idx, risk_sensor: sensor || null, market_condition: marketCondition, breadth_pct: base.breadth_pct, note };
 }
 
-module.exports = { classify, stageArkk, regime, matrixCell };
+module.exports = { classify, stageIndex, regime, matrixCell };

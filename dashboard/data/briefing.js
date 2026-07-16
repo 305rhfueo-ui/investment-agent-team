@@ -1,9 +1,33 @@
 window.BRIEFING_DATA = {
   "generated": "2026-07-16",
   "market": {
-    "light": "yellow",
-    "invest_ok": false,
-    "arkk": {
+    "light": "green",
+    "invest_ok": true,
+    "index": {
+      "ticker": "QQQ",
+      "price": 717.74,
+      "m10": {
+        "ma": 661.78,
+        "dir": "up",
+        "dirKo": "상승↑",
+        "pct": 6
+      },
+      "w30": {
+        "ma": 655.92,
+        "dir": "up",
+        "dirKo": "상승↑",
+        "pct": 2,
+        "priceAbove": true
+      },
+      "stage": "Stage 2 강세장",
+      "국면": "최강 제2단계",
+      "action": "적극 매수·홀딩(비중 최대)",
+      "light": "green",
+      "invest_ok": true,
+      "posture": "aggressive"
+    },
+    "risk_sensor": {
+      "ticker": "ARKK",
       "price": 79.6,
       "m10": {
         "ma": 76.98,
@@ -27,7 +51,7 @@ window.BRIEFING_DATA = {
     },
     "market_condition": "BAD",
     "breadth_pct": 71.9,
-    "note": "📐 ARKK 매트릭스: 월봉10 횡보→·주봉30 횡보→·가격 >주봉30 → 【방향성 탐색(박스권)】 → 관망 — 위/아래 방향 대기 (참고: 사이트 BAD·200일선위 71.9%)"
+    "note": "📐 QQQ 매트릭스: 월봉10 상승↑·주봉30 상승↑·가격 >주봉30 → 【최강 제2단계】 → 적극 매수·홀딩(비중 최대) (위험선호 ARKK: 관망 · 사이트 BAD·200일선위 71.9%)"
   },
   "overheat": {
     "count": 1393,
@@ -459,8 +483,8 @@ window.BRIEFING_DATA = {
         {
           "ticker": "MU",
           "name": "마이크론",
-          "pnl_pct": 93.74,
-          "weight_pct": 52.1,
+          "pnl_pct": 78.2,
+          "weight_pct": 50.4,
           "inUniverse": true,
           "div200": 89.97,
           "overheat": {
@@ -477,8 +501,8 @@ window.BRIEFING_DATA = {
         {
           "ticker": "TSLA",
           "name": "테슬라",
-          "pnl_pct": 40.71,
-          "weight_pct": 23.8,
+          "pnl_pct": 40.1,
+          "weight_pct": 24.9,
           "inUniverse": true,
           "div200": -5.54,
           "overheat": {
@@ -495,8 +519,8 @@ window.BRIEFING_DATA = {
         {
           "ticker": "TER",
           "name": "테라다인",
-          "pnl_pct": -19.92,
-          "weight_pct": 7.5,
+          "pnl_pct": -22.44,
+          "weight_pct": 7.6,
           "inUniverse": true,
           "div200": 23.54,
           "overheat": {
@@ -513,8 +537,8 @@ window.BRIEFING_DATA = {
         {
           "ticker": "KLAC",
           "name": "KLA",
-          "pnl_pct": -20.2,
-          "weight_pct": 6.1,
+          "pnl_pct": -22.23,
+          "weight_pct": 6.3,
           "inUniverse": true,
           "div200": 43.36,
           "overheat": {
@@ -531,8 +555,8 @@ window.BRIEFING_DATA = {
         {
           "ticker": "IBM",
           "name": "IBM",
-          "pnl_pct": -27.7,
-          "weight_pct": 4.2,
+          "pnl_pct": -29.66,
+          "weight_pct": 4.3,
           "inUniverse": true,
           "div200": -22.36,
           "overheat": {
@@ -550,8 +574,8 @@ window.BRIEFING_DATA = {
         {
           "ticker": "AMAT",
           "name": "어플라이드 머티어리얼즈",
-          "pnl_pct": -16.92,
-          "weight_pct": 4.2,
+          "pnl_pct": -19.19,
+          "weight_pct": 4.3,
           "inUniverse": true,
           "div200": 63.49,
           "overheat": {
@@ -568,7 +592,7 @@ window.BRIEFING_DATA = {
         {
           "ticker": "INTC",
           "name": "인텔",
-          "pnl_pct": -23.43,
+          "pnl_pct": -26.82,
           "weight_pct": 1.9,
           "inUniverse": true,
           "div200": 62.03,
