@@ -2,11 +2,11 @@
   "meta": {
     "initial_capital": 100000,
     "start_date": "2026-07-05",
-    "last_run": "2026-07-16",
-    "run_count": 21,
+    "last_run": "2026-07-21",
+    "run_count": 22,
     "last_monthly_review": "2026-07"
   },
-  "cash": 40072.38,
+  "cash": 38608.85,
   "holdings": [
     {
       "id": "ECO_20260707",
@@ -21,10 +21,10 @@
       "tier1_taken": false,
       "trail_ma": "20D",
       "high_water_mark": 56.650001525878906,
-      "current_price": 56.650001525878906,
-      "current_value": 7987.65,
-      "unrealized_pnl": 465.3,
-      "unrealized_pnl_pct": 6.19,
+      "current_price": 54.2400016784668,
+      "current_value": 7647.84,
+      "unrealized_pnl": 125.49,
+      "unrealized_pnl_pct": 1.67,
       "status": "open",
       "reasons": [
         "RS 상위 5.4%",
@@ -47,44 +47,6 @@
       }
     },
     {
-      "id": "VIRT_20260707",
-      "symbol": "VIRT",
-      "strategy": "eungbong",
-      "entry_date": "2026-07-07",
-      "entry_price": 62.970001220703125,
-      "quantity": 119,
-      "cost_basis": 7493.43,
-      "stop_loss": 58.56,
-      "stop_type": "initial",
-      "tier1_taken": false,
-      "trail_ma": "20D",
-      "high_water_mark": 66.81999969482422,
-      "current_price": 60.59000015258789,
-      "current_value": 7210.21,
-      "unrealized_pnl": -283.22,
-      "unrealized_pnl_pct": -3.78,
-      "status": "open",
-      "reasons": [
-        "RS 상위 5.9%",
-        "50이격 16% (≤30)",
-        "정배열 20>60>120",
-        "52주고 97.06%",
-        "ADR 4.12%",
-        "애널 up/down 92%",
-        "10이격 2.59% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 0.98)"
-      ],
-      "sector": "Financial Services",
-      "industry": "Capital Markets",
-      "entry_context": {
-        "market_light": "green",
-        "div50": 16,
-        "div10": 2.59,
-        "rsRank": 94.12,
-        "adr": 4.12
-      }
-    },
-    {
       "id": "FLXS_20260707",
       "symbol": "FLXS",
       "strategy": "eungbong",
@@ -96,11 +58,11 @@
       "stop_type": "initial",
       "tier1_taken": false,
       "trail_ma": "20D",
-      "high_water_mark": 72.58999633789062,
-      "current_price": 72.23999786376953,
-      "current_value": 7512.96,
-      "unrealized_pnl": -36.4,
-      "unrealized_pnl_pct": -0.48,
+      "high_water_mark": 73.08999633789062,
+      "current_price": 73.08999633789062,
+      "current_value": 7601.36,
+      "unrealized_pnl": 52,
+      "unrealized_pnl_pct": 0.69,
       "status": "open",
       "reasons": [
         "RS 상위 18.2%",
@@ -134,11 +96,11 @@
       "stop_type": "initial",
       "tier1_taken": false,
       "trail_ma": "20D",
-      "high_water_mark": 74.33000183105469,
-      "current_price": 74.33000183105469,
-      "current_value": 7507.33,
-      "unrealized_pnl": 76.76,
-      "unrealized_pnl_pct": 1.03,
+      "high_water_mark": 75.05999755859375,
+      "current_price": 75.05999755859375,
+      "current_value": 7581.06,
+      "unrealized_pnl": 150.49,
+      "unrealized_pnl_pct": 2.03,
       "status": "open",
       "reasons": [
         "RS 상위 27.8%",
@@ -173,10 +135,10 @@
       "tier1_taken": false,
       "trail_ma": "20D",
       "high_water_mark": 73.20999908447266,
-      "current_price": 73.20999908447266,
-      "current_value": 7760.26,
-      "unrealized_pnl": 327.54,
-      "unrealized_pnl_pct": 4.41,
+      "current_price": 71.58000183105469,
+      "current_value": 7587.48,
+      "unrealized_pnl": 154.76,
+      "unrealized_pnl_pct": 2.08,
       "status": "open",
       "reasons": [
         "RS 상위 20.0%",
@@ -199,44 +161,6 @@
       }
     },
     {
-      "id": "AMD_20260710",
-      "symbol": "AMD",
-      "strategy": "eungbong",
-      "entry_date": "2026-07-10",
-      "entry_price": 546.719970703125,
-      "quantity": 13,
-      "cost_basis": 7107.36,
-      "stop_loss": 508.45,
-      "stop_type": "initial",
-      "tier1_taken": false,
-      "trail_ma": "20D",
-      "high_water_mark": 557.8900146484375,
-      "current_price": 529.1400146484375,
-      "current_value": 6878.82,
-      "unrealized_pnl": -228.54,
-      "unrealized_pnl_pct": -3.22,
-      "status": "open",
-      "reasons": [
-        "RS 상위 1.3%",
-        "50이격 14.57% (≤30)",
-        "정배열 20>60>120",
-        "52주고 93.5%",
-        "ADR 5.95%",
-        "애널 up/down 83%",
-        "10이격 1.89% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 0.24)"
-      ],
-      "sector": "Technology",
-      "industry": "Semiconductors",
-      "entry_context": {
-        "market_light": "green",
-        "div50": 14.57,
-        "div10": 1.89,
-        "rsRank": 98.70036101083033,
-        "adr": 5.95
-      }
-    },
-    {
       "id": "ORKA_20260710",
       "symbol": "ORKA",
       "strategy": "eungbong",
@@ -248,11 +172,11 @@
       "stop_type": "initial",
       "tier1_taken": false,
       "trail_ma": "20D",
-      "high_water_mark": 88.2699966430664,
-      "current_price": 86.6500015258789,
-      "current_value": 7278.6,
-      "unrealized_pnl": -136.08,
-      "unrealized_pnl_pct": -1.84,
+      "high_water_mark": 91.70999908447266,
+      "current_price": 91.70999908447266,
+      "current_value": 7703.64,
+      "unrealized_pnl": 288.96,
+      "unrealized_pnl_pct": 3.9,
       "status": "open",
       "reasons": [
         "RS 상위 2.0%",
@@ -287,10 +211,10 @@
       "tier1_taken": false,
       "trail_ma": "20D",
       "high_water_mark": 354.0199890136719,
-      "current_price": 354.0199890136719,
-      "current_value": 7788.44,
-      "unrealized_pnl": 345.62,
-      "unrealized_pnl_pct": 4.64,
+      "current_price": 348.6600036621094,
+      "current_value": 7670.52,
+      "unrealized_pnl": 227.7,
+      "unrealized_pnl_pct": 3.06,
       "status": "open",
       "reasons": [
         "RS 상위 2.9%",
@@ -310,6 +234,82 @@
         "div10": 1.78,
         "rsRank": 97.11191335740072,
         "adr": 5.11
+      }
+    },
+    {
+      "id": "SEZL_20260721",
+      "symbol": "SEZL",
+      "strategy": "eungbong",
+      "entry_date": "2026-07-21",
+      "entry_price": 171.75999450683594,
+      "quantity": 43,
+      "cost_basis": 7385.68,
+      "stop_loss": 159.74,
+      "stop_type": "initial",
+      "tier1_taken": false,
+      "trail_ma": "20D",
+      "high_water_mark": 171.75999450683594,
+      "current_price": 171.75999450683594,
+      "current_value": 7385.68,
+      "unrealized_pnl": 0,
+      "unrealized_pnl_pct": 0,
+      "status": "open",
+      "reasons": [
+        "RS 상위 0.4%",
+        "50이격 23.67% (≤30)",
+        "정배열 20>60>120",
+        "52주고 87.76%",
+        "ADR 7.33%",
+        "애널 up/down 90%",
+        "10이격 -2.38% 눌림목 진입권",
+        "실적 개선 추세(CY_Trend 0.5)"
+      ],
+      "sector": "Financial Services",
+      "industry": "Credit Services",
+      "entry_context": {
+        "market_light": "green",
+        "div50": 23.67,
+        "div10": -2.38,
+        "rsRank": 99.56772334293949,
+        "adr": 7.33
+      }
+    },
+    {
+      "id": "HNGE_20260721",
+      "symbol": "HNGE",
+      "strategy": "eungbong",
+      "entry_date": "2026-07-21",
+      "entry_price": 87.69999694824219,
+      "quantity": 84,
+      "cost_basis": 7366.8,
+      "stop_loss": 81.56,
+      "stop_type": "initial",
+      "tier1_taken": false,
+      "trail_ma": "20D",
+      "high_water_mark": 87.69999694824219,
+      "current_price": 87.69999694824219,
+      "current_value": 7366.8,
+      "unrealized_pnl": 0,
+      "unrealized_pnl_pct": 0,
+      "status": "open",
+      "reasons": [
+        "RS 상위 0.7%",
+        "50이격 27.49% (≤30)",
+        "정배열 20>60>120",
+        "52주고 95.85%",
+        "ADR 4.86%",
+        "애널 up/down 91%",
+        "10이격 -0.61% 눌림목 진입권",
+        "실적 개선 추세(CY_Trend 1.96)"
+      ],
+      "sector": "Healthcare",
+      "industry": "Health Information Services",
+      "entry_context": {
+        "market_light": "green",
+        "div50": 27.49,
+        "div10": -0.61,
+        "rsRank": 99.27953890489914,
+        "adr": 4.86
       }
     }
   ],
@@ -467,24 +467,60 @@
       "lesson": "-7% 손절 도달 · 매수 1일 만에 급락 → 가짜 돌파(속임수) 가능성 · 눌림목 지지 실패(추세 이탈) · 진입 시 50이격 27.39%로 과열 → 눌림 폭 확대",
       "note": null,
       "buy_reason": "RS 상위 15.7%"
+    },
+    {
+      "id": "VIRT_20260707_close",
+      "symbol": "VIRT",
+      "strategy": "eungbong",
+      "entry_date": "2026-07-07",
+      "entry_price": 62.970001220703125,
+      "exit_date": "2026-07-21",
+      "exit_price": 56.65999984741211,
+      "quantity": 119,
+      "realized_pnl": -750.89,
+      "realized_pnl_pct": -10.02,
+      "days_held": 14,
+      "exit_reason": "stop_-7pct",
+      "status": "closed_loss",
+      "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈)",
+      "note": null,
+      "buy_reason": "RS 상위 5.9%"
+    },
+    {
+      "id": "AMD_20260710_close",
+      "symbol": "AMD",
+      "strategy": "eungbong",
+      "entry_date": "2026-07-10",
+      "entry_price": 546.719970703125,
+      "exit_date": "2026-07-21",
+      "exit_price": 503.57000732421875,
+      "quantity": 13,
+      "realized_pnl": -560.95,
+      "realized_pnl_pct": -7.89,
+      "days_held": 11,
+      "exit_reason": "stop_-7pct",
+      "status": "closed_loss",
+      "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈)",
+      "note": null,
+      "buy_reason": "RS 상위 1.3%"
     }
   ],
   "monthly_summary": {
     "2026-07": {
-      "realized_pnl": -534.33,
-      "realized_pnl_pct": -0.53,
-      "trades": 9,
-      "win_rate": 0.56
+      "realized_pnl": -1846.17,
+      "realized_pnl_pct": -1.85,
+      "trades": 11,
+      "win_rate": 0.45
     }
   },
   "cumulative_stats": {
-    "total_realized_pnl": -534.33,
-    "total_return_pct": 0,
+    "total_realized_pnl": -1846.17,
+    "total_return_pct": -0.85,
     "wins": 5,
-    "losses": 4,
-    "max_drawdown": -3.65,
+    "losses": 6,
+    "max_drawdown": -3.73,
     "peak_equity": 102993.83,
-    "equity": 99996.65
+    "equity": 99153.23
   },
   "run_log": [
     {
@@ -1000,6 +1036,97 @@
           "analysis": "### ORKA — Healthcare / Biotechnology\n\n- **현재가**: $86.6500015258789  |  **시총**: 5.10B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 1.51 / 3개월 0.26 / 1개월 0.26  → RS 순위 상위 2.1% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 88.62% (양호 👍)\n- 50일 이격도: 21.51% (과열 아님 ✅)  |  10일 이격: 0.26%\n- ADR(일 변동폭): 6.27% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV 0.26%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.09  /  내년(NY_Trend): 1.22\n- EPS(CY/NY): 10.21 / 22.23  |  매출(CY/NY): 0 / 0\n- 애널리스트 up/down 비율: 85.71 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 2.1%\n- 50이격 21.51% (≤30)\n- 정배열 20>60>120\n- 52주고 88.62%\n- ADR 6.27%\n- 애널 up/down 86%\n- 10이격 0.26% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.09)\n\n**리스크**\n- 손절: 진입가 -7% ($80.58)  |  이격 정상권\n"
         }
       ]
+    },
+    {
+      "date": "2026-07-21",
+      "market_light": "green",
+      "strategy_version": 2,
+      "equity": 99153.23,
+      "return_pct": -0.85,
+      "cash": 38608.85,
+      "holdings_count": 8,
+      "opened": [
+        {
+          "symbol": "SEZL",
+          "entry": 171.75999450683594,
+          "qty": 43,
+          "stop": 159.74,
+          "strategy": "eungbong",
+          "reason": "RS 상위 0.4%"
+        },
+        {
+          "symbol": "HNGE",
+          "entry": 87.69999694824219,
+          "qty": 84,
+          "stop": 81.56,
+          "strategy": "eungbong",
+          "reason": "RS 상위 0.7%"
+        }
+      ],
+      "events": [
+        {
+          "type": "close",
+          "symbol": "VIRT",
+          "price": 56.65999984741211,
+          "realized": -750.89,
+          "reason": "stop_-7pct",
+          "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈)",
+          "note": null,
+          "rpct": -10.02
+        },
+        {
+          "type": "close",
+          "symbol": "AMD",
+          "price": 503.57000732421875,
+          "realized": -560.95,
+          "reason": "stop_-7pct",
+          "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈)",
+          "note": null,
+          "rpct": -7.89
+        }
+      ],
+      "recommendations": [
+        {
+          "symbol": "SEZL",
+          "strategy": "eungbong",
+          "top_pct": "0.4",
+          "price": 171.75999450683594,
+          "reason": "정배열 20>60>120",
+          "analysis": "### SEZL — Financial Services / Credit Services\n\n- **현재가**: $171.75999450683594  |  **시총**: 5.87B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 1.55 / 3개월 1.02 / 1개월 0.05  → RS 순위 상위 0.4% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 87.76% (양호 👍)\n- 50일 이격도: 23.67% (과열 아님 ✅)  |  10일 이격: -2.38%\n- ADR(일 변동폭): 7.33% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -2.38%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.5  /  내년(NY_Trend): 0.29\n- EPS(CY/NY): 42.71 / 27.68  |  매출(CY/NY): 32.58 / 25.3\n- 애널리스트 up/down 비율: 90 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 0.4%\n- 50이격 23.67% (≤30)\n- 정배열 20>60>120\n- 52주고 87.76%\n- ADR 7.33%\n- 애널 up/down 90%\n- 10이격 -2.38% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.5)\n\n**리스크**\n- 손절: 진입가 -7% ($159.74)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "HNGE",
+          "strategy": "eungbong",
+          "top_pct": "0.7",
+          "price": 87.69999694824219,
+          "reason": "정배열 20>60>120",
+          "analysis": "### HNGE — Healthcare / Health Information Services\n\n- **현재가**: $87.69999694824219  |  **시총**: 6.74B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 1.11 / 3개월 0.96 / 1개월 0.26  → RS 순위 상위 0.7% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 95.85% (강함 💪)\n- 50일 이격도: 27.49% (과열 아님 ✅)  |  10일 이격: -0.61%\n- ADR(일 변동폭): 4.86% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -0.61%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 1.96  /  내년(NY_Trend): 4.32\n- EPS(CY/NY): -0.83 / 30.91  |  매출(CY/NY): 39.86 / 25.73\n- 애널리스트 up/down 비율: 91.3 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 0.7%\n- 50이격 27.49% (≤30)\n- 정배열 20>60>120\n- 52주고 95.85%\n- ADR 4.86%\n- 애널 up/down 91%\n- 10이격 -0.61% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 1.96)\n\n**리스크**\n- 손절: 진입가 -7% ($81.56)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "DDOG",
+          "strategy": "eungbong",
+          "top_pct": "1.2",
+          "price": 263.20001220703125,
+          "reason": "정배열 20>60>120",
+          "analysis": "### DDOG — Technology / Software - Application\n\n- **현재가**: $263.20001220703125  |  **시총**: 92.08B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.93 / 3개월 0.99 / 1개월 0.18  → RS 순위 상위 1.2% (강함 💪)\n- 모멘텀 가속: 예 (3M RS > 6M RS) — 힘이 붙는 중 🚀\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 94.44% (강함 💪)\n- 50일 이격도: 11.72% (과열 아님 ✅)  |  10일 이격: 0.3%\n- ADR(일 변동폭): 5.41% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV 0.3%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.05  /  내년(NY_Trend): 1.07\n- EPS(CY/NY): 18.15 / 18.96  |  매출(CY/NY): 26.98 / 21.26\n- 애널리스트 up/down 비율: 97.5 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 1.2%\n- 50이격 11.72% (≤30)\n- 정배열 20>60>120\n- 52주고 94.44%\n- ADR 5.41%\n- 애널 up/down 98%\n- 10이격 0.3% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.05)\n\n**리스크**\n- 손절: 진입가 -7% ($244.78)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "PANW",
+          "strategy": "eungbong",
+          "top_pct": "1.4",
+          "price": 348.6600036621094,
+          "reason": "정배열 20>60>120",
+          "analysis": "### PANW — Technology / Software - Infrastructure\n\n- **현재가**: $348.6600036621094  |  **시총**: 292.32B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.89 / 3개월 0.92 / 1개월 0.21  → RS 순위 상위 1.4% (강함 💪)\n- 모멘텀 가속: 예 (3M RS > 6M RS) — 힘이 붙는 중 🚀\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 94.54% (강함 💪)\n- 50일 이격도: 21.41% (과열 아님 ✅)  |  10일 이격: 1.94%\n- ADR(일 변동폭): 5.32% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV 1.94%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.06  /  내년(NY_Trend): -2.95\n- EPS(CY/NY): 12.98 / -48.3  |  매출(CY/NY): 23.87 / 20.9\n- 애널리스트 up/down 비율: 87.5 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 1.4%\n- 50이격 21.41% (≤30)\n- 정배열 20>60>120\n- 52주고 94.54%\n- ADR 5.32%\n- 애널 up/down 88%\n- 10이격 1.94% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.06)\n\n**리스크**\n- 손절: 진입가 -7% ($324.25)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "FTNT",
+          "strategy": "eungbong",
+          "top_pct": "1.6",
+          "price": 160.36000061035156,
+          "reason": "정배열 20>60>120",
+          "analysis": "### FTNT — Technology / Software - Infrastructure\n\n- **현재가**: $160.36000061035156  |  **시총**: 118.40B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.93 / 3개월 0.84 / 1개월 0.11  → RS 순위 상위 1.6% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 94.14% (강함 💪)\n- 50일 이격도: 11.94% (과열 아님 ✅)  |  10일 이격: -0.48%\n- ADR(일 변동폭): 4.22% (양호 👍) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -0.48%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.04  /  내년(NY_Trend): 0\n- EPS(CY/NY): 14.42 / 8.48  |  매출(CY/NY): 14.9 / 10.59\n- 애널리스트 up/down 비율: 99.15 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 1.6%\n- 50이격 11.94% (≤30)\n- 정배열 20>60>120\n- 52주고 94.14%\n- ADR 4.22%\n- 애널 up/down 99%\n- 10이격 -0.48% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.04)\n\n**리스크**\n- 손절: 진입가 -7% ($149.13)  |  이격 정상권\n"
+        }
+      ]
     }
   ],
   "equity_history": [
@@ -1047,6 +1174,11 @@
       "date": "2026-07-16",
       "equity": 99996.65,
       "return_pct": 0
+    },
+    {
+      "date": "2026-07-21",
+      "equity": 99153.23,
+      "return_pct": -0.85
     }
   ]
 }

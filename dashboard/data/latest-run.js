@@ -1,87 +1,155 @@
 window.RUN_DATA = {
-  "run_date": "2026-07-16",
+  "run_date": "2026-07-21",
   "generated_note": "이 파일은 start-investment 실행 시 자동 생성됩니다.",
   "market_light": "green",
   "source": "live",
   "strategy_version": 2,
   "hud": {
     "initial_capital": 100000,
-    "equity": 99996.65,
-    "cash": 40072.38,
-    "total_return_pct": 0,
+    "equity": 99153.23,
+    "cash": 38608.85,
+    "total_return_pct": -0.85,
     "holdings_count": 8,
     "wins": 5,
-    "losses": 4,
-    "max_drawdown": -3.65
+    "losses": 6,
+    "max_drawdown": -3.73
   },
   "holdings": [
     {
       "symbol": "ECO",
       "qty": 141,
       "entry": 53.349998474121094,
-      "current": 56.650001525878906,
-      "pnl_pct": 6.19,
-      "strategy": "eungbong"
-    },
-    {
-      "symbol": "VIRT",
-      "qty": 119,
-      "entry": 62.970001220703125,
-      "current": 60.59000015258789,
-      "pnl_pct": -3.78,
+      "current": 54.2400016784668,
+      "pnl_pct": 1.67,
       "strategy": "eungbong"
     },
     {
       "symbol": "FLXS",
       "qty": 104,
       "entry": 72.58999633789062,
-      "current": 72.23999786376953,
-      "pnl_pct": -0.48,
+      "current": 73.08999633789062,
+      "pnl_pct": 0.69,
       "strategy": "eungbong"
     },
     {
       "symbol": "AIN",
       "qty": 101,
       "entry": 73.56999969482422,
-      "current": 74.33000183105469,
-      "pnl_pct": 1.03,
+      "current": 75.05999755859375,
+      "pnl_pct": 2.03,
       "strategy": "eungbong"
     },
     {
       "symbol": "CZFS",
       "qty": 106,
       "entry": 70.12000274658203,
-      "current": 73.20999908447266,
-      "pnl_pct": 4.41,
-      "strategy": "eungbong"
-    },
-    {
-      "symbol": "AMD",
-      "qty": 13,
-      "entry": 546.719970703125,
-      "current": 529.1400146484375,
-      "pnl_pct": -3.22,
+      "current": 71.58000183105469,
+      "pnl_pct": 2.08,
       "strategy": "eungbong"
     },
     {
       "symbol": "ORKA",
       "qty": 84,
       "entry": 88.2699966430664,
-      "current": 86.6500015258789,
-      "pnl_pct": -1.84,
+      "current": 91.70999908447266,
+      "pnl_pct": 3.9,
       "strategy": "eungbong"
     },
     {
       "symbol": "PANW",
       "qty": 22,
       "entry": 338.30999755859375,
-      "current": 354.0199890136719,
-      "pnl_pct": 4.64,
+      "current": 348.6600036621094,
+      "pnl_pct": 3.06,
+      "strategy": "eungbong"
+    },
+    {
+      "symbol": "SEZL",
+      "qty": 43,
+      "entry": 171.75999450683594,
+      "current": 171.75999450683594,
+      "pnl_pct": 0,
+      "strategy": "eungbong"
+    },
+    {
+      "symbol": "HNGE",
+      "qty": 84,
+      "entry": 87.69999694824219,
+      "current": 87.69999694824219,
+      "pnl_pct": 0,
       "strategy": "eungbong"
     }
   ],
-  "recommendations": [],
-  "buzz": null,
+  "recommendations": [
+    {
+      "symbol": "SEZL",
+      "entry": 171.75999450683594,
+      "qty": 43,
+      "stop": 159.74,
+      "strategy": "eungbong",
+      "reasons": [
+        "RS 상위 0.4%",
+        "50이격 23.67% (≤30)",
+        "정배열 20>60>120",
+        "52주고 87.76%",
+        "ADR 7.33%",
+        "애널 up/down 90%",
+        "10이격 -2.38% 눌림목 진입권",
+        "실적 개선 추세(CY_Trend 0.5)"
+      ]
+    },
+    {
+      "symbol": "HNGE",
+      "entry": 87.69999694824219,
+      "qty": 84,
+      "stop": 81.56,
+      "strategy": "eungbong",
+      "reasons": [
+        "RS 상위 0.7%",
+        "50이격 27.49% (≤30)",
+        "정배열 20>60>120",
+        "52주고 95.85%",
+        "ADR 4.86%",
+        "애널 up/down 91%",
+        "10이격 -0.61% 눌림목 진입권",
+        "실적 개선 추세(CY_Trend 1.96)"
+      ]
+    }
+  ],
+  "buzz": {
+    "trending": [],
+    "crypto": [],
+    "reactions": [
+      {
+        "symbol": "SEZL",
+        "bullPct": 87,
+        "mood": "강세 우위 87%",
+        "activity": "보통",
+        "watchers": 4116
+      },
+      {
+        "symbol": "DDOG",
+        "bullPct": 83,
+        "mood": "강세 우위 83%",
+        "activity": "활발",
+        "watchers": 25474
+      },
+      {
+        "symbol": "FTNT",
+        "bullPct": 71,
+        "mood": "강세 우위 71%",
+        "activity": "활발",
+        "watchers": 12530
+      },
+      {
+        "symbol": "FLXS",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
+        "activity": "관심 적음",
+        "watchers": 291
+      }
+    ]
+  },
   "timeline": [
     {
       "agent": "Alex",
@@ -107,100 +175,156 @@ window.RUN_DATA = {
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "PENG 포착! 👨‍🏫눌림목 · RS상위 0.4% · 정배열 20>60>120",
+      "msg": "SEZL 포착! 👨‍🏫눌림목 · RS상위 0.4% · 정배열 20>60>120",
       "phase": "분석",
       "t": 3
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "DDOG 포착! 👨‍🏫눌림목 · RS상위 1.0% · 정배열 20>60>120",
+      "msg": "HNGE 포착! 👨‍🏫눌림목 · RS상위 0.7% · 정배열 20>60>120",
       "phase": "분석",
       "t": 4
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "HNGE 포착! 👨‍🏫눌림목 · RS상위 1.4% · 정배열 20>60>120",
+      "msg": "DDOG 포착! 👨‍🏫눌림목 · RS상위 1.2% · 정배열 20>60>120",
       "phase": "분석",
       "t": 5
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "AMD 포착! 👨‍🏫눌림목 · RS상위 1.6% · 정배열 20>60>120",
+      "msg": "PANW 포착! 👨‍🏫눌림목 · RS상위 1.4% · 정배열 20>60>120",
       "phase": "분석",
       "t": 6
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "ORKA 포착! 👨‍🏫눌림목 · RS상위 2.1% · 정배열 20>60>120",
+      "msg": "FTNT 포착! 👨‍🏫눌림목 · RS상위 1.6% · 정배열 20>60>120",
       "phase": "분석",
       "t": 7
+    },
+    {
+      "agent": "Nova",
+      "action": "walk",
+      "msg": "커뮤니티 스카우트 Nova예요! 미국 투자판 스캔했어요 🛰️",
+      "phase": "분석",
+      "t": 8
+    },
+    {
+      "agent": "Nova",
+      "action": "talk",
+      "msg": "우리 종목 반응도 봤어요 — SEZL은 커뮤니티에서 강세 우위 87% (보통)",
+      "phase": "분석",
+      "t": 9
+    },
+    {
+      "agent": "Nova",
+      "action": "talk",
+      "msg": "저는 참고 정보만 드려요! 판단은 팀 전략이랑 사장님 몫이에요 😊",
+      "phase": "분석",
+      "t": 10
     },
     {
       "agent": "Sara",
       "action": "walk",
       "msg": "제가 포지션 사이징 들어갈게요. 거래당 리스크 2% 원칙!",
       "phase": "리스크",
-      "t": 8
+      "t": 11
     },
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "조건 맞는 신규 진입이 없어 관망합니다.",
+      "msg": "SEZL: 43주, 손절 $159.74 (-7%). 최대 손실 딱 2%로 제한했어요.",
       "phase": "리스크",
-      "t": 9
+      "t": 12
+    },
+    {
+      "agent": "Sara",
+      "action": "talk",
+      "msg": "HNGE: 84주, 손절 $81.56 (-7%). 최대 손실 딱 2%로 제한했어요.",
+      "phase": "리스크",
+      "t": 13
     },
     {
       "agent": "Jordan",
       "action": "walk",
       "msg": "기록 담당 조던입니다. 매매일지에 남길게요 ✍️",
       "phase": "거래",
-      "t": 10
+      "t": 14
     },
     {
       "agent": "Jordan",
       "action": "talk",
-      "msg": "현재 보유 8종목, 현금 $40,072.38.",
+      "msg": "VIRT 청산 (stop_-7pct). 실현 $-750.89.",
       "phase": "거래",
-      "t": 11
+      "t": 15
+    },
+    {
+      "agent": "Jordan",
+      "action": "talk",
+      "msg": "AMD 청산 (stop_-7pct). 실현 $-560.95.",
+      "phase": "거래",
+      "t": 16
+    },
+    {
+      "agent": "Jordan",
+      "action": "talk",
+      "msg": "SEZL 43주 @ $171.76 진입 기록 완료 ✅",
+      "phase": "거래",
+      "t": 17
+    },
+    {
+      "agent": "Jordan",
+      "action": "talk",
+      "msg": "HNGE 84주 @ $87.7 진입 기록 완료 ✅",
+      "phase": "거래",
+      "t": 18
+    },
+    {
+      "agent": "Jordan",
+      "action": "talk",
+      "msg": "현재 보유 8종목, 현금 $38,608.85.",
+      "phase": "거래",
+      "t": 19
     },
     {
       "agent": "Morgan",
       "action": "walk",
       "msg": "전략가 모건이에요. 매매일지 돌아볼게요 📖",
       "phase": "검토",
-      "t": 12
+      "t": 20
     },
     {
       "agent": "Morgan",
       "action": "talk",
-      "msg": "누적 수익률 +0.00% · 승 5 / 패 4. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
+      "msg": "누적 수익률 -0.85% · 승 5 / 패 6. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
       "phase": "검토",
-      "t": 13
+      "t": 21
     },
     {
       "agent": "RICH",
       "action": "walk",
       "msg": "CEO 리치다. 좋았어 팀! 사장님께 보고 들어간다 👑",
       "phase": "보고",
-      "t": 14
+      "t": 22
     },
     {
       "agent": "RICH",
       "action": "talk",
-      "msg": "오늘 추천 0종목, 누적 수익률 +0.00%. 텔레그램 발사! 🚀",
+      "msg": "오늘 추천 2종목, 누적 수익률 -0.85%. 텔레그램 발사! 🚀",
       "phase": "보고",
-      "t": 15
+      "t": 23
     },
     {
       "agent": "RICH",
       "action": "talk",
       "msg": "목표는 월 20~30%! 우리 사장님 부자 만들 때까지 달린다 💪🔥",
       "phase": "보고",
-      "t": 16
+      "t": 24
     }
   ]
 };
