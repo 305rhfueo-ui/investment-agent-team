@@ -1,118 +1,118 @@
 window.RUN_DATA = {
-  "run_date": "2026-07-21",
+  "run_date": "2026-07-31",
   "generated_note": "이 파일은 start-investment 실행 시 자동 생성됩니다.",
-  "market_light": "green",
+  "market_light": "yellow",
   "source": "live",
   "strategy_version": 2,
   "hud": {
     "initial_capital": 100000,
-    "equity": 99153.23,
-    "cash": 38608.85,
-    "total_return_pct": -0.85,
+    "equity": 98688.56,
+    "cash": 37051.49,
+    "total_return_pct": -1.31,
     "holdings_count": 8,
     "wins": 5,
-    "losses": 6,
-    "max_drawdown": -3.73
+    "losses": 8,
+    "max_drawdown": -4.18
   },
   "holdings": [
     {
       "symbol": "ECO",
       "qty": 141,
       "entry": 53.349998474121094,
-      "current": 54.2400016784668,
-      "pnl_pct": 1.67,
+      "current": 59.86000061035156,
+      "pnl_pct": 12.2,
       "strategy": "eungbong"
     },
     {
       "symbol": "FLXS",
       "qty": 104,
       "entry": 72.58999633789062,
-      "current": 73.08999633789062,
-      "pnl_pct": 0.69,
+      "current": 73.97000122070312,
+      "pnl_pct": 1.9,
       "strategy": "eungbong"
     },
     {
       "symbol": "AIN",
       "qty": 101,
       "entry": 73.56999969482422,
-      "current": 75.05999755859375,
-      "pnl_pct": 2.03,
+      "current": 74.12000274658203,
+      "pnl_pct": 0.75,
       "strategy": "eungbong"
     },
     {
       "symbol": "CZFS",
       "qty": 106,
       "entry": 70.12000274658203,
-      "current": 71.58000183105469,
-      "pnl_pct": 2.08,
+      "current": 76.37999725341797,
+      "pnl_pct": 8.93,
       "strategy": "eungbong"
     },
     {
       "symbol": "ORKA",
       "qty": 84,
       "entry": 88.2699966430664,
-      "current": 91.70999908447266,
-      "pnl_pct": 3.9,
+      "current": 97.86000061035156,
+      "pnl_pct": 10.86,
       "strategy": "eungbong"
     },
     {
       "symbol": "PANW",
       "qty": 22,
       "entry": 338.30999755859375,
-      "current": 348.6600036621094,
-      "pnl_pct": 3.06,
+      "current": 325.67999267578125,
+      "pnl_pct": -3.73,
       "strategy": "eungbong"
     },
     {
-      "symbol": "SEZL",
-      "qty": 43,
-      "entry": 171.75999450683594,
-      "current": 171.75999450683594,
+      "symbol": "DELL",
+      "qty": 18,
+      "entry": 404.80999755859375,
+      "current": 404.80999755859375,
       "pnl_pct": 0,
       "strategy": "eungbong"
     },
     {
-      "symbol": "HNGE",
-      "qty": 84,
-      "entry": 87.69999694824219,
-      "current": 87.69999694824219,
+      "symbol": "FTNT",
+      "qty": 47,
+      "entry": 154.25,
+      "current": 154.25,
       "pnl_pct": 0,
       "strategy": "eungbong"
     }
   ],
   "recommendations": [
     {
-      "symbol": "SEZL",
-      "entry": 171.75999450683594,
-      "qty": 43,
-      "stop": 159.74,
+      "symbol": "DELL",
+      "entry": 404.80999755859375,
+      "qty": 18,
+      "stop": 376.47,
       "strategy": "eungbong",
       "reasons": [
-        "RS 상위 0.4%",
-        "50이격 23.67% (≤30)",
+        "RS 상위 0.3%",
+        "50이격 2.47% (≤30)",
         "정배열 20>60>120",
-        "52주고 87.76%",
-        "ADR 7.33%",
-        "애널 up/down 90%",
-        "10이격 -2.38% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 0.5)"
+        "52주고 86.37%",
+        "ADR 7.72%",
+        "애널 up/down 100%",
+        "10이격 -1.1% 눌림목 진입권",
+        "실적 개선 추세(CY_Trend 0.22)"
       ]
     },
     {
-      "symbol": "HNGE",
-      "entry": 87.69999694824219,
-      "qty": 84,
-      "stop": 81.56,
+      "symbol": "FTNT",
+      "entry": 154.25,
+      "qty": 47,
+      "stop": 143.45,
       "strategy": "eungbong",
       "reasons": [
-        "RS 상위 0.7%",
-        "50이격 27.49% (≤30)",
+        "RS 상위 1.8%",
+        "50이격 3.53% (≤30)",
         "정배열 20>60>120",
-        "52주고 95.85%",
-        "ADR 4.86%",
-        "애널 up/down 91%",
-        "10이격 -0.61% 눌림목 진입권",
-        "실적 개선 추세(CY_Trend 1.96)"
+        "52주고 90.55%",
+        "ADR 4.72%",
+        "애널 up/down 99%",
+        "10이격 -0.41% 눌림목 진입권",
+        "실적 개선 추세(CY_Trend 0.09)"
       ]
     }
   ],
@@ -121,32 +121,32 @@ window.RUN_DATA = {
     "crypto": [],
     "reactions": [
       {
-        "symbol": "SEZL",
-        "bullPct": 87,
-        "mood": "강세 우위 87%",
-        "activity": "보통",
-        "watchers": 4116
-      },
-      {
-        "symbol": "DDOG",
-        "bullPct": 83,
-        "mood": "강세 우위 83%",
+        "symbol": "DELL",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
         "activity": "활발",
-        "watchers": 25474
+        "watchers": 28994
       },
       {
         "symbol": "FTNT",
-        "bullPct": 71,
-        "mood": "강세 우위 71%",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
         "activity": "활발",
-        "watchers": 12530
+        "watchers": 12589
+      },
+      {
+        "symbol": "TGTX",
+        "bullPct": 100,
+        "mood": "강세 우위 100%",
+        "activity": "활발",
+        "watchers": 21499
       },
       {
         "symbol": "FLXS",
         "bullPct": 100,
         "mood": "강세 우위 100%",
         "activity": "관심 적음",
-        "watchers": 291
+        "watchers": 292
       }
     ]
   },
@@ -161,7 +161,7 @@ window.RUN_DATA = {
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "QQQ 상태 점검 → 🟢 초록불. 신규 진입 가능!",
+      "msg": "QQQ 상태 점검 → 🟡 노랑불. 조심스럽게 봅니다.",
       "phase": "분석",
       "t": 1
     },
@@ -175,35 +175,35 @@ window.RUN_DATA = {
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "SEZL 포착! 👨‍🏫눌림목 · RS상위 0.4% · 정배열 20>60>120",
+      "msg": "DELL 포착! 👨‍🏫눌림목 · RS상위 0.3% · 정배열 20>60>120",
       "phase": "분석",
       "t": 3
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "HNGE 포착! 👨‍🏫눌림목 · RS상위 0.7% · 정배열 20>60>120",
+      "msg": "PANW 포착! 👨‍🏫눌림목 · RS상위 1.3% · 정배열 20>60>120",
       "phase": "분석",
       "t": 4
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "DDOG 포착! 👨‍🏫눌림목 · RS상위 1.2% · 정배열 20>60>120",
+      "msg": "FTNT 포착! 👨‍🏫눌림목 · RS상위 1.8% · 정배열 20>60>120",
       "phase": "분석",
       "t": 5
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "PANW 포착! 👨‍🏫눌림목 · RS상위 1.4% · 정배열 20>60>120",
+      "msg": "CRWD 포착! 👨‍🏫눌림목 · RS상위 2.5% · 정배열 20>60>120",
       "phase": "분석",
       "t": 6
     },
     {
       "agent": "Alex",
       "action": "talk",
-      "msg": "FTNT 포착! 👨‍🏫눌림목 · RS상위 1.6% · 정배열 20>60>120",
+      "msg": "TGTX 포착! 👨‍🏫눌림목 · RS상위 3.0% · 정배열 20>60>120",
       "phase": "분석",
       "t": 7
     },
@@ -217,7 +217,7 @@ window.RUN_DATA = {
     {
       "agent": "Nova",
       "action": "talk",
-      "msg": "우리 종목 반응도 봤어요 — SEZL은 커뮤니티에서 강세 우위 87% (보통)",
+      "msg": "우리 종목 반응도 봤어요 — DELL은 커뮤니티에서 강세 우위 100% (활발)",
       "phase": "분석",
       "t": 9
     },
@@ -238,14 +238,14 @@ window.RUN_DATA = {
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "SEZL: 43주, 손절 $159.74 (-7%). 최대 손실 딱 2%로 제한했어요.",
+      "msg": "DELL: 18주, 손절 $376.47 (-7%). 최대 손실 딱 2%로 제한했어요.",
       "phase": "리스크",
       "t": 12
     },
     {
       "agent": "Sara",
       "action": "talk",
-      "msg": "HNGE: 84주, 손절 $81.56 (-7%). 최대 손실 딱 2%로 제한했어요.",
+      "msg": "FTNT: 47주, 손절 $143.45 (-7%). 최대 손실 딱 2%로 제한했어요.",
       "phase": "리스크",
       "t": 13
     },
@@ -259,35 +259,35 @@ window.RUN_DATA = {
     {
       "agent": "Jordan",
       "action": "talk",
-      "msg": "VIRT 청산 (stop_-7pct). 실현 $-750.89.",
+      "msg": "SEZL 청산 (stop_-7pct). 실현 $-715.95.",
       "phase": "거래",
       "t": 15
     },
     {
       "agent": "Jordan",
       "action": "talk",
-      "msg": "AMD 청산 (stop_-7pct). 실현 $-560.95.",
+      "msg": "HNGE 청산 (stop_-7pct). 실현 $-1,057.56.",
       "phase": "거래",
       "t": 16
     },
     {
       "agent": "Jordan",
       "action": "talk",
-      "msg": "SEZL 43주 @ $171.76 진입 기록 완료 ✅",
+      "msg": "DELL 18주 @ $404.81 진입 기록 완료 ✅",
       "phase": "거래",
       "t": 17
     },
     {
       "agent": "Jordan",
       "action": "talk",
-      "msg": "HNGE 84주 @ $87.7 진입 기록 완료 ✅",
+      "msg": "FTNT 47주 @ $154.25 진입 기록 완료 ✅",
       "phase": "거래",
       "t": 18
     },
     {
       "agent": "Jordan",
       "action": "talk",
-      "msg": "현재 보유 8종목, 현금 $38,608.85.",
+      "msg": "현재 보유 8종목, 현금 $37,051.49.",
       "phase": "거래",
       "t": 19
     },
@@ -301,7 +301,7 @@ window.RUN_DATA = {
     {
       "agent": "Morgan",
       "action": "talk",
-      "msg": "누적 수익률 -0.85% · 승 5 / 패 6. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
+      "msg": "누적 수익률 -1.31% · 승 5 / 패 8. 이번엔 정기 리뷰 주기 아니라 관찰만 합니다.",
       "phase": "검토",
       "t": 21
     },
@@ -315,7 +315,7 @@ window.RUN_DATA = {
     {
       "agent": "RICH",
       "action": "talk",
-      "msg": "오늘 추천 2종목, 누적 수익률 -0.85%. 텔레그램 발사! 🚀",
+      "msg": "오늘 추천 2종목, 누적 수익률 -1.31%. 텔레그램 발사! 🚀",
       "phase": "보고",
       "t": 23
     },

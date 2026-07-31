@@ -50,6 +50,11 @@ window.HISTORY_DATA = {
       "date": "2026-07-21",
       "equity": 99153.23,
       "return_pct": -0.85
+    },
+    {
+      "date": "2026-07-31",
+      "equity": 98688.56,
+      "return_pct": -1.31
     }
   ],
   "runs": [
@@ -657,6 +662,97 @@ window.HISTORY_DATA = {
           "analysis": "### FTNT — Technology / Software - Infrastructure\n\n- **현재가**: $160.36000061035156  |  **시총**: 118.40B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.93 / 3개월 0.84 / 1개월 0.11  → RS 순위 상위 1.6% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 94.14% (강함 💪)\n- 50일 이격도: 11.94% (과열 아님 ✅)  |  10일 이격: -0.48%\n- ADR(일 변동폭): 4.22% (양호 👍) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -0.48%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.04  /  내년(NY_Trend): 0\n- EPS(CY/NY): 14.42 / 8.48  |  매출(CY/NY): 14.9 / 10.59\n- 애널리스트 up/down 비율: 99.15 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 1.6%\n- 50이격 11.94% (≤30)\n- 정배열 20>60>120\n- 52주고 94.14%\n- ADR 4.22%\n- 애널 up/down 99%\n- 10이격 -0.48% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.04)\n\n**리스크**\n- 손절: 진입가 -7% ($149.13)  |  이격 정상권\n"
         }
       ]
+    },
+    {
+      "date": "2026-07-31",
+      "market_light": "yellow",
+      "strategy_version": 2,
+      "equity": 98688.56,
+      "return_pct": -1.31,
+      "cash": 37051.49,
+      "holdings_count": 8,
+      "opened": [
+        {
+          "symbol": "DELL",
+          "entry": 404.80999755859375,
+          "qty": 18,
+          "stop": 376.47,
+          "strategy": "eungbong",
+          "reason": "RS 상위 0.3%"
+        },
+        {
+          "symbol": "FTNT",
+          "entry": 154.25,
+          "qty": 47,
+          "stop": 143.45,
+          "strategy": "eungbong",
+          "reason": "RS 상위 1.8%"
+        }
+      ],
+      "events": [
+        {
+          "type": "close",
+          "symbol": "SEZL",
+          "price": 155.11000061035156,
+          "realized": -715.95,
+          "reason": "stop_-7pct",
+          "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈)",
+          "note": null,
+          "rpct": -9.69
+        },
+        {
+          "type": "close",
+          "symbol": "HNGE",
+          "price": 75.11000061035156,
+          "realized": -1057.56,
+          "reason": "stop_-7pct",
+          "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈) · 진입 시 50이격 27.49%로 과열 → 눌림 폭 확대",
+          "note": null,
+          "rpct": -14.36
+        }
+      ],
+      "recommendations": [
+        {
+          "symbol": "DELL",
+          "strategy": "eungbong",
+          "top_pct": "0.3",
+          "price": 404.80999755859375,
+          "reason": "정배열 20>60>120",
+          "analysis": "### DELL — Technology / Computer Hardware\n\n- **현재가**: $404.80999755859375  |  **시총**: 253.35B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 2.52 / 3개월 0.92 / 1개월 -0.05  → RS 순위 상위 0.3% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 86.37% (양호 👍)\n- 50일 이격도: 2.47% (과열 아님 ✅)  |  10일 이격: -1.1%\n- ADR(일 변동폭): 7.72% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -1.1%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.22  /  내년(NY_Trend): 5.86\n- EPS(CY/NY): 78.77 / 5.51  |  매출(CY/NY): 50.86 / 12.6\n- 애널리스트 up/down 비율: 100 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 0.3%\n- 50이격 2.47% (≤30)\n- 정배열 20>60>120\n- 52주고 86.37%\n- ADR 7.72%\n- 애널 up/down 100%\n- 10이격 -1.1% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.22)\n\n**리스크**\n- 손절: 진입가 -7% ($376.47)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "PANW",
+          "strategy": "eungbong",
+          "top_pct": "1.3",
+          "price": 325.67999267578125,
+          "reason": "정배열 20>60>120",
+          "analysis": "### PANW — Technology / Software - Infrastructure\n\n- **현재가**: $325.67999267578125  |  **시총**: 259.99B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 1.10 / 3개월 0.76 / 1개월 -0.07  → RS 순위 상위 1.3% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 88.31% (양호 👍)\n- 50일 이격도: 7.33% (과열 아님 ✅)  |  10일 이격: -1.62%\n- ADR(일 변동폭): 5.18% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -1.62%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.06  /  내년(NY_Trend): -1.45\n- EPS(CY/NY): 12.98 / -48.3  |  매출(CY/NY): 23.87 / 20.9\n- 애널리스트 up/down 비율: 87.5 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 1.3%\n- 50이격 7.33% (≤30)\n- 정배열 20>60>120\n- 52주고 88.31%\n- ADR 5.18%\n- 애널 up/down 88%\n- 10이격 -1.62% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.06)\n\n**리스크**\n- 손절: 진입가 -7% ($302.88)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "FTNT",
+          "strategy": "eungbong",
+          "top_pct": "1.8",
+          "price": 154.25,
+          "reason": "정배열 20>60>120",
+          "analysis": "### FTNT — Technology / Software - Infrastructure\n\n- **현재가**: $154.25  |  **시총**: 109.88B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.95 / 3개월 0.73 / 1개월 -0.03  → RS 순위 상위 1.8% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 90.55% (강함 💪)\n- 50일 이격도: 3.53% (과열 아님 ✅)  |  10일 이격: -0.41%\n- ADR(일 변동폭): 4.72% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -0.41%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.09  /  내년(NY_Trend): -0.01\n- EPS(CY/NY): 14.48 / 8.41  |  매출(CY/NY): 14.91 / 10.57\n- 애널리스트 up/down 비율: 99.15 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 1.8%\n- 50이격 3.53% (≤30)\n- 정배열 20>60>120\n- 52주고 90.55%\n- ADR 4.72%\n- 애널 up/down 99%\n- 10이격 -0.41% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.09)\n\n**리스크**\n- 손절: 진입가 -7% ($143.45)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "CRWD",
+          "strategy": "eungbong",
+          "top_pct": "2.5",
+          "price": 185.22000122070312,
+          "reason": "정배열 20>60>120",
+          "analysis": "### CRWD — Technology / Software - Infrastructure\n\n- **현재가**: $185.22000122070312  |  **시총**: 185.12B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.96 / 3개월 0.58 / 1개월 -0.04  → RS 순위 상위 2.5% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 85.16% (양호 👍)\n- 50일 이격도: 2.52% (과열 아님 ✅)  |  10일 이격: -1.18%\n- ADR(일 변동폭): 5.63% (강함 💪) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -1.18%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 0.07  /  내년(NY_Trend): 0.15\n- EPS(CY/NY): 32.1 / 26.85  |  매출(CY/NY): 23.55 / 21.7\n- 애널리스트 up/down 비율: 83.53 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 2.5%\n- 50이격 2.52% (≤30)\n- 정배열 20>60>120\n- 52주고 85.16%\n- ADR 5.63%\n- 애널 up/down 84%\n- 10이격 -1.18% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 0.07)\n\n**리스크**\n- 손절: 진입가 -7% ($172.25)  |  이격 정상권\n"
+        },
+        {
+          "symbol": "TGTX",
+          "strategy": "eungbong",
+          "top_pct": "3.0",
+          "price": 53.529998779296875,
+          "reason": "정배열 20>60>120",
+          "analysis": "### TGTX — Healthcare / Biotechnology\n\n- **현재가**: $53.529998779296875  |  **시총**: 8.40B  |  **진입 전략**: 👨‍🏫 응봉아재 눌림목\n\n**상대강도 (RS)**\n- 6개월 0.93 / 3개월 0.50 / 1개월 0.00  → RS 순위 상위 3.0% (강함 💪)\n- 모멘텀 가속: 보통\n\n**추세·위치**\n- 정배열(20>60>120): ✅ 정배열\n- 52주 신고가 대비: 90.27% (강함 💪)\n- 50일 이격도: 7.77% (과열 아님 ✅)  |  10일 이격: -1.71%\n- ADR(일 변동폭): 4.45% (양호 👍) — 폭발력 지표\n\n**진입 신호**\n- 눌림목 진입권(10DIV -1.71%) + 실적 개선 추세\n\n**실적/펀더멘털**\n- 올해 실적 추세(CY_Trend): 2.42  /  내년(NY_Trend): 14.24\n- EPS(CY/NY): -43.24 / 108.67  |  매출(CY/NY): 52.93 / 37.13\n- 애널리스트 up/down 비율: 87.5 (강함 💪)\n\n**선정 근거 요약**\n- RS 상위 3.0%\n- 50이격 7.77% (≤30)\n- 정배열 20>60>120\n- 52주고 90.27%\n- ADR 4.45%\n- 애널 up/down 88%\n- 10이격 -1.71% 눌림목 진입권\n- 실적 개선 추세(CY_Trend 2.42)\n\n**리스크**\n- 손절: 진입가 -7% ($49.78)  |  이격 정상권\n"
+        }
+      ]
     }
   ],
   "closed_trades": [
@@ -849,14 +945,50 @@ window.HISTORY_DATA = {
       "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈)",
       "note": null,
       "buy_reason": "RS 상위 1.3%"
+    },
+    {
+      "id": "SEZL_20260721_close",
+      "symbol": "SEZL",
+      "strategy": "eungbong",
+      "entry_date": "2026-07-21",
+      "entry_price": 171.75999450683594,
+      "exit_date": "2026-07-31",
+      "exit_price": 155.11000061035156,
+      "quantity": 43,
+      "realized_pnl": -715.95,
+      "realized_pnl_pct": -9.69,
+      "days_held": 10,
+      "exit_reason": "stop_-7pct",
+      "status": "closed_loss",
+      "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈)",
+      "note": null,
+      "buy_reason": "RS 상위 0.4%"
+    },
+    {
+      "id": "HNGE_20260721_close",
+      "symbol": "HNGE",
+      "strategy": "eungbong",
+      "entry_date": "2026-07-21",
+      "entry_price": 87.69999694824219,
+      "exit_date": "2026-07-31",
+      "exit_price": 75.11000061035156,
+      "quantity": 84,
+      "realized_pnl": -1057.56,
+      "realized_pnl_pct": -14.36,
+      "days_held": 10,
+      "exit_reason": "stop_-7pct",
+      "status": "closed_loss",
+      "lesson": "-7% 손절 도달 · 눌림목 지지 실패(추세 이탈) · 진입 시 50이격 27.49%로 과열 → 눌림 폭 확대",
+      "note": null,
+      "buy_reason": "RS 상위 0.7%"
     }
   ],
   "monthly": {
     "2026-07": {
-      "realized_pnl": -1846.17,
-      "realized_pnl_pct": -1.85,
-      "trades": 11,
-      "win_rate": 0.45
+      "realized_pnl": -3619.68,
+      "realized_pnl_pct": -3.62,
+      "trades": 13,
+      "win_rate": 0.38
     }
   },
   "holdings": [
@@ -864,8 +996,8 @@ window.HISTORY_DATA = {
       "symbol": "ECO",
       "qty": 141,
       "entry": 53.349998474121094,
-      "current": 54.2400016784668,
-      "pnl_pct": 1.67,
+      "current": 59.86000061035156,
+      "pnl_pct": 12.2,
       "stop": 49.62,
       "strategy": "eungbong",
       "tier1": false,
@@ -875,8 +1007,8 @@ window.HISTORY_DATA = {
       "symbol": "FLXS",
       "qty": 104,
       "entry": 72.58999633789062,
-      "current": 73.08999633789062,
-      "pnl_pct": 0.69,
+      "current": 73.97000122070312,
+      "pnl_pct": 1.9,
       "stop": 67.51,
       "strategy": "eungbong",
       "tier1": false,
@@ -886,8 +1018,8 @@ window.HISTORY_DATA = {
       "symbol": "AIN",
       "qty": 101,
       "entry": 73.56999969482422,
-      "current": 75.05999755859375,
-      "pnl_pct": 2.03,
+      "current": 74.12000274658203,
+      "pnl_pct": 0.75,
       "stop": 68.42,
       "strategy": "eungbong",
       "tier1": false,
@@ -897,8 +1029,8 @@ window.HISTORY_DATA = {
       "symbol": "CZFS",
       "qty": 106,
       "entry": 70.12000274658203,
-      "current": 71.58000183105469,
-      "pnl_pct": 2.08,
+      "current": 76.37999725341797,
+      "pnl_pct": 8.93,
       "stop": 65.21,
       "strategy": "eungbong",
       "tier1": false,
@@ -908,8 +1040,8 @@ window.HISTORY_DATA = {
       "symbol": "ORKA",
       "qty": 84,
       "entry": 88.2699966430664,
-      "current": 91.70999908447266,
-      "pnl_pct": 3.9,
+      "current": 97.86000061035156,
+      "pnl_pct": 10.86,
       "stop": 82.09,
       "strategy": "eungbong",
       "tier1": false,
@@ -919,34 +1051,34 @@ window.HISTORY_DATA = {
       "symbol": "PANW",
       "qty": 22,
       "entry": 338.30999755859375,
-      "current": 348.6600036621094,
-      "pnl_pct": 3.06,
+      "current": 325.67999267578125,
+      "pnl_pct": -3.73,
       "stop": 314.63,
       "strategy": "eungbong",
       "tier1": false,
       "date": "2026-07-10"
     },
     {
-      "symbol": "SEZL",
-      "qty": 43,
-      "entry": 171.75999450683594,
-      "current": 171.75999450683594,
+      "symbol": "DELL",
+      "qty": 18,
+      "entry": 404.80999755859375,
+      "current": 404.80999755859375,
       "pnl_pct": 0,
-      "stop": 159.74,
+      "stop": 376.47,
       "strategy": "eungbong",
       "tier1": false,
-      "date": "2026-07-21"
+      "date": "2026-07-31"
     },
     {
-      "symbol": "HNGE",
-      "qty": 84,
-      "entry": 87.69999694824219,
-      "current": 87.69999694824219,
+      "symbol": "FTNT",
+      "qty": 47,
+      "entry": 154.25,
+      "current": 154.25,
       "pnl_pct": 0,
-      "stop": 81.56,
+      "stop": 143.45,
       "strategy": "eungbong",
       "tier1": false,
-      "date": "2026-07-21"
+      "date": "2026-07-31"
     }
   ]
 };
