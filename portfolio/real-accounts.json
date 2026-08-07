@@ -20,70 +20,70 @@
           "name": "마이크론",
           "shares": 30,
           "buy_krw": 22899318,
-          "eval_krw": 39777215,
-          "pnl_pct": 73.7,
+          "eval_krw": 39601224,
+          "pnl_pct": 72.94,
           "entry_date": "2025-06",
-          "last_price_usd": 881.47
+          "last_price_usd": 877.57
         },
         {
           "ticker": "TSLA",
           "name": "테슬라",
           "shares": 34,
           "buy_krw": 14399443,
-          "eval_krw": 16341661,
-          "pnl_pct": 13.49,
+          "eval_krw": 16804503,
+          "pnl_pct": 16.7,
           "entry_date": null,
-          "last_price_usd": 319.53
+          "last_price_usd": 328.58
         },
         {
           "ticker": "TER",
           "name": "테라다인",
           "shares": 12,
           "buy_krw": 7962257,
-          "eval_krw": 6947418,
-          "pnl_pct": -12.75,
+          "eval_krw": 6846697,
+          "pnl_pct": -14.01,
           "entry_date": null,
-          "last_price_usd": 384.89
+          "last_price_usd": 379.31
         },
         {
           "ticker": "KLAC",
           "name": "KLA",
           "shares": 15,
           "buy_krw": 6513261,
-          "eval_krw": 4359625,
-          "pnl_pct": -33.07,
+          "eval_krw": 4469958,
+          "pnl_pct": -31.37,
           "entry_date": null,
-          "last_price_usd": 193.22
+          "last_price_usd": 198.11
         },
         {
           "ticker": "IBM",
           "name": "IBM",
           "shares": 11,
           "buy_krw": 4967748,
-          "eval_krw": 3862380,
-          "pnl_pct": -22.25,
+          "eval_krw": 3926083,
+          "pnl_pct": -20.97,
           "entry_date": null,
-          "last_price_usd": 233.43
+          "last_price_usd": 237.28
         },
         {
           "ticker": "AMAT",
           "name": "어플라이드 머티어리얼즈",
           "shares": 4,
           "buy_krw": 4314136,
-          "eval_krw": 3173741,
-          "pnl_pct": -26.43,
+          "eval_krw": 3243897,
+          "pnl_pct": -24.81,
           "entry_date": null,
-          "last_price_usd": 527.48
+          "last_price_usd": 539.14
         },
         {
           "ticker": "INTC",
           "name": "인텔",
           "shares": 10,
           "buy_krw": 2117011,
-          "eval_krw": 1501344,
-          "pnl_pct": -29.08,
+          "eval_krw": 1529021,
+          "pnl_pct": -27.77,
           "entry_date": null,
-          "last_price_usd": 99.81
+          "last_price_usd": 101.65
         }
       ]
     },
