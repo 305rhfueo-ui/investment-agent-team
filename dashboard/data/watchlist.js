@@ -1,5 +1,5 @@
 window.WATCHLIST_DATA = {
-  "generated": "2026-08-06",
+  "generated": "2026-08-07",
   "items": [
     {
       "ticker": "SNDK",
@@ -10,13 +10,13 @@ window.WATCHLIST_DATA = {
       "status": "broke_down",
       "flag": "⚠️ 50일선 -5% 이탈 — 추세 붕괴 위험(감시 재검토)",
       "ta": {
-        "price": 1350.5,
-        "ma50": 1702.27,
-        "distMA50": -20.66,
+        "price": 1258.58,
+        "ma50": 1695.65,
+        "distMA50": -25.78,
         "resistance": 1600,
         "brokeResistance": false,
         "trend": "mixed",
-        "summary": "SNDK $1350.5 · 고점대비 -42.64% 되돌림 · 50일선 대비 -20.66% · 200일선 위(56.79%) · 저항 $1600 미돌파 · 확장(1.08) · 월봉10MA 위 · 추세 mixed"
+        "summary": "SNDK $1258.58 · 고점대비 -46.54% 되돌림 · 50일선 대비 -25.78% · 200일선 위(45.18%) · 저항 $1600 미돌파 · 확장(1.1) · 월봉10MA 위 · 추세 mixed"
       }
     },
     {
@@ -25,16 +25,16 @@ window.WATCHLIST_DATA = {
       "reason": "검증단 3/3 전원 승인(84/70/68)·팩트 clear·악마 veto 없음. 매출 재가속·Meta/OpenAI 6GW 계약. 단 시장 리스크오프+저항 미돌파로 최종 보류.",
       "trigger": "저항 $563 거래량 돌파 + 시장 안정 확인 (또는 8/4 실적 확인 후)",
       "invalidate": "50일선 -5% 아래 이탈 시 재검토",
-      "status": "broke_down",
-      "flag": "⚠️ 50일선 -5% 이탈 — 추세 붕괴 위험(감시 재검토)",
+      "status": "watching",
+      "flag": "⏳ 관찰중(반등 미확인)",
       "ta": {
-        "price": 482.05,
-        "ma50": 514.62,
-        "distMA50": -6.33,
+        "price": 489.28,
+        "ma50": 514.33,
+        "distMA50": -4.87,
         "resistance": 546.44,
         "brokeResistance": false,
         "trend": "mixed",
-        "summary": "AMD $482.05 · 고점대비 -17.56% 되돌림 · 50일선 대비 -6.33% · 200일선 위(52.65%) · 저항 $546.44 미돌파 · 확장(1.15) · 월봉10MA 위 · 추세 mixed"
+        "summary": "AMD $489.28 · 고점대비 -16.32% 되돌림 · 50일선 대비 -4.87% · 200일선 위(54.31%) · 저항 $546.44 미돌파 · 확장(1.11) · 월봉10MA 위 · 추세 mixed"
       }
     },
     {
@@ -46,13 +46,13 @@ window.WATCHLIST_DATA = {
       "status": "broke_down",
       "flag": "⚠️ 50일선 -5% 이탈 — 추세 붕괴 위험(감시 재검토)",
       "ta": {
-        "price": 893.19,
-        "ma50": 972.25,
-        "distMA50": -8.13,
+        "price": 881.47,
+        "ma50": 971.96,
+        "distMA50": -9.31,
         "resistance": 1011.77,
         "brokeResistance": false,
         "trend": "mixed",
-        "summary": "MU $893.19 · 고점대비 -28.83% 되돌림 · 50일선 대비 -8.13% · 200일선 위(69.08%) · 저항 $1011.77 미돌파 · 확장(1.23) · 월봉10MA 위 · 추세 mixed"
+        "summary": "MU $881.47 · 고점대비 -29.76% 되돌림 · 50일선 대비 -9.31% · 200일선 위(65.79%) · 저항 $1011.77 미돌파 · 확장(1.3) · 월봉10MA 위 · 추세 mixed"
       }
     }
   ]
