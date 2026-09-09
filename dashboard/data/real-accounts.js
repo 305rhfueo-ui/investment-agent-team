@@ -3,66 +3,66 @@ window.REAL_ACCOUNTS_DATA = {
     "currency": "KRW",
     "last_synced": "2026-07-12",
     "note": "사장님 계좌 캡쳐 수치를 정본으로 함(환율·수수료 반영). 매수/매도 보고 시 갱신.",
-    "last_price_update": "2026-09-08"
+    "last_price_update": "2026-09-09"
   },
   "accounts": {
     "long": {
       "name": "장기용 (장독대)",
       "emoji": "💰",
-      "current_krw": 82900770,
+      "current_krw": 83424382,
       "cash_krw": 221794,
-      "holdings_eval_krw": 82678976,
+      "holdings_eval_krw": 83202588,
       "holdings_buy_krw": 63173174,
-      "unrealized_pnl_krw": 19505802,
-      "unrealized_pnl_pct": 30.88,
+      "unrealized_pnl_krw": 20029414,
+      "unrealized_pnl_pct": 31.71,
       "baseline_krw": 87017304,
-      "since_baseline_pct": -4.73,
+      "since_baseline_pct": -4.13,
       "target_krw": 300000000,
-      "progress_pct": 27.6,
-      "remaining_krw": 217099230,
+      "progress_pct": 27.8,
+      "remaining_krw": 216575618,
       "holdings": [
         {
           "ticker": "MU",
           "name": "마이크론",
           "shares": 30,
           "buy_krw": 22899318,
-          "eval_krw": 45874640,
-          "pnl_pct": 100.33,
+          "eval_krw": 45137732,
+          "pnl_pct": 97.11,
           "entry_date": "2025-06",
-          "last_price_usd": 1016.59,
-          "weight_pct": 55.3
+          "last_price_usd": 1000.26,
+          "weight_pct": 54.1
         },
         {
           "ticker": "TSLA",
           "name": "테슬라",
           "shares": 34,
           "buy_krw": 14399443,
-          "eval_krw": 18108646,
-          "pnl_pct": 25.76,
+          "eval_krw": 18828737,
+          "pnl_pct": 30.76,
           "entry_date": null,
-          "last_price_usd": 354.08,
-          "weight_pct": 21.8
+          "last_price_usd": 368.16,
+          "weight_pct": 22.6
         },
         {
           "ticker": "TER",
           "name": "테라다인",
           "shares": 12,
           "buy_krw": 7962257,
-          "eval_krw": 6444534,
-          "pnl_pct": -19.06,
+          "eval_krw": 6715831,
+          "pnl_pct": -15.65,
           "entry_date": null,
-          "last_price_usd": 357.03,
-          "weight_pct": 7.8
+          "last_price_usd": 372.06,
+          "weight_pct": 8.1
         },
         {
           "ticker": "KLAC",
           "name": "KLA",
           "shares": 15,
           "buy_krw": 6513261,
-          "eval_krw": 4187696,
-          "pnl_pct": -35.71,
+          "eval_krw": 4263959,
+          "pnl_pct": -34.53,
           "entry_date": null,
-          "last_price_usd": 185.6,
+          "last_price_usd": 188.98,
           "weight_pct": 5.1
         },
         {
@@ -70,33 +70,33 @@ window.REAL_ACCOUNTS_DATA = {
           "name": "IBM",
           "shares": 11,
           "buy_krw": 4967748,
-          "eval_krw": 3886537,
-          "pnl_pct": -21.76,
+          "eval_krw": 3840208,
+          "pnl_pct": -22.7,
           "entry_date": null,
-          "last_price_usd": 234.89,
-          "weight_pct": 4.7
+          "last_price_usd": 232.09,
+          "weight_pct": 4.6
         },
         {
           "ticker": "AMAT",
           "name": "어플라이드 머티어리얼즈",
           "shares": 4,
           "buy_krw": 4314136,
-          "eval_krw": 2735899,
-          "pnl_pct": -36.58,
+          "eval_krw": 2844683,
+          "pnl_pct": -34.06,
           "entry_date": null,
-          "last_price_usd": 454.71,
-          "weight_pct": 3.3
+          "last_price_usd": 472.79,
+          "weight_pct": 3.4
         },
         {
           "ticker": "INTC",
           "name": "인텔",
           "shares": 10,
           "buy_krw": 2117011,
-          "eval_krw": 1441024,
-          "pnl_pct": -31.93,
+          "eval_krw": 1571438,
+          "pnl_pct": -25.77,
           "entry_date": null,
-          "last_price_usd": 95.8,
-          "weight_pct": 1.7
+          "last_price_usd": 104.47,
+          "weight_pct": 1.9
         }
       ]
     },
@@ -117,5 +117,5 @@ window.REAL_ACCOUNTS_DATA = {
       "holdings": []
     }
   },
-  "generated": "2026-09-08"
+  "generated": "2026-09-09"
 };
