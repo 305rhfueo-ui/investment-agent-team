@@ -1,5 +1,5 @@
 window.WATCHLIST_DATA = {
-  "generated": "2026-09-17",
+  "generated": "2026-09-18",
   "items": [
     {
       "ticker": "SNDK",
@@ -10,13 +10,13 @@ window.WATCHLIST_DATA = {
       "status": "recovering",
       "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $1600 돌파 대기",
       "ta": {
-        "price": 1530.9,
-        "ma50": 1509.74,
-        "distMA50": 1.4,
+        "price": 1519.97,
+        "ma50": 1507.79,
+        "distMA50": 0.81,
         "resistance": 1600,
         "brokeResistance": false,
         "trend": "up",
-        "summary": "SNDK $1530.9 · 고점대비 -34.98% 되돌림 · 50일선 ±3% 근접(1.4%) · 200일선 위(46.24%) · 저항 $1600 미돌파 · 약수축(0.89) · 월봉10MA 위 · 추세 up"
+        "summary": "SNDK $1519.97 · 고점대비 -35.44% 되돌림 · 50일선 ±3% 근접(0.81%) · 200일선 위(44.3%) · 저항 $1600 미돌파 · 약수축(0.87) · 월봉10MA 위 · 추세 up"
       }
     },
     {
