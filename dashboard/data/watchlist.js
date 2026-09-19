@@ -1,5 +1,5 @@
 window.WATCHLIST_DATA = {
-  "generated": "2026-09-18",
+  "generated": "2026-09-19",
   "items": [
     {
       "ticker": "SNDK",
@@ -8,15 +8,15 @@ window.WATCHLIST_DATA = {
       "trigger": "저항 $1,861 거래량 돌파 또는 8/5 실적 확인 후 진입",
       "invalidate": "50일선($1,714) -5% 아래 이탈 시 감시 해제",
       "status": "recovering",
-      "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $1600 돌파 대기",
+      "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $1696.37 돌파 대기",
       "ta": {
-        "price": 1519.97,
-        "ma50": 1507.79,
-        "distMA50": 0.81,
-        "resistance": 1600,
+        "price": 1614.39,
+        "ma50": 1505.53,
+        "distMA50": 7.23,
+        "resistance": 1696.37,
         "brokeResistance": false,
         "trend": "up",
-        "summary": "SNDK $1519.97 · 고점대비 -35.44% 되돌림 · 50일선 ±3% 근접(0.81%) · 200일선 위(44.3%) · 저항 $1600 미돌파 · 약수축(0.87) · 월봉10MA 위 · 추세 up"
+        "summary": "SNDK $1614.39 · 고점대비 -31.43% 되돌림 · 50일선 대비 +7.23% · 200일선 위(52.25%) · 저항 $1696.37 미돌파 · 약수축(0.93) · 월봉10MA 위 · 추세 up"
       }
     },
     {
@@ -25,16 +25,16 @@ window.WATCHLIST_DATA = {
       "reason": "검증단 3/3 전원 승인(84/70/68)·팩트 clear·악마 veto 없음. 매출 재가속·Meta/OpenAI 6GW 계약. 단 시장 리스크오프+저항 미돌파로 최종 보류.",
       "trigger": "저항 $563 거래량 돌파 + 시장 안정 확인 (또는 8/4 실적 확인 후)",
       "invalidate": "50일선 -5% 아래 이탈 시 재검토",
-      "status": "recovering",
-      "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $517.35 돌파 대기",
+      "status": "bounce",
+      "flag": "🟢 진입 신호! 거래량 동반 저항 돌파",
       "ta": {
-        "price": 512.5,
-        "ma50": 495.03,
-        "distMA50": 3.53,
-        "resistance": 517.35,
-        "brokeResistance": false,
+        "price": 545.09,
+        "ma50": 495.59,
+        "distMA50": 9.99,
+        "resistance": 561.47,
+        "brokeResistance": true,
         "trend": "up",
-        "summary": "AMD $512.5 · 고점대비 -12.35% 되돌림 · 50일선 대비 +3.53% · 200일선 위(45.89%) · 저항 $517.35 미돌파 · 확장(1.24) · 월봉10MA 위 · 추세 up"
+        "summary": "AMD $545.09 · 고점대비 -6.78% 되돌림 · 50일선 대비 +9.99% · 200일선 위(54.45%) · 거래량 동반 저항 돌파 ✓ · 확장(1.47) · 월봉10MA 위 · 추세 up"
       }
     },
     {
@@ -46,13 +46,13 @@ window.WATCHLIST_DATA = {
       "status": "recovering",
       "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $1011.77 돌파 대기",
       "ta": {
-        "price": 926.55,
-        "ma50": 926.2,
-        "distMA50": 0.04,
+        "price": 977.5,
+        "ma50": 926.77,
+        "distMA50": 5.47,
         "resistance": 1011.77,
         "brokeResistance": false,
         "trend": "up",
-        "summary": "MU $926.55 · 고점대비 -26.17% 되돌림 · 50일선 ±3% 근접(0.04%) · 200일선 위(46.48%) · 저항 $1011.77 미돌파 · 약수축(0.86) · 월봉10MA 위 · 추세 up"
+        "summary": "MU $977.5 · 고점대비 -22.11% 되돌림 · 50일선 대비 +5.47% · 200일선 위(53.63%) · 저항 $1011.77 미돌파 · 약수축(0.89) · 월봉10MA 위 · 추세 up"
       }
     }
   ]
