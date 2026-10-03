@@ -1,5 +1,5 @@
 window.WATCHLIST_DATA = {
-  "generated": "2026-10-02",
+  "generated": "2026-10-03",
   "items": [
     {
       "ticker": "SNDK",
@@ -10,13 +10,13 @@ window.WATCHLIST_DATA = {
       "status": "recovering",
       "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $1807.38 돌파 대기",
       "ta": {
-        "price": 1787.69,
-        "ma50": 1537.47,
-        "distMA50": 16.27,
+        "price": 1719.99,
+        "ma50": 1539.67,
+        "distMA50": 11.71,
         "resistance": 1807.38,
         "brokeResistance": false,
         "trend": "up",
-        "summary": "SNDK $1787.69 · 고점대비 -24.07% 되돌림 · 50일선 대비 +16.27% · 200일선 위(57.05%) · 저항 $1807.38 미돌파 · 확장(1.2) · 월봉10MA 위 · 추세 up"
+        "summary": "SNDK $1719.99 · 고점대비 -26.95% 되돌림 · 50일선 대비 +11.71% · 200일선 위(50.11%) · 저항 $1807.38 미돌파 · 약수축(0.92) · 월봉10MA 위 · 추세 up"
       }
     },
     {
@@ -28,13 +28,13 @@ window.WATCHLIST_DATA = {
       "status": "recovering",
       "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $null 돌파 대기",
       "ta": {
-        "price": 615.73,
-        "ma50": 511.65,
-        "distMA50": 20.34,
+        "price": 633.91,
+        "ma50": 513.53,
+        "distMA50": 23.44,
         "resistance": null,
         "brokeResistance": false,
         "trend": "up",
-        "summary": "AMD $615.73 · 고점대비 -3.64% 되돌림 · 50일선 대비 +20.34% · 200일선 위(65.26%) ·  · 확장(1.1) · 월봉10MA 위 · 추세 up"
+        "summary": "AMD $633.91 · 고점대비 -1.79% 되돌림 · 50일선 대비 +23.44% · 200일선 위(69.17%) ·  · 확장(1.09) · 월봉10MA 위 · 추세 up"
       }
     },
     {
@@ -44,15 +44,15 @@ window.WATCHLIST_DATA = {
       "trigger": "저항 $1,089 거래량 돌파 또는 50일선($917) 눌림 재진입(분할·확인)",
       "invalidate": "50일선 -5% 아래 이탈 시 재검토",
       "status": "recovering",
-      "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $1255 돌파 대기",
+      "flag": "🟡 50일선 재장악(추세 up) — 단 저항 $1089.29 돌파 대기",
       "ta": {
-        "price": 1097.39,
-        "ma50": 954.35,
-        "distMA50": 14.99,
-        "resistance": 1255,
+        "price": 1074.89,
+        "ma50": 956.05,
+        "distMA50": 12.43,
+        "resistance": 1089.29,
         "brokeResistance": false,
         "trend": "up",
-        "summary": "MU $1097.39 · 고점대비 -12.56% 되돌림 · 50일선 대비 +14.99% · 200일선 위(61.99%) · 저항 $1255 미돌파 · 확장(1.24) · 월봉10MA 위 · 추세 up"
+        "summary": "MU $1074.89 · 고점대비 -14.35% 되돌림 · 50일선 대비 +12.43% · 200일선 위(57.7%) · 저항 $1089.29 미돌파 · 확장(1.24) · 월봉10MA 위 · 추세 up"
       }
     }
   ]
