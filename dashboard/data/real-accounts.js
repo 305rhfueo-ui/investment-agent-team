@@ -3,100 +3,100 @@ window.REAL_ACCOUNTS_DATA = {
     "currency": "KRW",
     "last_synced": "2026-07-12",
     "note": "사장님 계좌 캡쳐 수치를 정본으로 함(환율·수수료 반영). 매수/매도 보고 시 갱신.",
-    "last_price_update": "2026-10-22"
+    "last_price_update": "2026-10-23"
   },
   "accounts": {
     "long": {
       "name": "장기용 (장독대)",
       "emoji": "💰",
-      "current_krw": 79160459,
+      "current_krw": 74654581,
       "cash_krw": 221794,
-      "holdings_eval_krw": 78938665,
+      "holdings_eval_krw": 74432787,
       "holdings_buy_krw": 63173174,
-      "unrealized_pnl_krw": 15765491,
-      "unrealized_pnl_pct": 24.96,
+      "unrealized_pnl_krw": 11259613,
+      "unrealized_pnl_pct": 17.82,
       "baseline_krw": 87017304,
-      "since_baseline_pct": -9.03,
+      "since_baseline_pct": -14.21,
       "target_krw": 300000000,
-      "progress_pct": 26.4,
-      "remaining_krw": 220839541,
+      "progress_pct": 24.9,
+      "remaining_krw": 225345419,
       "holdings": [
         {
           "ticker": "MU",
           "name": "마이크론",
           "shares": 30,
           "buy_krw": 22899318,
-          "eval_krw": 41230274,
-          "pnl_pct": 80.05,
+          "eval_krw": 38649969,
+          "pnl_pct": 68.78,
           "entry_date": "2025-06",
-          "last_price_usd": 913.67,
-          "weight_pct": 52.1
+          "last_price_usd": 856.49,
+          "weight_pct": 51.8
         },
         {
           "ticker": "TSLA",
           "name": "테슬라",
           "shares": 34,
           "buy_krw": 14399443,
-          "eval_krw": 19765160,
-          "pnl_pct": 37.26,
+          "eval_krw": 19157072,
+          "pnl_pct": 33.04,
           "entry_date": null,
-          "last_price_usd": 386.47,
-          "weight_pct": 25
+          "last_price_usd": 374.58,
+          "weight_pct": 25.7
         },
         {
           "ticker": "TER",
           "name": "테라다인",
           "shares": 12,
           "buy_krw": 7962257,
-          "eval_krw": 6236233,
-          "pnl_pct": -21.68,
+          "eval_krw": 5573061,
+          "pnl_pct": -30.01,
           "entry_date": null,
-          "last_price_usd": 345.49,
-          "weight_pct": 7.9
+          "last_price_usd": 308.75,
+          "weight_pct": 7.5
         },
         {
           "ticker": "IBM",
           "name": "IBM",
           "shares": 11,
           "buy_krw": 4967748,
-          "eval_krw": 4160709,
-          "pnl_pct": -16.25,
+          "eval_krw": 4171464,
+          "pnl_pct": -16.03,
           "entry_date": null,
-          "last_price_usd": 251.46,
-          "weight_pct": 5.3
+          "last_price_usd": 252.11,
+          "weight_pct": 5.6
         },
         {
           "ticker": "KLAC",
           "name": "KLA",
           "shares": 15,
           "buy_krw": 6513261,
-          "eval_krw": 3687473,
-          "pnl_pct": -43.39,
+          "eval_krw": 3335490,
+          "pnl_pct": -48.79,
           "entry_date": null,
-          "last_price_usd": 163.43,
-          "weight_pct": 4.7
+          "last_price_usd": 147.83,
+          "weight_pct": 4.5
         },
         {
           "ticker": "AMAT",
           "name": "어플라이드 머티어리얼즈",
           "shares": 4,
           "buy_krw": 4314136,
-          "eval_krw": 2460512,
-          "pnl_pct": -42.97,
+          "eval_krw": 2259791,
+          "pnl_pct": -47.62,
           "entry_date": null,
-          "last_price_usd": 408.94,
-          "weight_pct": 3.1
+          "last_price_usd": 375.58,
+          "weight_pct": 3
         },
         {
           "ticker": "INTC",
           "name": "인텔",
           "shares": 10,
           "buy_krw": 2117011,
-          "eval_krw": 1398304,
-          "pnl_pct": -33.95,
+          "eval_krw": 1285940,
+          "pnl_pct": -39.26,
           "entry_date": null,
-          "last_price_usd": 92.96,
-          "weight_pct": 1.8
+          "last_price_usd": 85.49,
+          "weight_pct": 1.7
         }
       ]
     },
@@ -117,5 +117,5 @@ window.REAL_ACCOUNTS_DATA = {
       "holdings": []
     }
   },
-  "generated": "2026-10-22"
+  "generated": "2026-10-23"
 };
