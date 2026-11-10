@@ -3,33 +3,33 @@ window.REAL_ACCOUNTS_DATA = {
     "currency": "KRW",
     "last_synced": "2026-07-12",
     "note": "사장님 계좌 캡쳐 수치를 정본으로 함(환율·수수료 반영). 매수/매도 보고 시 갱신.",
-    "last_price_update": "2026-11-07"
+    "last_price_update": "2026-11-10"
   },
   "accounts": {
     "long": {
       "name": "장기용 (장독대)",
       "emoji": "💰",
-      "current_krw": 63644996,
+      "current_krw": 67691204,
       "cash_krw": 221794,
-      "holdings_eval_krw": 63423202,
+      "holdings_eval_krw": 67469410,
       "holdings_buy_krw": 63173174,
-      "unrealized_pnl_krw": 250028,
-      "unrealized_pnl_pct": 0.4,
+      "unrealized_pnl_krw": 4296236,
+      "unrealized_pnl_pct": 6.8,
       "baseline_krw": 87017304,
-      "since_baseline_pct": -26.86,
+      "since_baseline_pct": -22.21,
       "target_krw": 300000000,
-      "progress_pct": 21.2,
-      "remaining_krw": 236355004,
+      "progress_pct": 22.6,
+      "remaining_krw": 232308796,
       "holdings": [
         {
           "ticker": "MU",
           "name": "마이크론",
           "shares": 30,
           "buy_krw": 22899318,
-          "eval_krw": 31136941,
-          "pnl_pct": 35.97,
+          "eval_krw": 33084128,
+          "pnl_pct": 44.48,
           "entry_date": "2025-06",
-          "last_price_usd": 690,
+          "last_price_usd": 733.15,
           "weight_pct": 48.9
         },
         {
@@ -37,65 +37,65 @@ window.REAL_ACCOUNTS_DATA = {
           "name": "테슬라",
           "shares": 34,
           "buy_krw": 14399443,
-          "eval_krw": 18320376,
-          "pnl_pct": 27.23,
+          "eval_krw": 19334538,
+          "pnl_pct": 34.27,
           "entry_date": null,
-          "last_price_usd": 358.22,
-          "weight_pct": 28.8
-        },
-        {
-          "ticker": "IBM",
-          "name": "IBM",
-          "shares": 11,
-          "buy_krw": 4967748,
-          "eval_krw": 4053821,
-          "pnl_pct": -18.4,
-          "entry_date": null,
-          "last_price_usd": 245,
-          "weight_pct": 6.4
+          "last_price_usd": 378.05,
+          "weight_pct": 28.6
         },
         {
           "ticker": "TER",
           "name": "테라다인",
           "shares": 12,
           "buy_krw": 7962257,
-          "eval_krw": 3938869,
-          "pnl_pct": -50.53,
+          "eval_krw": 4440399,
+          "pnl_pct": -44.23,
           "entry_date": null,
-          "last_price_usd": 218.215,
-          "weight_pct": 6.2
+          "last_price_usd": 246,
+          "weight_pct": 6.6
+        },
+        {
+          "ticker": "IBM",
+          "name": "IBM",
+          "shares": 11,
+          "buy_krw": 4967748,
+          "eval_krw": 4072187,
+          "pnl_pct": -18.03,
+          "entry_date": null,
+          "last_price_usd": 246.11,
+          "weight_pct": 6
         },
         {
           "ticker": "KLAC",
           "name": "KLA",
           "shares": 15,
           "buy_krw": 6513261,
-          "eval_krw": 3124752,
-          "pnl_pct": -52.02,
+          "eval_krw": 3415589,
+          "pnl_pct": -47.56,
           "entry_date": null,
-          "last_price_usd": 138.49,
-          "weight_pct": 4.9
+          "last_price_usd": 151.38,
+          "weight_pct": 5
         },
         {
           "ticker": "AMAT",
           "name": "어플라이드 머티어리얼즈",
           "shares": 4,
           "buy_krw": 4314136,
-          "eval_krw": 2001881,
-          "pnl_pct": -53.6,
+          "eval_krw": 2229527,
+          "pnl_pct": -48.32,
           "entry_date": null,
-          "last_price_usd": 332.715,
-          "weight_pct": 3.1
+          "last_price_usd": 370.55,
+          "weight_pct": 3.3
         },
         {
           "ticker": "INTC",
           "name": "인텔",
           "shares": 10,
           "buy_krw": 2117011,
-          "eval_krw": 846562,
-          "pnl_pct": -60.01,
+          "eval_krw": 893042,
+          "pnl_pct": -57.82,
           "entry_date": null,
-          "last_price_usd": 56.28,
+          "last_price_usd": 59.37,
           "weight_pct": 1.3
         }
       ]
@@ -117,5 +117,5 @@ window.REAL_ACCOUNTS_DATA = {
       "holdings": []
     }
   },
-  "generated": "2026-11-07"
+  "generated": "2026-11-10"
 };

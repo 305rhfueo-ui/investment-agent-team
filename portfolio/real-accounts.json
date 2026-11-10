@@ -3,7 +3,7 @@
     "currency": "KRW",
     "last_synced": "2026-07-12",
     "note": "사장님 계좌 캡쳐 수치를 정본으로 함(환율·수수료 반영). 매수/매도 보고 시 갱신.",
-    "last_price_update": "2026-11-07"
+    "last_price_update": "2026-11-10"
   },
   "accounts": {
     "long": {
@@ -20,70 +20,70 @@
           "name": "마이크론",
           "shares": 30,
           "buy_krw": 22899318,
-          "eval_krw": 31136941,
-          "pnl_pct": 35.97,
+          "eval_krw": 33084128,
+          "pnl_pct": 44.48,
           "entry_date": "2025-06",
-          "last_price_usd": 690
+          "last_price_usd": 733.15
         },
         {
           "ticker": "TSLA",
           "name": "테슬라",
           "shares": 34,
           "buy_krw": 14399443,
-          "eval_krw": 18320376,
-          "pnl_pct": 27.23,
+          "eval_krw": 19334538,
+          "pnl_pct": 34.27,
           "entry_date": null,
-          "last_price_usd": 358.22
+          "last_price_usd": 378.05
         },
         {
           "ticker": "TER",
           "name": "테라다인",
           "shares": 12,
           "buy_krw": 7962257,
-          "eval_krw": 3938869,
-          "pnl_pct": -50.53,
+          "eval_krw": 4440399,
+          "pnl_pct": -44.23,
           "entry_date": null,
-          "last_price_usd": 218.215
+          "last_price_usd": 246
         },
         {
           "ticker": "KLAC",
           "name": "KLA",
           "shares": 15,
           "buy_krw": 6513261,
-          "eval_krw": 3124752,
-          "pnl_pct": -52.02,
+          "eval_krw": 3415589,
+          "pnl_pct": -47.56,
           "entry_date": null,
-          "last_price_usd": 138.49
+          "last_price_usd": 151.38
         },
         {
           "ticker": "IBM",
           "name": "IBM",
           "shares": 11,
           "buy_krw": 4967748,
-          "eval_krw": 4053821,
-          "pnl_pct": -18.4,
+          "eval_krw": 4072187,
+          "pnl_pct": -18.03,
           "entry_date": null,
-          "last_price_usd": 245
+          "last_price_usd": 246.11
         },
         {
           "ticker": "AMAT",
           "name": "어플라이드 머티어리얼즈",
           "shares": 4,
           "buy_krw": 4314136,
-          "eval_krw": 2001881,
-          "pnl_pct": -53.6,
+          "eval_krw": 2229527,
+          "pnl_pct": -48.32,
           "entry_date": null,
-          "last_price_usd": 332.715
+          "last_price_usd": 370.55
         },
         {
           "ticker": "INTC",
           "name": "인텔",
           "shares": 10,
           "buy_krw": 2117011,
-          "eval_krw": 846562,
-          "pnl_pct": -60.01,
+          "eval_krw": 893042,
+          "pnl_pct": -57.82,
           "entry_date": null,
-          "last_price_usd": 56.28
+          "last_price_usd": 59.37
         }
       ]
     },
