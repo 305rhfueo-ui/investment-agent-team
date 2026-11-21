@@ -1,5 +1,5 @@
 window.WATCHLIST_DATA = {
-  "generated": "2026-11-20",
+  "generated": "2026-11-21",
   "items": [
     {
       "ticker": "SNDK",
@@ -28,13 +28,13 @@ window.WATCHLIST_DATA = {
       "status": "broke_down",
       "flag": "⚠️ 50일선 -5% 이탈 — 추세 붕괴 위험(감시 재검토)",
       "ta": {
-        "price": 489.19,
-        "ma50": 554.93,
-        "distMA50": -11.85,
-        "resistance": 517.35,
+        "price": 424.39,
+        "ma50": 553.1,
+        "distMA50": -23.27,
+        "resistance": 469.22,
         "brokeResistance": false,
-        "trend": "mixed",
-        "summary": "AMD $489.19 · 고점대비 -25.71% 되돌림 · 50일선 대비 -11.85% · 200일선 위(14.13%) · 저항 $517.35 미돌파 · 확장(1.51) · 월봉10MA 위 · 추세 mixed"
+        "trend": "down",
+        "summary": "AMD $424.39 · 고점대비 -35.55% 되돌림 · 50일선 대비 -23.27% · 200일선 아래(-1.26%) · 저항 $469.22 미돌파 · 확장(1.56) · 월봉10MA 아래(매도규칙 주의) · 추세 down"
       }
     },
     {
@@ -46,13 +46,13 @@ window.WATCHLIST_DATA = {
       "status": "broke_down",
       "flag": "⚠️ 50일선 -5% 이탈 — 추세 붕괴 위험(감시 재검토)",
       "ta": {
-        "price": 690.44,
-        "ma50": 919.88,
-        "distMA50": -24.94,
+        "price": 594.51,
+        "ma50": 912.26,
+        "distMA50": -34.83,
         "resistance": 818.67,
         "brokeResistance": false,
         "trend": "down",
-        "summary": "MU $690.44 · 고점대비 -44.98% 되돌림 · 50일선 대비 -24.94% · 200일선 아래(-10.51%) · 저항 $818.67 미돌파 · 확장(1) · 월봉10MA 아래(매도규칙 주의) · 추세 down"
+        "summary": "MU $594.51 · 고점대비 -52.63% 되돌림 · 50일선 대비 -34.83% · 200일선 아래(-23.05%) · 저항 $818.67 미돌파 · 확장(1.04) · 월봉10MA 아래(매도규칙 주의) · 추세 down"
       }
     }
   ]
